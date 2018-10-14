@@ -7,6 +7,16 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
+/*
+ * Title: Robot
+ * Date Created: 10/14/2018
+ * Date Modified: 10/14/2018
+ * Author: Rahul
+ * Type: Library
+ * Description: This is the base library for any main op to be based off. It will contain all the
+ *              motors, servos, and sensors.
+ */
+
 public class Robot {
 
     private LinearOpMode opMode;

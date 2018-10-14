@@ -5,6 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
+/*
+ * Title: TeleLib
+ * Date Created: 10/14/2018
+ * Date Modified: 10/14/2018
+ * Author: Rahul
+ * Type: Library
+ * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
+ */
+
 public class TeleLib {
     private Robot robot;
     private LinearOpMode opMode;

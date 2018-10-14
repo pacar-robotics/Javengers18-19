@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 /*
  * Title: TankDrive
  * Date Created: 10/13/2018
- * Date Modified: 10/13/2018
+ * Date Modified: 10/14/2018
  * Author: Rahul
- * Type: TeleOp
+ * Type: TestOp
  * Description: Left joystick moves left wheel, right joystick moves right wheel
  */
 
