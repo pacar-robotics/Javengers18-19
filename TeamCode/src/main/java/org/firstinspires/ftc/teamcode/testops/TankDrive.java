@@ -15,7 +15,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  */
 
 @TeleOp
+@SuppressWarnings("unused")
 public class TankDrive extends LinearOpMode {
+    @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
         DcMotor leftWheel = hardwareMap.get(DcMotor.class, "leftWheel");
