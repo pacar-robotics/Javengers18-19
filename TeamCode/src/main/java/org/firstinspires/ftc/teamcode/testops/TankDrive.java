@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * Description: Left joystick moves left wheel, right joystick moves right wheel
  */
 
-@TeleOp
 @SuppressWarnings("unused")
+@TeleOp(group = "TestOps")
 public class TankDrive extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
