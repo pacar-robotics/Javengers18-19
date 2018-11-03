@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.mainops;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  * Description: The main autonomous program
  */
 
+@Autonomous(group = "Main")
 public class MainAutonomous extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
