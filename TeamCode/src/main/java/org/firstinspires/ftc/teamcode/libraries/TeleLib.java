@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
@@ -28,5 +30,13 @@ public class TeleLib {
     public void processGamepadDrive() {
         robot.setDcMotorPower(LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
         robot.setDcMotorPower(RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
+    }
+
+    public void processLatcher() {
+        if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(LATCHER, opMode.gamepad1.left_trigger);
+        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(LATCHER, opMode.gamepad1.right_trigger);
+        }
     }
 }
