@@ -41,4 +41,20 @@ public class Robot {
     void setDcMotorPower(int index, float power) {
         dcMotors[index].setPower(power);
     }
+
+    void setDcMotorMode(int index, DcMotor.RunMode runMode) {
+        dcMotors[index].setMode(runMode);
+    }
+
+    int getDcMotorPosition(int index) {
+        return dcMotors[index].getCurrentPosition();
+    }
+
+    void setDcMotorTargetPosition(int index, int targetPosition) {
+        dcMotors[index].setTargetPosition(targetPosition);
+    }
+
+    boolean isMotorBusy(int index) {
+        return dcMotors[index].isBusy();
+    }
 }

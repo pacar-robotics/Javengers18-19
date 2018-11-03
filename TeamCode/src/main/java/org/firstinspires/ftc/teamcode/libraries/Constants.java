@@ -19,4 +19,9 @@ public class Constants {
     static final int LEFT_WHEEL = 0;
     static final int RIGHT_WHEEL = 1;
     static final int LATCHER = 2;
+
+    //********** CalcMove Constants **********//
+    static final float WHEEL_DIAMETER = 10.16f; // Centimeters
+    static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 1425.2f;
+    static final float ENCODER_MARGIN = 50f;
 }
