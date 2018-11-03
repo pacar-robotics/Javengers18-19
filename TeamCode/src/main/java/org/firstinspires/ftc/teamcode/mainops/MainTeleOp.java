@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.libraries.TeleLib;
 /*
  * Title: MainTeleOp
  * Date Created: 10/14/2018
- * Date Modified: 10/14/2018
+ * Date Modified: 11/3/2018
  * Author: Rahul
  * Type: Main
  * Description: This is the main teleop program we will use
@@ -32,6 +32,7 @@ public class MainTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             teleLib.processGamepadDrive();
+            teleLib.processLatcher();
             idle();
         }
     }
