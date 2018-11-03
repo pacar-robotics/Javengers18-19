@@ -27,17 +27,23 @@ public class TeleLib {
         opMode.gamepad1.setJoystickDeadzone(.1f);
     }
 
+    // Uses both joysticks to control the wheels (tank drive)
     public void processGamepadDrive() {
+        // Values need to be reversed (up on joystick is -1)
         robot.setDcMotorPower(LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
         robot.setDcMotorPower(RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
     }
 
+    // Uses both triggers on controllers to control the latcher
     public void processLatcher() {
         if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            // Moves latcher up
             robot.setDcMotorPower(LATCHER, opMode.gamepad1.left_trigger);
         } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            // Moves latcher down
             robot.setDcMotorPower(LATCHER, -opMode.gamepad1.right_trigger);
         } else {
+            // Stops latcher movement
             robot.setDcMotorPower(LATCHER, 0);
         }
     }
