@@ -38,6 +38,7 @@ public class AutoLib {
         robot.setDcMotorPower(LEFT_WHEEL, power);
         robot.setDcMotorPower(RIGHT_WHEEL, power);
 
+        // Stays in this while loop until the motors are done moving to their position
         while (areBaseMotorsBusy() &&
                 (Math.abs(targetPosition - robot.getDcMotorPosition(LEFT_WHEEL)) >= ENCODER_MARGIN)) {
             opMode.idle();

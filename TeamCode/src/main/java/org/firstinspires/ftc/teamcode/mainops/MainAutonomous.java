@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 
 @Autonomous(group = "Main")
 public class MainAutonomous extends LinearOpMode {
+    @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Status", "Initializing...");
