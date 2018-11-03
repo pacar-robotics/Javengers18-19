@@ -12,6 +12,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 public class Constants {
 
     //********** Gamepad Tolerance Constants **********//
+    final static float GAMEPAD_JOYSTICK_TOLERANCE = .05f;
     final static float GAMEPAD_TRIGGER_TOLERANCE = .05f;
 
     //********** DcMotor Indexes **********//

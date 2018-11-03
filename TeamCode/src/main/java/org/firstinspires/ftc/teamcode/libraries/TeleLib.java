@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
@@ -24,7 +25,7 @@ public class TeleLib {
         robot = new Robot(opMode);
         this.opMode = opMode;
 
-        opMode.gamepad1.setJoystickDeadzone(.1f);
+        opMode.gamepad1.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
     }
 
     // Uses both joysticks to control the wheels (tank drive)
