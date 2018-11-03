@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.libraries.TeleLib;
  * Description: This is the main teleop program we will use
  */
 
-@SuppressWarnings("unused")
 @TeleOp(group = "Main")
 public class MainTeleOp extends LinearOpMode {
 
