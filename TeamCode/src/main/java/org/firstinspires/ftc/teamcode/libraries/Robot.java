@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.libraries;
 
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -11,8 +12,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 11/3/2018
- * Author: Rahul
+ * Date Modified: 11/4/2018
+ * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
  *              motors, servos, and sensors.
@@ -23,6 +24,9 @@ public class Robot {
     private LinearOpMode opMode;
 
     private DcMotor[] dcMotors = new DcMotor[3];
+
+    // Sensors
+    private Rev2mDistanceSensor groundSensor;
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -36,6 +40,10 @@ public class Robot {
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
         dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    private void initSensors() {
+        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
     }
 
     void setDcMotorPower(int index, float power) {
