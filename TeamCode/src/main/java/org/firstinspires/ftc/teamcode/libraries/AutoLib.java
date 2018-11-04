@@ -6,6 +6,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -13,8 +14,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 11/3/2018
- * Author: Rahul
+ * Date Modified: 11/4/2018
+ * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
  */
@@ -61,5 +62,13 @@ public class AutoLib {
 
     private boolean areBaseMotorsBusy() {
         return robot.isMotorBusy(LEFT_WHEEL) || robot.isMotorBusy(RIGHT_WHEEL);
+    }
+
+    public void landOnGround() {
+        robot.setDcMotorPower(LATCHER, -0.5f);
+        while (robot.getGroundDistanceCenti() >= 5.715) {
+            opMode.idle();
+        }
+        robot.setDcMotorPower(LATCHER, 0f);
     }
 }

@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
@@ -32,6 +34,7 @@ public class Robot {
         this.opMode = opMode;
 
         initDcMotor();
+        initSensors();
     }
 
     private void initDcMotor() {
@@ -46,6 +49,7 @@ public class Robot {
         groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
     }
 
+    // Motor methods
     void setDcMotorPower(int index, float power) {
         dcMotors[index].setPower(power);
     }
@@ -64,5 +68,10 @@ public class Robot {
 
     boolean isMotorBusy(int index) {
         return dcMotors[index].isBusy();
+    }
+
+    //Sensor methods
+    double getGroundDistanceCenti() {
+        return (groundSensor.getDistance(DistanceUnit.METER) / 100);
     }
 }
