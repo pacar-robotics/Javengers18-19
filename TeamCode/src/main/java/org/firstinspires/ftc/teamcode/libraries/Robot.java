@@ -72,6 +72,6 @@ public class Robot {
 
     //Sensor methods
     double getGroundDistanceCenti() {
-        return (groundSensor.getDistance(DistanceUnit.METER) / 100);
+        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
     }
 }

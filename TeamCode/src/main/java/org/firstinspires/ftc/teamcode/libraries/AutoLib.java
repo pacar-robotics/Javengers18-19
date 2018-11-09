@@ -65,8 +65,9 @@ public class AutoLib {
     }
 
     public void landOnGround() {
-        robot.setDcMotorPower(LATCHER, -0.5f);
-        while (robot.getGroundDistanceCenti() >= 5.715) {
+        robot.setDcMotorPower(LATCHER, 0.5f);
+        // The motor will stop when it detects that it's on the ground
+        while (robot.getGroundDistanceCenti() >= 5.2) {
             opMode.idle();
         }
         robot.setDcMotorPower(LATCHER, 0f);
