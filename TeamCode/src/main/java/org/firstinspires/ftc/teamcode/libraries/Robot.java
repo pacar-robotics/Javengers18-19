@@ -25,6 +25,7 @@ public class Robot {
 
     private LinearOpMode opMode;
 
+    // Motors
     private DcMotor[] dcMotors = new DcMotor[3];
 
     // Sensors
@@ -33,11 +34,11 @@ public class Robot {
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
 
-        initDcMotor();
+        initDcMotors();
         initSensors();
     }
 
-    private void initDcMotor() {
+    private void initDcMotors() {
         dcMotors[LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
         dcMotors[RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
