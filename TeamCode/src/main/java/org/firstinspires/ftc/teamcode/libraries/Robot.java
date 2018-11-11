@@ -4,18 +4,20 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 11/4/2018
- * Author: Rahul, Poorvi, Varnika
+ * Date Modified: 11/11/2018
+ * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
  *              motors, servos, and sensors.
@@ -28,6 +30,9 @@ public class Robot {
     // Motors
     private DcMotor[] dcMotors = new DcMotor[3];
 
+    // Servos
+    private Servo latcherServo;
+
     // Sensors
     private Rev2mDistanceSensor groundSensor;
 
@@ -35,6 +40,7 @@ public class Robot {
         this.opMode = opMode;
 
         initDcMotors();
+        initServos();
         initSensors();
     }
 
@@ -44,6 +50,11 @@ public class Robot {
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
         dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    private void initServos() {
+        latcherServo = opMode.hardwareMap.get(Servo.class, "latcherServo");
+        latcherServo.setPosition(LATCHER_SERVO_REST);
     }
 
     private void initSensors() {
@@ -71,7 +82,16 @@ public class Robot {
         return dcMotors[index].isBusy();
     }
 
-    //Sensor methods
+    // Servo methods
+    void setLatcherServoPosition(float position) {
+        latcherServo.setPosition(position);
+    }
+
+    float getLatcherServoPosition() {
+        return (float) latcherServo.getPosition();
+    }
+
+    // Sensor methods
     double getGroundDistanceCenti() {
         return (groundSensor.getDistance(DistanceUnit.METER) * 100);
     }

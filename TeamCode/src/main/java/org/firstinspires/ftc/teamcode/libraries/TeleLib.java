@@ -5,14 +5,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
 /*
  * Title: TeleLib
  * Date Created: 10/14/2018
- * Date Modified: 10/14/2018
- * Author: Rahul
+ * Date Modified: 11/11/2018
+ * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
  */
@@ -47,5 +49,17 @@ public class TeleLib {
             // Stops latcher movement
             robot.setDcMotorPower(LATCHER, 0);
         }
+    }
+
+    public void processLatcherServo() throws InterruptedException {
+        if (opMode.gamepad1.a) {
+            if (robot.getLatcherServoPosition() == LATCHER_SERVO_GRAB) {
+                robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+            } else {
+                robot.setLatcherServoPosition(LATCHER_SERVO_GRAB);
+            }
+        }
+
+        Thread.sleep(100);
     }
 }
