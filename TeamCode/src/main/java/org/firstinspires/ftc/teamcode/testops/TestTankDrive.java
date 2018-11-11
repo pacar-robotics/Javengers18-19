@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @SuppressWarnings("unused")
 @TeleOp(group = "TestOps")
-public class TankDrive extends LinearOpMode {
+public class TestTankDrive extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {

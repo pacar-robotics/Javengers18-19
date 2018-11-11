@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 @TeleOp(group = "TestOps")
-public class Latcher extends LinearOpMode {
+public class TestLatcher extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Status", "Initializing...");
