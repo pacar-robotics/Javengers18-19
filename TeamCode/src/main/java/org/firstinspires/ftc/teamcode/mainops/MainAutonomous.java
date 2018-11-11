@@ -16,13 +16,21 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 
 @Autonomous(group = "Main")
 public class MainAutonomous extends LinearOpMode {
+    private AutoLib autoLib;
+
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
+        initialize();
+
+        autoLib.calcTurn(90, .2f);
+    }
+
+    private void initialize() {
         telemetry.addData("Status", "Initializing...");
         telemetry.update();
 
-        AutoLib autoLib = new AutoLib(this);
+        autoLib = new AutoLib(this);
 
         telemetry.addData("Status", "Ready");
         telemetry.update();
@@ -30,7 +38,5 @@ public class MainAutonomous extends LinearOpMode {
 
         telemetry.addData("Status", "Running");
         telemetry.update();
-
-        autoLib.calcTurn(90, .2f);
     }
 }
