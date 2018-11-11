@@ -7,6 +7,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHING_DRIVE_FACTOR;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
@@ -28,6 +29,7 @@ public class TeleLib {
         this.opMode = opMode;
 
         opMode.gamepad1.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
+        opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
     }
 
     // Uses both joysticks to control the wheels (tank drive)
@@ -39,10 +41,10 @@ public class TeleLib {
 
     // Uses both triggers on controllers to control the latcher
     public void processLatcher() {
-        if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+        if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Moves latcher up
             robot.setDcMotorPower(LATCHER, opMode.gamepad1.left_trigger);
-        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+        } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Moves latcher down
             robot.setDcMotorPower(LATCHER, -opMode.gamepad1.right_trigger);
         } else {
@@ -52,7 +54,7 @@ public class TeleLib {
     }
 
     public void processLatcherServo() throws InterruptedException {
-        if (opMode.gamepad1.a) {
+        if (opMode.gamepad2.a) {
             if (robot.getLatcherServoPosition() == LATCHER_SERVO_GRAB) {
                 robot.setLatcherServoPosition(LATCHER_SERVO_REST);
             } else {
@@ -61,5 +63,11 @@ public class TeleLib {
         }
 
         Thread.sleep(100);
+    }
+
+    public void processLatchingDrive() {
+        robot.setDcMotorPower(LEFT_WHEEL, opMode.gamepad2.right_stick_y * LATCHING_DRIVE_FACTOR);
+        robot.setDcMotorPower(RIGHT_WHEEL, opMode.gamepad2.left_stick_y * LATCHING_DRIVE_FACTOR);
+
     }
 }
