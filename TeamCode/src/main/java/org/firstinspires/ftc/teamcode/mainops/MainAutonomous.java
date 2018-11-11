@@ -31,6 +31,13 @@ public class MainAutonomous extends LinearOpMode {
         telemetry.addData("Status", "Running");
         telemetry.update();
 
-        autoLib.calcTurn(90, .2f);
+        autoLib.landOnGround();
+        autoLib.calcMove(19, .2f );
+        Thread.sleep(100);
+        autoLib.calcTurn(10,.2f);
+        Thread.sleep(100);
+        autoLib.calcMove(87,.6f );
+        autoLib.calcTurn(60, .5f );
+        autoLib.calcMove(80,.6f);
     }
 }

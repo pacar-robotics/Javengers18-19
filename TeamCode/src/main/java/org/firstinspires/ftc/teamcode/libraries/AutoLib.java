@@ -7,6 +7,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
@@ -101,9 +102,15 @@ public class AutoLib {
     public void landOnGround() {
         robot.setDcMotorPower(LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 5.2) {
+        while (robot.getGroundDistanceCenti() >= 4.9) {
+            opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
+            opMode.telemetry.update();
             opMode.idle();
         }
         robot.setDcMotorPower(LATCHER, 0f);
+
+        robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+
+
     }
 }
