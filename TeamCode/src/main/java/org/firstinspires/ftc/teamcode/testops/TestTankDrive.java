@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 /*
  * Title: TankDrive
  * Date Created: 10/13/2018
- * Date Modified: 10/14/2018
+ * Date Modified: 11/11/2018
  * Author: Rahul
  * Type: TestOp
  * Description: Left joystick moves left wheel, right joystick moves right wheel
@@ -26,6 +26,7 @@ public class TestTankDrive extends LinearOpMode {
         leftWheel.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addData("Status", "Initialized");
+        telemetry.addData("Controls", "Joysticks to move wheels");
         telemetry.update();
 
         waitForStart();

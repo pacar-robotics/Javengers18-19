@@ -5,9 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
-
 /*
  * Title: Latcher
  * Date Created: 11/11/2018
@@ -28,6 +25,7 @@ public class TestLatcher extends LinearOpMode {
         Servo latcherServo = hardwareMap.get(Servo.class, "latcherServo");
 
         telemetry.addData("Status", "Ready");
+        telemetry.addData("Controls", "Triggers to move motor, a to toggle latcher");
         telemetry.update();
         waitForStart();
 
