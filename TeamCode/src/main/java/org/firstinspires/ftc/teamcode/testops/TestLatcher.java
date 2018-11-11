@@ -3,6 +3,10 @@ package org.firstinspires.ftc.teamcode.testops;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 
 /*
  * Title: Latcher
@@ -21,6 +25,7 @@ public class TestLatcher extends LinearOpMode {
         telemetry.update();
 
         DcMotor latcher = hardwareMap.get(DcMotor.class, "latcher");
+        Servo latcherServo = hardwareMap.get(Servo.class, "latcherServo");
 
         telemetry.addData("Status", "Ready");
         telemetry.update();
@@ -36,6 +41,15 @@ public class TestLatcher extends LinearOpMode {
             } else {
                 // Stops latcher movement
                 latcher.setPower(0);
+            }
+
+
+            if (gamepad1.a) {
+                if (latcherServo.getPosition() == .5f) {
+                    latcherServo.setPosition(.05f);
+                } else {
+                    latcherServo.setPosition(.5f);
+                }
             }
         }
     }
