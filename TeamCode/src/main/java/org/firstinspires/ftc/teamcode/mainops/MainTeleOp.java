@@ -32,6 +32,7 @@ public class MainTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             teleLib.processGamepadDrive();
             teleLib.processLatcher();
+            teleLib.processLatcherServo();
             idle();
         }
     }

@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 
@@ -53,6 +54,7 @@ public class Robot {
 
     private void initServos() {
         latcherServo = opMode.hardwareMap.get(Servo.class, "latcherServo");
+        latcherServo.setPosition(LATCHER_SERVO_REST);
     }
 
     private void initSensors() {
