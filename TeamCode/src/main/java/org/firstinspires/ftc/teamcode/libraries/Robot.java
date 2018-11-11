@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -28,6 +29,9 @@ public class Robot {
     // Motors
     private DcMotor[] dcMotors = new DcMotor[3];
 
+    // Servos
+    private Servo latcherServo;
+
     // Sensors
     private Rev2mDistanceSensor groundSensor;
 
@@ -35,6 +39,7 @@ public class Robot {
         this.opMode = opMode;
 
         initDcMotors();
+        initServos();
         initSensors();
     }
 
@@ -44,6 +49,10 @@ public class Robot {
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
         dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    private void initServos() {
+        latcherServo = opMode.hardwareMap.get(Servo.class, "latcherServo");
     }
 
     private void initSensors() {
@@ -71,7 +80,12 @@ public class Robot {
         return dcMotors[index].isBusy();
     }
 
-    //Sensor methods
+    // Servo methods
+    void setLatcherServoPosition(int position) {
+        latcherServo.setPosition(position);
+    }
+
+    // Sensor methods
     double getGroundDistanceCenti() {
         return (groundSensor.getDistance(DistanceUnit.METER) * 100);
     }
