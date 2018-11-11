@@ -20,6 +20,10 @@ public class Constants {
     static final int RIGHT_WHEEL = 1;
     static final int LATCHER = 2;
 
+    //********** Servo Positions **********//
+    static final float LATCHER_SERVO_GRAB = .5f;
+    static final float LATCHER_SERVO_REST = .05f;
+
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
     static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 1425.2f;
