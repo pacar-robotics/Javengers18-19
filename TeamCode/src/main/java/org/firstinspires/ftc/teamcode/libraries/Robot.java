@@ -81,8 +81,12 @@ public class Robot {
     }
 
     // Servo methods
-    void setLatcherServoPosition(int position) {
+    void setLatcherServoPosition(float position) {
         latcherServo.setPosition(position);
+    }
+
+    float getLatcherServoPosition() {
+        return (float) latcherServo.getPosition();
     }
 
     // Sensor methods
