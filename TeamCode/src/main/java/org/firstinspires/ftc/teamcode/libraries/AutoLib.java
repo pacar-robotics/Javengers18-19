@@ -41,7 +41,7 @@ public class AutoLib {
         robot.setDcMotorPower(LEFT_WHEEL, power);
         robot.setDcMotorPower(RIGHT_WHEEL, power);
 
-        // Stays in this while loop until the motors are done moving to their position
+        // Stays in this while loop until the motors are done moving to their positionp
         while (areBaseMotorsBusy() &&
                 (Math.abs(targetPosition - robot.getDcMotorPosition(LEFT_WHEEL)) >= ENCODER_MARGIN)) {
             opMode.idle();
@@ -102,7 +102,7 @@ public class AutoLib {
     public void landOnGround() {
         robot.setDcMotorPower(LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 4.9) {
+        while (robot.getGroundDistanceCenti() >= 5) {
             opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
             opMode.telemetry.update();
             opMode.idle();
