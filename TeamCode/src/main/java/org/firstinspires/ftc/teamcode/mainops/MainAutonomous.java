@@ -31,6 +31,8 @@ public class MainAutonomous extends LinearOpMode {
         telemetry.addData("Status", "Running");
         telemetry.update();
 
+        //Blue depot base
+
         autoLib.landOnGround();
         autoLib.calcMove(19, .2f );
         Thread.sleep(100);
