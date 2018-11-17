@@ -34,12 +34,12 @@ public class MainAutonomous extends LinearOpMode {
         //Blue depot base
 
         autoLib.landOnGround();
-        autoLib.calcMove(19, .2f );
-        Thread.sleep(100);
-        autoLib.calcTurn(10,.2f);
-        Thread.sleep(100);
-        autoLib.calcMove(87,.6f );
-        autoLib.calcTurn(60, .5f );
-        autoLib.calcMove(80,.6f);
+//        autoLib.calcMove(19, .2f );
+//        Thread.sleep(100);
+//        autoLib.calcTurn(10,.2f);
+//        Thread.sleep(100);
+//        autoLib.calcMove(87,.6f );
+//        autoLib.calcTurn(60, .5f );
+//        autoLib.calcMove(80,.6f);
     }
 }
