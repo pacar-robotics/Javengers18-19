@@ -7,6 +7,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
@@ -98,18 +99,21 @@ public class AutoLib {
         return robot.isMotorBusy(LEFT_WHEEL) || robot.isMotorBusy(RIGHT_WHEEL);
     }
 
-    public void landOnGround() {
+    public void landOnGround() throws InterruptedException {
         robot.setDcMotorPower(LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 5) {
+        while (robot.getGroundDistanceCenti() >= 5.2) {
             opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
             opMode.telemetry.update();
             opMode.idle();
         }
+
+        // Waiting for the latcher to raise enough so it can unlatch
+        Thread.sleep(1000);
         robot.setDcMotorPower(LATCHER, 0f);
 
-        robot.setLatcherServoPosition(Constants.LATCHER_SERVO_REST);
 
 
+        robot.setLatcherServoPosition(LATCHER_SERVO_REST);
     }
 }

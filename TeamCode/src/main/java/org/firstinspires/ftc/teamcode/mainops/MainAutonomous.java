@@ -31,15 +31,15 @@ public class MainAutonomous extends LinearOpMode {
         telemetry.addData("Status", "Running");
         telemetry.update();
 
-        //Blue depot base
+        //Blue depot base parking near the robot picture
 
         autoLib.landOnGround();
-//        autoLib.calcMove(19, .2f );
-//        Thread.sleep(100);
-//        autoLib.calcTurn(10,.2f);
-//        Thread.sleep(100);
-//        autoLib.calcMove(87,.6f );
-//        autoLib.calcTurn(60, .5f );
-//        autoLib.calcMove(80,.6f);
+       autoLib.calcMove(33, .2f );
+        Thread.sleep(100);
+        autoLib.calcTurn(80,.2f);
+        Thread.sleep(100);
+        autoLib.calcMove(87,.5f );
+        autoLib.calcTurn(40, .5f );
+       autoLib.calcMove(68,.5f);
     }
 }
