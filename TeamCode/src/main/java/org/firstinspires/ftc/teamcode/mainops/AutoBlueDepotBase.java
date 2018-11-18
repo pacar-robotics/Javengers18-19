@@ -16,23 +16,14 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 
 @Autonomous(group = "Main")
 public class AutoBlueDepotBase extends LinearOpMode {
+    private AutoLib autoLib;
+
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
-        telemetry.addData("Status", "Initializing...");
-        telemetry.update();
-
-        AutoLib autoLib = new AutoLib(this);
-
-        telemetry.addData("Status", "Ready");
-        telemetry.update();
-        waitForStart();
-
-        telemetry.addData("Status", "Running");
-        telemetry.update();
+        initialize();
 
         //Blue depot base parking near the robot picture
-
         autoLib.landOnGround();
         autoLib.calcMove(33, .2f);
         Thread.sleep(100);
@@ -41,5 +32,20 @@ public class AutoBlueDepotBase extends LinearOpMode {
         autoLib.calcMove(87, .5f);
         autoLib.calcTurn(40, .5f);
         autoLib.calcMove(68, .5f);
+        autoLib.calcTurn(90, .2f);
+    }
+
+    private void initialize() {
+        telemetry.addData("Status", "Initializing...");
+        telemetry.update();
+
+        autoLib = new AutoLib(this);
+
+        telemetry.addData("Status", "Ready");
+        telemetry.update();
+        waitForStart();
+
+        telemetry.addData("Status", "Running");
+        telemetry.update();
     }
 }

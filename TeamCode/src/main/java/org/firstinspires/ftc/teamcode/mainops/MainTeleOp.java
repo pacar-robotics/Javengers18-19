@@ -16,18 +16,12 @@ import org.firstinspires.ftc.teamcode.libraries.TeleLib;
 
 @TeleOp(group = "Main")
 public class MainTeleOp extends LinearOpMode {
+    private TeleLib teleLib;
 
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
-        telemetry.addData("Status", "Initializing...");
-        telemetry.update();
-
-        TeleLib teleLib = new TeleLib(this);
-
-        telemetry.addData("Status", "Ready");
-        telemetry.update();
-        waitForStart();
+        initialize();
 
         while (opModeIsActive()) {
             teleLib.processGamepadDrive();
@@ -35,5 +29,18 @@ public class MainTeleOp extends LinearOpMode {
             teleLib.processLatcherServo();
             idle();
         }
+    }
+
+    private void initialize() {
+        telemetry.addData("Status", "Initializing...");
+        telemetry.update();
+
+        teleLib = new TeleLib(this);
+
+        telemetry.addData("Status", "Ready");
+        telemetry.update();
+        waitForStart();
+
+        telemetry.addData("Status", "Running");
     }
 }
