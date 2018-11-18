@@ -14,7 +14,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 /*
  * Title: TeleLib
  * Date Created: 10/14/2018
- * Date Modified: 11/11/2018
+ * Date Modified: 11/18/2018
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
@@ -53,16 +53,12 @@ public class TeleLib {
         }
     }
 
-    public void processLatcherServo() throws InterruptedException {
-        if (opMode.gamepad2.a) {
-            if (robot.getLatcherServoPosition() == LATCHER_SERVO_GRAB) {
-                robot.setLatcherServoPosition(LATCHER_SERVO_REST);
-            } else {
-                robot.setLatcherServoPosition(LATCHER_SERVO_GRAB);
-            }
+    public void processLatcherServo() {
+        if (opMode.gamepad2.left_bumper) {
+            robot.setLatcherServoPosition(LATCHER_SERVO_GRAB);
+        } else if (opMode.gamepad2.right_bumper) {
+            robot.setLatcherServoPosition(LATCHER_SERVO_REST);
         }
-
-        Thread.sleep(100);
     }
 
     public void processLatchingDrive() {
