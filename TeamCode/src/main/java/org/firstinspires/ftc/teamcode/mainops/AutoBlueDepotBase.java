@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  */
 
 @Autonomous(group = "Main")
-public class MainAutonomous extends LinearOpMode {
+public class AutoBlueDepotBase extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
