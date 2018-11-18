@@ -65,4 +65,11 @@ public class TeleLib {
         robot.setDcMotorPower(LEFT_WHEEL, opMode.gamepad2.right_stick_y * LATCHING_DRIVE_FACTOR);
         robot.setDcMotorPower(RIGHT_WHEEL, opMode.gamepad2.left_stick_y * LATCHING_DRIVE_FACTOR);
     }
+
+    public boolean isGamepad2AtRest() {
+        return (opMode.gamepad2.atRest() &&
+                opMode.gamepad2.left_bumper && opMode.gamepad2.right_bumper &&
+                opMode.gamepad2.a && opMode.gamepad2.b && opMode.gamepad2.x && opMode.gamepad2.y &&
+                opMode.gamepad2.dpad_down && opMode.gamepad2.dpad_up && opMode.gamepad2.dpad_left && opMode.gamepad2.dpad_right);
+    }
 }
