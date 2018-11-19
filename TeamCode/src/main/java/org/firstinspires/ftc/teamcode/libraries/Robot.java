@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
@@ -35,6 +37,8 @@ public class Robot {
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
+    private RevTouchSensor latcherTouchTop;
+    private RevTouchSensor latcherTouchBottom;
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -49,16 +53,19 @@ public class Robot {
         dcMotors[RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
-        dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[RIGHT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
         latcherServo = opMode.hardwareMap.get(Servo.class, "latcherServo");
-        latcherServo.setPosition(LATCHER_SERVO_REST);
+        latcherServo.setPosition(LATCHER_SERVO_GRAB);
     }
 
     private void initSensors() {
         groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
+
+        latcherTouchTop = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
+        latcherTouchBottom = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
     }
 
     // Motor methods
@@ -94,5 +101,13 @@ public class Robot {
     // Sensor methods
     double getGroundDistanceCenti() {
         return (groundSensor.getDistance(DistanceUnit.METER) * 100);
+    }
+
+    boolean isLatcherTouchTopPressed() {
+        return latcherTouchTop.isPressed();
+    }
+
+    boolean isLatcherTouchBottomPressed() {
+        return latcherTouchBottom.isPressed();
     }
 }

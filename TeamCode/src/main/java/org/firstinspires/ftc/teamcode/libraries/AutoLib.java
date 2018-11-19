@@ -7,6 +7,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
@@ -15,7 +16,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 11/4/2018
+ * Date Modified: 11/18/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -40,7 +41,7 @@ public class AutoLib {
         robot.setDcMotorPower(LEFT_WHEEL, power);
         robot.setDcMotorPower(RIGHT_WHEEL, power);
 
-        // Stays in this while loop until the motors are done moving to their position
+        // Stays in this while loop until the motors are done moving to their positionp
         while (areBaseMotorsBusy() &&
                 (Math.abs(targetPosition - robot.getDcMotorPosition(LEFT_WHEEL)) >= ENCODER_MARGIN)) {
             opMode.idle();
@@ -98,12 +99,29 @@ public class AutoLib {
         return robot.isMotorBusy(LEFT_WHEEL) || robot.isMotorBusy(RIGHT_WHEEL);
     }
 
-    public void landOnGround() {
+    public void landOnGround() throws InterruptedException {
         robot.setDcMotorPower(LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.2) {
+            opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
+            opMode.telemetry.update();
             opMode.idle();
         }
+
+        // Waiting for the latcher to raise enough so it can unlatch
+        Thread.sleep(1000);
         robot.setDcMotorPower(LATCHER, 0f);
+
+        robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+    }
+
+
+    // SupportOp Methods
+    public void moveLatcherToTop() {
+        robot.setDcMotorPower(LATCHER, .2f);
+        while (!robot.isLatcherTouchTopPressed()) {
+            opMode.idle();
+        }
+        robot.setDcMotorPower(LATCHER, 0);
     }
 }
