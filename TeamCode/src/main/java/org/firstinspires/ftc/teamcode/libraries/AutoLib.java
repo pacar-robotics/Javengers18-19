@@ -112,8 +112,6 @@ public class AutoLib {
         Thread.sleep(1000);
         robot.setDcMotorPower(LATCHER, 0f);
 
-
-
         robot.setLatcherServoPosition(LATCHER_SERVO_REST);
     }
 
