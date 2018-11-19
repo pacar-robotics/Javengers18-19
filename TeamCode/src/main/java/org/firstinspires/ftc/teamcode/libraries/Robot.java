@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -35,6 +36,8 @@ public class Robot {
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
+    private RevTouchSensor latcherTouchTop;
+    private RevTouchSensor latcherTouchBottom;
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -59,6 +62,9 @@ public class Robot {
 
     private void initSensors() {
         groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
+
+        latcherTouchTop = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
+        latcherTouchBottom = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
     }
 
     // Motor methods
@@ -94,5 +100,13 @@ public class Robot {
     // Sensor methods
     double getGroundDistanceCenti() {
         return (groundSensor.getDistance(DistanceUnit.METER) * 100);
+    }
+
+    boolean isLatcherTouchTopPressed() {
+        return latcherTouchTop.isPressed();
+    }
+
+    boolean isLatcherTouchBottomPressed() {
+        return latcherTouchBottom.isPressed();
     }
 }
