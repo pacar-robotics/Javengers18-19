@@ -53,7 +53,7 @@ public class Robot {
         dcMotors[RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
-        dcMotors[RIGHT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
