@@ -9,11 +9,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
+import static org.firstinspires.ftc.teamcode.libraries.Constants.INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SCORING;
 
 /*
  * Title: Robot
@@ -30,7 +32,7 @@ public class Robot {
     private LinearOpMode opMode;
 
     // Motors
-    private DcMotor[] dcMotors = new DcMotor[3];
+    private DcMotor[] dcMotors = new DcMotor[6];
 
     // Servos
     private Servo latcherServo;
@@ -52,6 +54,9 @@ public class Robot {
         dcMotors[LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
         dcMotors[RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
+        dcMotors[INTAKE] = opMode.hardwareMap.get(DcMotor.class, "intake");
+        dcMotors[LINEAR_SLIDE] = opMode.hardwareMap.get (DcMotor.class, "LINEAR_SLIDE");
+        dcMotors[SCORING] = opMode.hardwareMap.get (DcMotor.class, "SCORING");
 
         dcMotors[RIGHT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }

@@ -19,6 +19,9 @@ public class Constants {
     static final int LEFT_WHEEL = 0;
     static final int RIGHT_WHEEL = 1;
     static final int LATCHER = 2;
+    static final int INTAKE = 3;
+    static final int LINEAR_SLIDE = 4;
+    static final int SCORING = 5;
 
     //********** Servo Positions **********//
     static final float LATCHER_SERVO_GRAB = .5f;
