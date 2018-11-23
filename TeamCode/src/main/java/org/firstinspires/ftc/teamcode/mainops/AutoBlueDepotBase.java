@@ -27,6 +27,9 @@ public class AutoBlueDepotBase extends LinearOpMode {
         autoLib.landOnGround();
         autoLib.calcMove(33, .2f);
         Thread.sleep(100);
+
+        //tensorflow
+
         autoLib.calcTurn(80, .2f);
         Thread.sleep(100);
         autoLib.calcMove(87, .5f);
