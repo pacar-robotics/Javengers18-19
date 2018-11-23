@@ -24,7 +24,7 @@ public class MainTeleOp extends LinearOpMode {
         initialize();
 
         while (opModeIsActive()) {
-            if (gamepad2.left_stick_y == 0 || gamepad2.right_stick_y == 0) {
+            if (gamepad2.left_stick_y == 0 && gamepad2.right_stick_y == 0) {
                 teleLib.processGamepadDrive();
             } else {
                 teleLib.processLatchingDrive();
