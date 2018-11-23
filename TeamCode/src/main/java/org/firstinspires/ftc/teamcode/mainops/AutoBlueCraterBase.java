@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.mainops;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
@@ -13,11 +14,17 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  * Description: Starts on blue crater latcher
  */
 
+@Autonomous(group = "Main")
 public class AutoBlueCraterBase extends LinearOpMode {
-   private AutoLib autoLib;
+    private AutoLib autoLib;
+
     @Override
     public void runOpMode() throws InterruptedException {
-     initialize();
+        initialize();
+
+        autoLib.landOnGround();
+        autoLib.calcMove(1, -.2f);
+        Thread.sleep(100);
     }
 
     private void initialize() {
