@@ -15,14 +15,14 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  */
 
 @Autonomous(group = "Support")
-public class MoveLatcherToTop extends LinearOpMode {
+public class MoveLatcherToBottom extends LinearOpMode {
     private AutoLib autoLib;
 
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
-        autoLib.moveLatcherToTop();
+        autoLib.moveLatcherToBottom();
     }
 
     private void initialize() {

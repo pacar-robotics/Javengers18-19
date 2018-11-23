@@ -117,9 +117,9 @@ public class AutoLib {
 
 
     // SupportOp Methods
-    public void moveLatcherToTop() {
-        robot.setDcMotorPower(LATCHER, .2f);
-        while (!robot.isLatcherTouchTopPressed()) {
+    public void moveLatcherToBottom() {
+        robot.setDcMotorPower(LATCHER, -.2f);
+        while (!robot.isLatcherTouchBottomPressed()) {
             opMode.idle();
         }
         robot.setDcMotorPower(LATCHER, 0);
