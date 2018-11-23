@@ -20,7 +20,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SCORING;
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 11/11/2018
+ * Date Modified: 11/22/2018
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
@@ -58,7 +58,7 @@ public class Robot {
         dcMotors[LINEAR_SLIDE] = opMode.hardwareMap.get (DcMotor.class, "LINEAR_SLIDE");
         dcMotors[SCORING] = opMode.hardwareMap.get (DcMotor.class, "SCORING");
 
-        dcMotors[RIGHT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
