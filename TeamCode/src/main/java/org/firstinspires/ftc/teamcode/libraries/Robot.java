@@ -55,8 +55,8 @@ public class Robot {
         dcMotors[RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
         dcMotors[INTAKE] = opMode.hardwareMap.get(DcMotor.class, "intake");
-        dcMotors[LINEAR_SLIDE] = opMode.hardwareMap.get (DcMotor.class, "LINEAR_SLIDE");
-        dcMotors[SCORING] = opMode.hardwareMap.get (DcMotor.class, "SCORING");
+        dcMotors[LINEAR_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "linearSlide");
+        dcMotors[SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
 
         dcMotors[LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
