@@ -44,11 +44,11 @@ public class TeleLib {
         if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
                 !robot.isLatcherTouchTopPressed()) {
             // Moves latcher up
-            robot.setDcMotorPower(LATCHER, opMode.gamepad1.left_trigger);
+            robot.setDcMotorPower(LATCHER, opMode.gamepad2.left_trigger);
         } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
                 !robot.isLatcherTouchBottomPressed()) {
             // Moves latcher down
-            robot.setDcMotorPower(LATCHER, -opMode.gamepad1.right_trigger);
+            robot.setDcMotorPower(LATCHER, -opMode.gamepad2.right_trigger);
         } else {
             // Stops latcher movement
             robot.setDcMotorPower(LATCHER, 0);
