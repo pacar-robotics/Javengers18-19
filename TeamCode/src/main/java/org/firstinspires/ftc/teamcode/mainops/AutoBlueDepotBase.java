@@ -6,12 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 
 /*
- * Title: MainAutonomous
+ * Title: AutoBlueDepotBase
  * Date Created: 11/3/2018
- * Date Modified: 11/18/2018
+ * Date Modified: 11/23/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Main
- * Description: The main autonomous program
+ * Description: Starts on blue depot latcher
  */
 
 @Autonomous(group = "Main")
