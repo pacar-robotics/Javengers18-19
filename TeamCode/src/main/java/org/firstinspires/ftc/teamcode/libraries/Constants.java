@@ -21,7 +21,7 @@ public class Constants {
     static final int LATCHER = 2;
 
     //********** Servo Positions **********//
-    static final float LATCHER_SERVO_GRAB = .5f;
+    static final float LATCHER_SERVO_GRAB = .6f;
     static final float LATCHER_SERVO_REST = .05f;
 
     //********** CalcMove Constants **********//
