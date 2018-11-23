@@ -25,10 +25,10 @@ public class AutoBlueDepotBase extends LinearOpMode {
 
         //Blue depot base parking near the robot picture
         autoLib.landOnGround();
-        autoLib.calcMove(33, .2f);
         Thread.sleep(100);
 
         //tensorflow
+        telemetry.addData("GoldObjectPosition", autoLib.readGoldObjectPosition());
 
         autoLib.calcTurn(80, .2f);
         Thread.sleep(100);

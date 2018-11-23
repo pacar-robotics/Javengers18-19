@@ -2,8 +2,18 @@ package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
+import java.util.List;
+
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
+import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
+import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
+import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
@@ -11,12 +21,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_R
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 11/18/2018
+ * Date Modified: 11/23/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -26,9 +37,14 @@ public class AutoLib {
     private Robot robot;
     private LinearOpMode opMode;
 
+    private VuforiaLocalizer vuforia;
+    private TFObjectDetector tfod;
+
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
+
+        initTfod();
     }
 
     public void calcMove(float centimeters, float power) {
@@ -123,5 +139,73 @@ public class AutoLib {
             opMode.idle();
         }
         robot.setDcMotorPower(LATCHER, 0);
+    }
+
+
+    // Tensor Flow methods
+    private void initTfod() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+
+        /*
+         * Configure Tensor Flow
+         */
+        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+
+    public Constants.GoldObjectPosition readGoldObjectPosition() {
+        if (tfod != null) {
+            tfod.activate();
+        }
+
+//        while (opModeIsActive()) {
+        if (tfod != null) {
+            // getUpdatedRecognitions() will return null if no new information is available since
+            // the last time that call was made.
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                if (updatedRecognitions.size() == 2) {
+                    int goldMineralX = -1;
+                    int silverMineralX = -1;
+                    for (Recognition recognition : updatedRecognitions) {
+                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            goldMineralX = (int) recognition.getLeft();
+                        } else if (silverMineralX == -1) {
+                            silverMineralX = (int) recognition.getLeft();
+                        }
+
+                        if (tfod != null) {
+                            tfod.shutdown();
+                        }
+
+                        if (goldMineralX != -1 && silverMineralX != -1) {
+                            if (goldMineralX < silverMineralX) {
+                                return Constants.GoldObjectPosition.CENTER;
+                            } else if (goldMineralX > silverMineralX) {
+                                return Constants.GoldObjectPosition.RIGHT;
+                            }
+                        } else if (goldMineralX == -1 && silverMineralX != 1) {
+                            return Constants.GoldObjectPosition.LEFT;
+                        }
+                    }
+                }
+            }
+        }
+//        }
+        return null;
     }
 }
