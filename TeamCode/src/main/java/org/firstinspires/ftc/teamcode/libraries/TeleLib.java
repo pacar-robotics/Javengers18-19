@@ -12,9 +12,11 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_DELAY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_DELTA;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -88,11 +90,11 @@ public class TeleLib {
         if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
                 !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             // Moves latcher up
-            robot.setDcMotorPower(MOTOR_LATCHER, opMode.gamepad1.left_trigger);
+            robot.setDcMotorPower(MOTOR_LATCHER, opMode.gamepad1.right_trigger);
         } else if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
                 !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             // Moves latcher down
-            robot.setDcMotorPower(MOTOR_LATCHER, -opMode.gamepad1.right_trigger);
+            robot.setDcMotorPower(MOTOR_LATCHER, -opMode.gamepad1.left_trigger);
         } else {
             // Stops latcher movement
             robot.setDcMotorPower(MOTOR_LATCHER, 0);
@@ -124,7 +126,7 @@ public class TeleLib {
         if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, opMode.gamepad2.left_trigger);
         } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
-            robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, -opMode.gamepad2.left_trigger);
+            robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, -opMode.gamepad2.right_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, 0);
         }
@@ -134,6 +136,10 @@ public class TeleLib {
     public void processIntakePosition() {
         intakeXPosition();
         intakeYPosition();
+
+        opMode.telemetry.addData("IntakeX", robot.getServoPosition(SERVO_INTAKE_X));
+        opMode.telemetry.addData("IntakeY", robot.getServoPosition(SERVO_INTAKE_Y));
+        opMode.telemetry.update();
     }
 
     private void intakeXPosition() {
@@ -144,6 +150,7 @@ public class TeleLib {
             } else {
                 robot.setDeltaServoPosition(SERVO_INTAKE_X, -SERVO_INTAKE_DELTA);
             }
+            elapsedTime.reset();
         }
     }
 
@@ -155,6 +162,12 @@ public class TeleLib {
             } else {
                 robot.setDeltaServoPosition(SERVO_INTAKE_X, -SERVO_INTAKE_DELTA);
             }
+            elapsedTime.reset();
         }
+    }
+
+    // Uses right joystick on gamepad 2
+    public void processScoring() {
+        robot.setDcMotorPower(MOTOR_SCORING, opMode.gamepad2.right_stick_y);
     }
 }
