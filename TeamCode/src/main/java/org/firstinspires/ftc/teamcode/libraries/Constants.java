@@ -16,12 +16,12 @@ public class Constants {
     static final float GAMEPAD_TRIGGER_TOLERANCE = .05f;
 
     //********** DcMotor Indexes **********//
-    static final int LEFT_WHEEL = 0;
-    static final int RIGHT_WHEEL = 1;
-    static final int LATCHER = 2;
-    static final int INTAKE = 3;
-    static final int LINEAR_SLIDE = 4;
-    static final int SCORING = 5;
+    static final int MOTOR_LEFT_WHEEL = 0;
+    static final int MOTOR_RIGHT_WHEEL = 1;
+    static final int MOTOR_LATCHER = 2;
+    static final int MOTOR_INTAKE = 3;
+    static final int MOTOR_LINEAR_SLIDE = 4;
+    static final int MOTOR_SCORING = 5;
 
     //********** Servo Positions **********//
     static final float LATCHER_SERVO_GRAB = .6f;
