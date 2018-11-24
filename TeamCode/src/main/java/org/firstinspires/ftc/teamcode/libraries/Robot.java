@@ -21,6 +21,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_TOP;
 
 /*
  * Title: Robot
@@ -44,7 +46,7 @@ public class Robot {
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
-    private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
+    private RevTouchSensor[] touchSensors = new RevTouchSensor[4];
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -78,6 +80,8 @@ public class Robot {
 
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
+        touchSensors[TOUCH_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchTop");
+        touchSensors[TOUCH_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchBottom");
     }
 
     // Motor methods

@@ -31,6 +31,8 @@ public class Constants {
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
     static final int TOUCH_LATCHER_BOTTOM = 1;
+    static final int TOUCH_SLIDE_TOP = 2;
+    static final int TOUCH_SLIDE_BOTTOM = 3;
 
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_GRAB = .6f;
