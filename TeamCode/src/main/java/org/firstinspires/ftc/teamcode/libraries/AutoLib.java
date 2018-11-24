@@ -16,10 +16,12 @@ import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABE
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -27,7 +29,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 11/23/2018
+ * Date Modified: 11/24/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -54,17 +56,17 @@ public class AutoLib {
 
         prepMotorsForCalcMove(targetPosition, targetPosition);
 
-        robot.setDcMotorPower(LEFT_WHEEL, power);
-        robot.setDcMotorPower(RIGHT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, power);
 
         // Stays in this while loop until the motors are done moving to their positionp
         while (areBaseMotorsBusy() &&
-                (Math.abs(targetPosition - robot.getDcMotorPosition(LEFT_WHEEL)) >= ENCODER_MARGIN)) {
+                (Math.abs(targetPosition - robot.getDcMotorPosition(MOTOR_LEFT_WHEEL)) >= ENCODER_MARGIN)) {
             opMode.idle();
         }
 
-        robot.setDcMotorPower(LEFT_WHEEL, 0);
-        robot.setDcMotorPower(RIGHT_WHEEL, 0);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, 0);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, 0);
     }
 
     public void calcTurn(int degrees, float power) {
@@ -87,36 +89,36 @@ public class AutoLib {
 
         prepMotorsForCalcMove(leftTargetPosition, rightTargetPosition);
 
-        robot.setDcMotorPower(LEFT_WHEEL, leftPower);
-        robot.setDcMotorPower(RIGHT_WHEEL, rightPower);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, leftPower);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, rightPower);
 
         // Stays in this while loop until the motors are done moving to their position
         while (areBaseMotorsBusy() &&
-                (Math.abs(leftTargetPosition - robot.getDcMotorPosition(LEFT_WHEEL)) >= ENCODER_MARGIN)) {
+                (Math.abs(leftTargetPosition - robot.getDcMotorPosition(MOTOR_LEFT_WHEEL)) >= ENCODER_MARGIN)) {
             opMode.idle();
         }
 
-        robot.setDcMotorPower(LEFT_WHEEL, 0);
-        robot.setDcMotorPower(RIGHT_WHEEL, 0);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, 0);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, 0);
     }
 
     private void prepMotorsForCalcMove(int leftTargetPosition, int rightTargetPosition) {
-        robot.setDcMotorMode(LEFT_WHEEL, STOP_AND_RESET_ENCODER);
-        robot.setDcMotorMode(RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
 
-        robot.setDcMotorMode(LEFT_WHEEL, RUN_TO_POSITION);
-        robot.setDcMotorMode(RIGHT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, RUN_TO_POSITION);
 
-        robot.setDcMotorTargetPosition(LEFT_WHEEL, leftTargetPosition);
-        robot.setDcMotorTargetPosition(RIGHT_WHEEL, rightTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
     }
 
     private boolean areBaseMotorsBusy() {
-        return robot.isMotorBusy(LEFT_WHEEL) || robot.isMotorBusy(RIGHT_WHEEL);
+        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
     }
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(LATCHER, 0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.2) {
             opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
@@ -126,19 +128,19 @@ public class AutoLib {
 
         // Waiting for the latcher to raise enough so it can unlatch
         Thread.sleep(1000);
-        robot.setDcMotorPower(LATCHER, 0f);
+        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
 
-        robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
     }
 
 
     // SupportOp Methods
     public void moveLatcherToBottom() {
-        robot.setDcMotorPower(LATCHER, -.2f);
-        while (!robot.isLatcherTouchBottomPressed()) {
+        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
         }
-        robot.setDcMotorPower(LATCHER, 0);
+        robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }
 
 
