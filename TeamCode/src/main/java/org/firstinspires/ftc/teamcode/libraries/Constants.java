@@ -23,9 +23,11 @@ public class Constants {
     static final int MOTOR_LINEAR_SLIDE = 4;
     static final int MOTOR_SCORING = 5;
 
+    //********** Servo Indexes **********//
+    static final int SERVO_LATCHER = 0;
     //********** Servo Positions **********//
-    static final float LATCHER_SERVO_GRAB = .6f;
-    static final float LATCHER_SERVO_REST = .05f;
+    static final float SERVO_LATCHER_POS_GRAB = .6f;
+    static final float SERVO_LATCHER_POS_REST = .05f;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters

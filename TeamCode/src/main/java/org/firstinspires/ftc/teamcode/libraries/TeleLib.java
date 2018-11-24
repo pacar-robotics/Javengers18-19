@@ -4,12 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHING_DRIVE_FACTOR;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 
 /*
  * Title: TeleLib
@@ -57,9 +58,9 @@ public class TeleLib {
 
     public void processLatcherServo() {
         if (opMode.gamepad2.left_bumper) {
-            robot.setLatcherServoPosition(LATCHER_SERVO_GRAB);
+            robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_GRAB);
         } else if (opMode.gamepad2.right_bumper) {
-            robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+            robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
         }
     }
 

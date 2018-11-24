@@ -9,13 +9,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 
 /*
  * Title: Robot
@@ -35,7 +36,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[6];
 
     // Servos
-    private Servo latcherServo;
+    private Servo[] servos = new Servo[3];
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
@@ -62,8 +63,8 @@ public class Robot {
     }
 
     private void initServos() {
-        latcherServo = opMode.hardwareMap.get(Servo.class, "latcherServo");
-        latcherServo.setPosition(LATCHER_SERVO_GRAB);
+        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
+        servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
     }
 
     private void initSensors() {
@@ -95,12 +96,12 @@ public class Robot {
     }
 
     // Servo methods
-    void setLatcherServoPosition(float position) {
-        latcherServo.setPosition(position);
+    void setServoPosition(int index, float position) {
+        servos[index].setPosition(position);
     }
 
-    float getLatcherServoPosition() {
-        return (float) latcherServo.getPosition();
+    float getServoPosition(int index) {
+        return (float) servos[index].getPosition();
     }
 
     // Sensor methods

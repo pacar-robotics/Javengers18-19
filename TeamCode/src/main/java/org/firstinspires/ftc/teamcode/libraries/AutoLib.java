@@ -7,9 +7,10 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHER_SERVO_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
@@ -112,7 +113,7 @@ public class AutoLib {
         Thread.sleep(1000);
         robot.setDcMotorPower(MOTOR_LATCHER, 0f);
 
-        robot.setLatcherServoPosition(LATCHER_SERVO_REST);
+        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
     }
 
 
