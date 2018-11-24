@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
+import org.firstinspires.ftc.teamcode.libraries.Constants;
 
 /*
  * Title: AutoBlueDepotBase
@@ -27,9 +28,28 @@ public class AutoDepotBase extends LinearOpMode {
         autoLib.landOnGround();
         Thread.sleep(100);
 
-        //tensorflow
-        telemetry.addData("GoldObjectPosition", autoLib.readGoldObjectPosition());
+//        //tensorflow
+//        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+//
+//        if (gold == Constants.GoldObjectPosition.LEFT) {
+//
+//        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
+//
+//        } else if (gold == Constants.GoldObjectPosition.CENTER) {
+//
+//        } else {
+//
+//        }
 
+        if (false) { // Left
+
+        } else if (false) {    // Right
+
+        } else if (false) {   // Center
+
+        }
+
+        // Marker depot dropoff
         autoLib.calcTurn(80, .2f);
         Thread.sleep(100);
         autoLib.calcMove(87, .5f);
