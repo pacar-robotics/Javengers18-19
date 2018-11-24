@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  */
 
 @Autonomous(group = "Main")
-public class AutoBlueDepotBase extends LinearOpMode {
+public class AutoDepotBase extends LinearOpMode {
     private AutoLib autoLib;
 
     @SuppressWarnings("RedundantThrows")

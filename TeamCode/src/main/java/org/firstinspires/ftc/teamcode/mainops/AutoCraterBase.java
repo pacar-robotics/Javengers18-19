@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.libraries.AutoLib;
  */
 
 @Autonomous(group = "Main")
-public class AutoBlueCraterBase extends LinearOpMode {
+public class AutoCraterBase extends LinearOpMode {
     private AutoLib autoLib;
 
     @Override
