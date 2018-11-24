@@ -11,6 +11,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
@@ -120,7 +121,7 @@ public class AutoLib {
     // SupportOp Methods
     public void moveLatcherToBottom() {
         robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
-        while (!robot.isLatcherTouchBottomPressed()) {
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
         }
         robot.setDcMotorPower(MOTOR_LATCHER, 0);

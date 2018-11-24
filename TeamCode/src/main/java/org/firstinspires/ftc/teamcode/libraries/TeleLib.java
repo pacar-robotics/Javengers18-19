@@ -11,6 +11,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
 /*
  * Title: TeleLib
@@ -43,11 +45,11 @@ public class TeleLib {
     // Uses both triggers on controllers to control the latcher
     public void processLatcher() {
         if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isLatcherTouchTopPressed()) {
+                !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             // Moves latcher up
             robot.setDcMotorPower(MOTOR_LATCHER, opMode.gamepad2.left_trigger);
         } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isLatcherTouchBottomPressed()) {
+                !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             // Moves latcher down
             robot.setDcMotorPower(MOTOR_LATCHER, -opMode.gamepad2.right_trigger);
         } else {
