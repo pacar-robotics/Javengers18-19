@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -16,7 +17,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X_POS_DEFAULT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y_POS_DEFAULT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -73,6 +76,8 @@ public class Robot {
         servos[SERVO_INTAKE_Y] = opMode.hardwareMap.get(Servo.class, "intakeYServo");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
+        servos[SERVO_INTAKE_X].setPosition(SERVO_INTAKE_X_POS_DEFAULT);
+        servos[SERVO_INTAKE_Y].setPosition(SERVO_INTAKE_Y_POS_DEFAULT);
     }
 
     private void initSensors() {
@@ -108,6 +113,11 @@ public class Robot {
     // Servo methods
     void setServoPosition(int index, float position) {
         servos[index].setPosition(position);
+    }
+
+    void setDeltaServoPosition(int index, float delta) {
+        servos[index].setPosition(
+                Range.clip(servos[index].getPosition() + delta, 0, 1));
     }
 
     float getServoPosition(int index) {

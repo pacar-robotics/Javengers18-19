@@ -37,6 +37,15 @@ public class Constants {
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_GRAB = .6f;
     static final float SERVO_LATCHER_POS_REST = .05f;
+    static final float SERVO_INTAKE_X_POS_DEFAULT = .05f;
+    static final float SERVO_INTAKE_Y_POS_DEFAULT = .05f;
+
+    //********** Servo Deltas **********//
+    static final float SERVO_INTAKE_DELTA = .01f;
+    static final float SERVO_INTAKE_DELAY = .2f;    // Seconds
+
+    //********** Motor Speeds **********//
+    static final float INTAKE_SPEED = .7f;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
