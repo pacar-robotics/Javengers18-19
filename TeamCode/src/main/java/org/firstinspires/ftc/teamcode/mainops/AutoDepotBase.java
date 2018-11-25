@@ -28,7 +28,7 @@ public class AutoDepotBase extends LinearOpMode {
         autoLib.landOnGround();
         Thread.sleep(100);
 
-        //tensorflow
+//        //tensorflow
 //        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
 //
 //        if (gold == Constants.GoldObjectPosition.LEFT) {
@@ -41,31 +41,21 @@ public class AutoDepotBase extends LinearOpMode {
 //
 //        }
 
-
-
         if (false) { // Left
 
         } else if (false) {    // Right
 
-        } else if (true) {   // Center
-            telemetry.addData("Status", "Inside Center");
-            telemetry.update();
-            autoLib.calcMove(80,.2f );
-            Thread.sleep(2000);
-            telemetry.addData("Status", "Moved 80 CM");
-            telemetry.update();
-            Thread.sleep(100);
+        } else if (false) {   // Center
+
         }
 
         // Marker depot dropoff
-
-//        autoLib.calcTurn(80, .2f);
-//        Thread.sleep(100);
-//        autoLib.calcMove(87, .5f);
-//        autoLib.calcTurn(40, .5f);
-//        autoLib.calcMove(68, .5f);
-//        autoLib.calcTurn(90, .2f);
-
+        autoLib.calcTurn(80, .2f);
+        Thread.sleep(100);
+        autoLib.calcMove(87, .5f);
+        autoLib.calcTurn(40, .5f);
+        autoLib.calcMove(68, .5f);
+        autoLib.calcTurn(90, .2f);
     }
 
     private void initialize() {
