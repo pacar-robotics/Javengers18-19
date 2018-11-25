@@ -15,8 +15,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -42,7 +41,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[6];
 
     // Servos
-    private Servo[] servos = new Servo[3];
+    private Servo[] servos = new Servo[2];
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
@@ -69,8 +68,7 @@ public class Robot {
 
     private void initServos() {
         servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
-        servos[SERVO_INTAKE_X] = opMode.hardwareMap.get(Servo.class, "intakeXServo");
-        servos[SERVO_INTAKE_Y] = opMode.hardwareMap.get(Servo.class, "intakeYServo");
+        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
     }
