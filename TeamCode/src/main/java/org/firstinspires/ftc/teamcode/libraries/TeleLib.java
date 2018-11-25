@@ -13,10 +13,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_DELAY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_DELTA;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -136,36 +135,18 @@ public class TeleLib {
 
     // Uses dpad on gamepad 2
     public void processIntakePosition() {
-        intakeXPosition();
-        intakeYPosition();
-
-        opMode.telemetry.addData("IntakeX", robot.getServoPosition(SERVO_INTAKE_X));
-        opMode.telemetry.addData("IntakeY", robot.getServoPosition(SERVO_INTAKE_Y));
-        opMode.telemetry.update();
-    }
-
-    private void intakeXPosition() {
         if ((opMode.gamepad2.dpad_up || opMode.gamepad2.dpad_down) &&
                 (elapsedTime.seconds() > SERVO_INTAKE_DELAY)) {
             if (opMode.gamepad2.dpad_up) {
-                robot.setDeltaServoPosition(SERVO_INTAKE_X, SERVO_INTAKE_DELTA);
+                robot.setDeltaServoPosition(SERVO_INTAKE, SERVO_INTAKE_DELTA);
             } else {
-                robot.setDeltaServoPosition(SERVO_INTAKE_X, -SERVO_INTAKE_DELTA);
+                robot.setDeltaServoPosition(SERVO_INTAKE, -SERVO_INTAKE_DELTA);
             }
             elapsedTime.reset();
         }
-    }
 
-    private void intakeYPosition() {
-        if ((opMode.gamepad2.dpad_left || opMode.gamepad2.dpad_right) &&
-                (elapsedTime.seconds() > SERVO_INTAKE_DELAY)) {
-            if (opMode.gamepad2.dpad_left) {
-                robot.setDeltaServoPosition(SERVO_INTAKE_Y, SERVO_INTAKE_DELTA);
-            } else {
-                robot.setDeltaServoPosition(SERVO_INTAKE_Y, -SERVO_INTAKE_DELTA);
-            }
-            elapsedTime.reset();
-        }
+        opMode.telemetry.addData("IntakeServo", robot.getServoPosition(SERVO_INTAKE));
+        opMode.telemetry.update();
     }
 
     // Uses right joystick on gamepad 2
