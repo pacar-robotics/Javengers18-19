@@ -105,7 +105,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
                 tfod.activate();
             }
 
-            while (opModeIsActive()) {
+            for (int i = 0; i < 1000; i++) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -142,6 +142,9 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
             tfod.shutdown();
         }
 
+        while (opModeIsActive()) {
+            idle();
+        }
     }
 
     /**

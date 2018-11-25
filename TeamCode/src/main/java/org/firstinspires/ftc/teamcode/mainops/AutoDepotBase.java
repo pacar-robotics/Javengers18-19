@@ -49,7 +49,7 @@ public class AutoDepotBase extends LinearOpMode {
 
         }
 
-        // Marker depot dropoff
+        autoLib.moveLinearSlideToDepot();
         autoLib.calcTurn(80, .2f);
         Thread.sleep(100);
         autoLib.calcMove(87, .5f);
