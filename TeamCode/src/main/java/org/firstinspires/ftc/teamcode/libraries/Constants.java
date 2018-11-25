@@ -37,8 +37,9 @@ public class Constants {
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_GRAB = .6f;
     static final float SERVO_LATCHER_POS_REST = .05f;
-    static final float SERVO_INTAKE_X_POS_DEFAULT = .05f;
-    static final float SERVO_INTAKE_Y_POS_DEFAULT = .05f;
+    static final float SERVO_INTAKE_X_POS_INTAKE = .18f;
+    static final float SERVO_INTAKE_Y_POS_INTAKE = .11f;
+    
 
     //********** Servo Deltas **********//
     static final float SERVO_INTAKE_DELTA = .01f;

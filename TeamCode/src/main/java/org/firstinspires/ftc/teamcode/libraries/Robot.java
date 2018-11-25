@@ -17,9 +17,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X_POS_DEFAULT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_X_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y_POS_DEFAULT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_Y_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -68,6 +68,7 @@ public class Robot {
         dcMotors[MOTOR_SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
 
         dcMotors[MOTOR_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_LATCHER].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
@@ -76,8 +77,8 @@ public class Robot {
         servos[SERVO_INTAKE_Y] = opMode.hardwareMap.get(Servo.class, "intakeYServo");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
-        servos[SERVO_INTAKE_X].setPosition(SERVO_INTAKE_X_POS_DEFAULT);
-        servos[SERVO_INTAKE_Y].setPosition(SERVO_INTAKE_Y_POS_DEFAULT);
+        servos[SERVO_INTAKE_X].setPosition(SERVO_INTAKE_X_POS_INTAKE);
+        servos[SERVO_INTAKE_Y].setPosition(SERVO_INTAKE_Y_POS_INTAKE);
     }
 
     private void initSensors() {
