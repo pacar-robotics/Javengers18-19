@@ -24,13 +24,16 @@ public class MainTeleOp extends LinearOpMode {
         initialize();
 
         while (opModeIsActive()) {
-            if (gamepad2.left_stick_y == 0 && gamepad2.right_stick_y == 0) {
-                teleLib.processGamepadDrive();
-            } else {
-                teleLib.processLatchingDrive();
-            }
+            // Gamepad 1
+            teleLib.processDrive();
             teleLib.processLatcher();
             teleLib.processLatcherServo();
+
+            // Gamepad 2
+            teleLib.processIntake();
+            teleLib.processLinearSlide();
+            teleLib.processIntakePosition();
+            teleLib.processScoring();
             idle();
         }
     }

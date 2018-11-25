@@ -25,8 +25,7 @@ public class Constants {
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;
-    static final int SERVO_INTAKE_X = 1;
-    static final int SERVO_INTAKE_Y = 2;
+    static final int SERVO_INTAKE = 1;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
@@ -37,6 +36,16 @@ public class Constants {
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_GRAB = .6f;
     static final float SERVO_LATCHER_POS_REST = .05f;
+    static final float SERVO_INTAKE_X_POS_INTAKE = .18f;
+    static final float SERVO_INTAKE_Y_POS_INTAKE = .11f;
+    
+
+    //********** Servo Deltas **********//
+    static final float SERVO_INTAKE_DELTA = .01f;
+    static final float SERVO_INTAKE_DELAY = .2f;    // Seconds
+
+    //********** Motor Speeds **********//
+    static final float INTAKE_SPEED = .7f;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
