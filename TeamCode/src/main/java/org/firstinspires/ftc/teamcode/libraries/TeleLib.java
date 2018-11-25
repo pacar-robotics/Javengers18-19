@@ -158,9 +158,9 @@ public class TeleLib {
         if ((opMode.gamepad2.dpad_left || opMode.gamepad2.dpad_right) &&
                 (elapsedTime.seconds() > SERVO_INTAKE_DELAY)) {
             if (opMode.gamepad2.dpad_left) {
-                robot.setDeltaServoPosition(SERVO_INTAKE_X, SERVO_INTAKE_DELTA);
+                robot.setDeltaServoPosition(SERVO_INTAKE_Y, SERVO_INTAKE_DELTA);
             } else {
-                robot.setDeltaServoPosition(SERVO_INTAKE_X, -SERVO_INTAKE_DELTA);
+                robot.setDeltaServoPosition(SERVO_INTAKE_Y, -SERVO_INTAKE_DELTA);
             }
             elapsedTime.reset();
         }
