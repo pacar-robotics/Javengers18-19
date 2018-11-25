@@ -22,6 +22,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -111,6 +112,12 @@ public class AutoLib {
 
         robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
         robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
+
+        opMode.telemetry.addData("Left Motor Target Position", leftTargetPosition);
+        opMode.telemetry.update();
+        opMode.telemetry.addData("Right Motor Target Position", rightTargetPosition);
+        opMode.telemetry.update();
+
     }
 
     private boolean areBaseMotorsBusy() {
@@ -118,7 +125,7 @@ public class AutoLib {
     }
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.2) {
             opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
@@ -136,11 +143,11 @@ public class AutoLib {
 
     // SupportOp Methods
     public void moveLatcherToBottom() {
-        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+        robot.setDcMotorPower(MOTOR_LATCHER, .2f);
+        while (robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             opMode.idle();
         }
-        robot.setDcMotorPower(MOTOR_LATCHER, 0);
+        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
     }
 
 
