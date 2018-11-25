@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.supportops;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -105,7 +106,10 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
                 tfod.activate();
             }
 
-            for (int i = 0; i < 1000; i++) {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+
+            while(time.seconds() < 1) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.

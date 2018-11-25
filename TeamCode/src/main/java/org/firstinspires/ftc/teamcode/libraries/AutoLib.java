@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -23,6 +24,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
@@ -176,7 +178,11 @@ public class AutoLib {
             tfod.activate();
         }
 
-        if (tfod != null) {
+        Constants.GoldObjectPosition goldObjectPosition = null;
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
+
+        while(time.seconds() < TENSOR_READING_TIME) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
@@ -191,24 +197,24 @@ public class AutoLib {
                             silverMineralX = (int) recognition.getLeft();
                         }
 
-                        if (tfod != null) {
-                            tfod.shutdown();
-                        }
-
                         if (goldMineralX != -1 && silverMineralX != -1) {
                             if (goldMineralX < silverMineralX) {
-                                return Constants.GoldObjectPosition.CENTER;
+                                goldObjectPosition = Constants.GoldObjectPosition.CENTER;
                             } else if (goldMineralX > silverMineralX) {
-                                return Constants.GoldObjectPosition.RIGHT;
+                                goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
                             }
                         } else if (goldMineralX == -1 && silverMineralX != 1) {
-                            return Constants.GoldObjectPosition.LEFT;
+                            goldObjectPosition =  Constants.GoldObjectPosition.LEFT;
                         }
                     }
                 }
             }
         }
-        return null;
+        if (tfod != null) {
+            tfod.shutdown();
+        }
+
+        return goldObjectPosition;
     }
 
     public void moveLinearSlideToDepot() {

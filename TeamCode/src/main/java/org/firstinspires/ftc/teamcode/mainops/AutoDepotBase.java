@@ -28,24 +28,16 @@ public class AutoDepotBase extends LinearOpMode {
         autoLib.landOnGround();
         Thread.sleep(100);
 
-//        //tensorflow
-//        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-//
-//        if (gold == Constants.GoldObjectPosition.LEFT) {
-//
-//        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
-//
-//        } else if (gold == Constants.GoldObjectPosition.CENTER) {
-//
-//        } else {
-//
-//        }
+        // Tensorflow
+        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
 
-        if (false) { // Left
+        if (gold == Constants.GoldObjectPosition.LEFT) {
 
-        } else if (false) {    // Right
+        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
 
-        } else if (false) {   // Center
+        } else if (gold == Constants.GoldObjectPosition.CENTER) {
+
+        } else {
 
         }
 
