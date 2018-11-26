@@ -217,7 +217,7 @@ public class AutoLib {
         robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, RUN_TO_POSITION);
         robot.setDcMotorTargetPosition(MOTOR_LINEAR_SLIDE, LINEAR_SLIDE_DEPOT_ENCODER_COUNT);
 
-        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, .8f);
+        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, .9f);
 
         while (robot.isMotorBusy(MOTOR_LINEAR_SLIDE) &&
                 (LINEAR_SLIDE_DEPOT_ENCODER_COUNT - robot.getDcMotorPosition(MOTOR_LEFT_WHEEL) >= ENCODER_MARGIN)) {
