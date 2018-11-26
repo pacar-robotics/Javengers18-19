@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
+import org.firstinspires.ftc.teamcode.libraries.Constants;
 
 /*
  * Title: AutoBlueCraterBase
@@ -23,8 +24,34 @@ public class AutoCraterBase extends LinearOpMode {
         initialize();
 
         autoLib.landOnGround();
-        autoLib.calcMove(1, -.2f);
-        Thread.sleep(100);
+
+        // Tensorflow
+        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+
+        if (gold == Constants.GoldObjectPosition.LEFT) {
+            telemetry.addData("pos", "Left");
+            autoLib.calcTurn(-20, .1f);
+            autoLib.calcMove(25, .2f );
+            autoLib.calcMove(25,.2f);
+        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
+            telemetry.addData("pos", "Right");
+            autoLib.calcTurn(20,.1f);
+            autoLib.calcMove(20,.2f);
+            autoLib.calcMove(20,-.2f);
+        } else if (gold == Constants.GoldObjectPosition.CENTER) {
+            telemetry.addData("pos", "Center");
+            autoLib.calcMove(25,.2f);
+            Thread.sleep(100);
+            autoLib.calcMove(25,-.2f);
+        } else {
+            telemetry.addData("pos", "Nothing");
+        }
+        telemetry.update();
+
+        autoLib.calcTurn(-80,.2f);
+        autoLib.calcMove(200,.2f);
+        autoLib.moveLinearSlideToDepot();
+        autoLib.calcMove(200,-.2f);
     }
 
     private void initialize() {
