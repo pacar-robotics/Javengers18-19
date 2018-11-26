@@ -122,8 +122,6 @@ public class AutoLib {
         robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.2) {
-            opMode.telemetry.addData("groundSensor", robot.getGroundDistanceCenti());
-            opMode.telemetry.update();
             opMode.idle();
         }
 
