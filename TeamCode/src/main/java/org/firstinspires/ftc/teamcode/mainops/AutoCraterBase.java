@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.libraries.Constants;
 /*
  * Title: AutoBlueCraterBase
  * Date Created: 11/23/2018
- * Date Modified: 11/23/2018
+ * Date Modified: 11/26/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Main
  * Description: Starts on blue crater latcher
@@ -24,34 +24,54 @@ public class AutoCraterBase extends LinearOpMode {
         initialize();
 
         autoLib.landOnGround();
+        autoLib.calcMove(5, .3f);
+        autoLib.calcTurn(15, .3f);
 
         // Tensorflow
         Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
 
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
-            autoLib.calcTurn(-20, .1f);
-            autoLib.calcMove(25, .2f );
-            autoLib.calcMove(25,.2f);
+            autoLib.calcTurn(-45, .3f);
+            autoLib.calcMove(77, .3f );
+            autoLib.calcMove(-20,.3f);
+            autoLib.calcTurn(-79,.3f);
+            autoLib.calcMove(100,.3f);
+            autoLib.calcTurn(-45,.3f);
+            autoLib.calcMove(115,.3f);
+            autoLib.calcTurn(-5,.5f);
+            autoLib.calcMove(-185,.5f);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            autoLib.calcTurn(20,.1f);
-            autoLib.calcMove(20,.2f);
-            autoLib.calcMove(20,-.2f);
+            autoLib.calcTurn(20,.3f);
+            autoLib.calcMove(82,.3f);
+            autoLib.calcMove(-36,-.3f);
+            autoLib.calcTurn(-140,.3f);
+            autoLib.calcMove(155,.5f);
+            autoLib.calcTurn(-60,.5f);
+            autoLib.calcMove(112,.5f);
+            autoLib.calcMove(-185,.6f);
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
-            autoLib.calcMove(25,.2f);
-            Thread.sleep(100);
-            autoLib.calcMove(25,-.2f);
+            autoLib.calcTurn(-15,.3f);
+            autoLib.calcMove(70,.2f);
+//            Thread.sleep(100);
+            autoLib.calcMove(-35,.2f);
+            autoLib.calcTurn(-100,.3f);
+            autoLib.calcMove(105,.3f);
+            autoLib.calcTurn(-50,.3f);
+            autoLib.calcMove(127,.5f);
+            autoLib.calcTurn(-15,.3f);
+            autoLib.calcMove(-170,.5f);
         } else {
             telemetry.addData("pos", "Nothing");
         }
         telemetry.update();
 
-        autoLib.calcTurn(-80,.2f);
-        autoLib.calcMove(200,.2f);
-        autoLib.moveLinearSlideToDepot();
-        autoLib.calcMove(200,-.2f);
+//        autoLib.calcTurn(-80,.2f);
+//        autoLib.calcMove(200,.2f);
+//        autoLib.moveLinearSlideToDepot();
+//        autoLib.calcMove(200,-.2f);
     }
 
     private void initialize() {
