@@ -57,7 +57,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(75, .5f);
             autoLib.calcMove(-40, .3f);
             autoLib.calcTurn(107,.3f );
-            autoLib.calcMove(155,.5f);
+            autoLib.calcMove(-155,.5f);
 
         } else {
             telemetry.addData("pos", "Nothing");
