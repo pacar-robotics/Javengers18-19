@@ -53,7 +53,15 @@ public class Constants {
     static final float ENCODER_MARGIN = 50f;
     static final float TRACK_DISTANCE = 20.5f;
 
+    //********** Encoder Constants **********//
+    static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT = 9000;   // TODO: Measure later
 
     //********** Driving Multipliers **********//
     static final float LATCHING_DRIVE_FACTOR = 0.5f;
+
+    //********** TensorFlow **********//
+    static final String VUFORIA_KEY = "AevlBL3/////AAAAGZ3T16bk1EepnUsSLPkQW/sFqYxxQLGZ0w6paGMug92slctEFAuXjXeMqrzDuCLvLZmY1sWjvn4kb5WKPKH4RdCZB7ccft3XGKh8rVn0r+TxhcJUmZwsdciAzCBYVe5FLnGtldKTV1eVbNFcN6FpDfZstRXXBdjqyMBg5XzJmhJp5rcG5TIi0qMcjaoHFqaBdnMyYBAeERylDVGBbDbIAX0dLDiQ5bjxA/lAphyHjDDyetpVjGlEwziUzcYbdvZK3zjGpR7WH62RqM6QzO1s7PcTppQMgRi3FxhisqKKZdWWF5pFGBPMP6bpsOzHTd8TDxPjwXiYIZxt3MwkhQ+1JpyAG9CVo+I0T/b/oNT0/ulZ";
+    static final float TENSOR_READING_TIME = 2f;   // Seconds
+
+    public enum GoldObjectPosition {LEFT, CENTER, RIGHT}
 }
