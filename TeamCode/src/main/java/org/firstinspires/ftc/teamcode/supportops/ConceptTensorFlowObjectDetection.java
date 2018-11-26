@@ -51,7 +51,7 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "Concept: TensorFlow Object Detection", group = "Concept")
+@Autonomous(name = "TensorFlow Test", group = "Support")
 public class ConceptTensorFlowObjectDetection extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -109,7 +109,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
             ElapsedTime time = new ElapsedTime();
             time.reset();
 
-            while(time.seconds() < 1) {
+            while(time.seconds() < 2) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
