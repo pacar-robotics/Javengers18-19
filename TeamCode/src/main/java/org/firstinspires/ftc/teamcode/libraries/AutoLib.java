@@ -43,7 +43,6 @@ public class AutoLib {
     private Robot robot;
     private LinearOpMode opMode;
 
-    private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
     public AutoLib(LinearOpMode opMode) {
@@ -159,7 +158,7 @@ public class AutoLib {
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
 
         //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
         // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
@@ -222,7 +221,7 @@ public class AutoLib {
         robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, RUN_TO_POSITION);
         robot.setDcMotorTargetPosition(MOTOR_LINEAR_SLIDE, LINEAR_SLIDE_DEPOT_ENCODER_COUNT);
 
-        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, .5f);
+        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, .8f);
 
         while (robot.isMotorBusy(MOTOR_LINEAR_SLIDE) &&
                 (LINEAR_SLIDE_DEPOT_ENCODER_COUNT - robot.getDcMotorPosition(MOTOR_LEFT_WHEEL) >= ENCODER_MARGIN)) {
