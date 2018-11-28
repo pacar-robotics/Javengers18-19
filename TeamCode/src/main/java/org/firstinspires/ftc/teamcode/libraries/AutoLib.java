@@ -17,7 +17,8 @@ import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABE
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT_FORWARD;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT_REVERSE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
@@ -212,15 +213,14 @@ public class AutoLib {
         return goldObjectPosition;
     }
 
-    public void moveLinearSlideToDepot() {
+    public void moveLinearSlide(int positionValue, float power) {
         robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, STOP_AND_RESET_ENCODER);
         robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, RUN_TO_POSITION);
-        robot.setDcMotorTargetPosition(MOTOR_LINEAR_SLIDE, LINEAR_SLIDE_DEPOT_ENCODER_COUNT);
+        robot.setDcMotorTargetPosition(MOTOR_LINEAR_SLIDE, positionValue);
 
-        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, .9f);
+        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, power);
 
-        while (robot.isMotorBusy(MOTOR_LINEAR_SLIDE) &&
-                (LINEAR_SLIDE_DEPOT_ENCODER_COUNT - robot.getDcMotorPosition(MOTOR_LEFT_WHEEL) >= ENCODER_MARGIN)) {
+        while (robot.isMotorBusy(MOTOR_LINEAR_SLIDE)) {
             opMode.idle();
         }
 

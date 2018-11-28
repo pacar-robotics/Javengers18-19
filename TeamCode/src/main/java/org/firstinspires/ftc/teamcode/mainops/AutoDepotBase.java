@@ -24,56 +24,57 @@ public class AutoDepotBase extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         initialize();
 
-        autoLib.moveLinearSlideToDepot();
+//        Blue depot base parking near the robot picture
+        autoLib.landOnGround();
+        autoLib.calcMove(55,1f);
+        autoLib.moveLinearSlide(-15000,1f);
+        autoLib.moveLinearSlide(15000,1f);
+        autoLib.calcMove(-53,1f);
+        autoLib.calcMove(5, 1f);
+        autoLib.calcTurn(15, 1f);
 
-        //Blue depot base parking near the robot picture
-//        autoLib.landOnGround();
-//        autoLib.calcMove(5, .3f);
-//        autoLib.calcTurn(15, .3f);
-//
-//        // Tensorflow
-//        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-//        telemetry.addData("Detecting Mineral","Left Mineral");
-//        telemetry.update();
-//        if (gold == Constants.GoldObjectPosition.LEFT) {
-//            telemetry.addData("pos", "Left");
-//            autoLib.calcTurn(-50, .3f);
-//            autoLib.calcMove(83, .5f);
-//            autoLib.calcMove(-45, .3f);
-//            autoLib.calcTurn(137,.3f);
-//            autoLib.calcMove(150,.4f);
-//            autoLib.calcTurn(35,.3f);
-//            autoLib.calcMove(40,.3f);
-//        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
-//            telemetry.addData("pos", "Right");
-//            autoLib.calcTurn(25, .3f);
-//            autoLib.calcMove(78, .5f);
-//            autoLib.calcMove(-34, .3f);
-//            autoLib.calcTurn(70, .2f);
-//            Thread.sleep(100);
-//            autoLib.calcMove(134, .5f);
-//
-//        } else if (gold == Constants.GoldObjectPosition.CENTER) {
-//            telemetry.addData("pos", "Center");
-//            autoLib.calcTurn(-15, .3f);
-//            autoLib.calcMove(75, .5f);
-//            autoLib.moveLinearSlideToDepot();
-//            Thread.sleep(100);
-//            autoLib.calcMove(-40, .3f);
-//            autoLib.calcTurn(107,.3f );
-//            autoLib.calcMove(-155,.5f);
-//
-//        } else {
-//            telemetry.addData("pos", "Nothing");
-//        }
-//        telemetry.update();
+        // Tensorflow
+        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+        telemetry.addData("Detecting Mineral","Left Mineral");
+        telemetry.update();
+        if (gold == Constants.GoldObjectPosition.LEFT) {
+            telemetry.addData("pos", "Left");
+            autoLib.calcTurn(-50, 1f);
+            autoLib.calcMove(83, 1f);
+            autoLib.calcMove(-40, 1f);
+            autoLib.calcTurn(137,1f);
+            autoLib.calcMove(150,1f);
+            autoLib.calcTurn(35,1f);
+            autoLib.calcMove(40,1f);
+        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
+            telemetry.addData("pos", "Right");
+            autoLib.calcTurn(25, 1f);
+            autoLib.calcMove(78, 1f);
+            autoLib.calcMove(-28, 1f);
+            autoLib.calcTurn(70, 1f);
+            Thread.sleep(100);
+            autoLib.calcMove(134, .6f);
 
-//       autoLib.moveLinearSlideToDepot();
-//        autoLib.calcTurn(75, .2f);
-//        Thread.sleep(100);
-//        autoLib.calcMove(124, .5f);
-//        autoLib.calcTurn(40, .5f);
-//        autoLib.calcMove(68, .5f);
+        } else if (gold == Constants.GoldObjectPosition.CENTER) {
+            telemetry.addData("pos", "Center");
+            autoLib.calcTurn(-15, 1f);
+            autoLib.calcMove(75, 1f);
+            Thread.sleep(100);
+            autoLib.calcMove(-40, 1f);
+            autoLib.calcTurn(107,1f );
+            autoLib.calcMove(-155,1f);
+
+        } else {
+            telemetry.addData("pos", "Nothing");
+        }
+        telemetry.update();
+
+     /*  autoLib.moveLinearSlideToDepot();
+        autoLib.calcTurn(75, .2f);
+        Thread.sleep(100);
+        autoLib.calcMove(124, .5f);
+        autoLib.calcTurn(40, .5f);
+        autoLib.calcMove(68, .5f);*/
     }
 
     private void initialize() {

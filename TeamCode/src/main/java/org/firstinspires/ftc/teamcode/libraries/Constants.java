@@ -54,8 +54,8 @@ public class Constants {
     static final float TRACK_DISTANCE = 20.5f;
 
     //********** Encoder Constants **********//
-    static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT = -190000;   // TODO: Measure later
-
+    static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT_FORWARD = -10000;   // TODO: Measure later
+    static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT_REVERSE = 10000;   // TODO: Measure later
     //********** Driving Multipliers **********//
     static final float LATCHING_DRIVE_FACTOR = 0.5f;
 

@@ -65,6 +65,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(-170,.7f);
         } else {
             telemetry.addData("pos", "Nothing");
+
         }
         telemetry.update();
 
