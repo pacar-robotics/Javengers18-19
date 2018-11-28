@@ -26,12 +26,12 @@ public class AutoDepotBase extends LinearOpMode {
 
 //        Blue depot base parking near the robot picture
         autoLib.landOnGround();
-        autoLib.calcMove(55,1f);
-        autoLib.moveLinearSlide(-15000,1f);
-        autoLib.moveLinearSlide(15000,1f);
-        autoLib.calcMove(-53,1f);
+//        autoLib.calcMove(55,1f);
+//        autoLib.moveLinearSlide(-15000,1f);
+//        autoLib.moveLinearSlide(15000,1f);
+//        autoLib.calcMove(-53,1f);
         autoLib.calcMove(5, 1f);
-        autoLib.calcTurn(15, 1f);
+        autoLib.calcTurn(15, .3f);
 
         // Tensorflow
         Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
@@ -40,12 +40,16 @@ public class AutoDepotBase extends LinearOpMode {
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             autoLib.calcTurn(-50, 1f);
-            autoLib.calcMove(83, 1f);
-            autoLib.calcMove(-40, 1f);
-            autoLib.calcTurn(137,1f);
-            autoLib.calcMove(150,1f);
-            autoLib.calcTurn(35,1f);
-            autoLib.calcMove(40,1f);
+            autoLib.calcMove(100, 1f);
+            autoLib.calcTurn(60,.3f);
+            autoLib.calcMove(70, 1f);
+            autoLib.calcTurn(35,.3f);
+            autoLib.calcMove(-190,1f);
+//            autoLib.calcMove(-60,.5f);
+//            autoLib.calcTurn(100,1f);
+//            autoLib.calcMove(150,1f);
+//            autoLib.calcTurn(35,1f);
+//            autoLib.calcMove(40,1f);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
             autoLib.calcTurn(25, 1f);
