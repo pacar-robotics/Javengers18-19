@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 /*
  * Title: Constants
  * Date Created: 10/14/2018
- * Date Modified: 11/25/2018
+ * Date Modified: 11/27/2018
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain all of the constants we will use in any of our programs.
@@ -19,13 +19,13 @@ public class Constants {
     static final int MOTOR_LEFT_WHEEL = 0;
     static final int MOTOR_RIGHT_WHEEL = 1;
     static final int MOTOR_LATCHER = 2;
-    static final int MOTOR_INTAKE = 3;
     static final int MOTOR_LINEAR_SLIDE = 4;
     static final int MOTOR_SCORING = 5;
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;
     static final int SERVO_INTAKE = 1;
+    static final int SERVO_INTAKE_ANGLE = 2;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
@@ -36,16 +36,15 @@ public class Constants {
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_GRAB = .6f;
     static final float SERVO_LATCHER_POS_REST = .05f;
-    static final float SERVO_INTAKE_X_POS_INTAKE = .18f;
-    static final float SERVO_INTAKE_Y_POS_INTAKE = .11f;
-    
+    static final float SERVO_INTAKE_SPEED = .95f;
+    static final float SERVO_OUTTAKE_SPEED = .05f;
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .42f;
+    static final float SERVO_INTAKE_ANGLE_POS_DEPOSIT = .42f;   // TODO: Measure later
+
 
     //********** Servo Deltas **********//
-    static final float SERVO_INTAKE_DELTA = .01f;
-    static final float SERVO_INTAKE_DELAY = .2f;    // Seconds
-
-    //********** Motor Speeds **********//
-    static final float INTAKE_SPEED = .7f;
+    static final float SERVO_INTAKE_ANGLE_DELTA = .01f;
+    static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
