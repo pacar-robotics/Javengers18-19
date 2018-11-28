@@ -114,10 +114,10 @@ public class TeleLib {
     public void processIntake() {
         if (opMode.gamepad2.y) {
             // Deposit
-            robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
+            robot.setServoPosition(SERVO_INTAKE, SERVO_OUTTAKE_SPEED);
         } else if (opMode.gamepad2.right_bumper) {
             // Collect
-            robot.setServoPosition(SERVO_INTAKE, SERVO_OUTTAKE_SPEED);
+            robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
         } else if (opMode.gamepad2.left_bumper) {
             robot.setServoPosition(SERVO_INTAKE, .5f);
         }
