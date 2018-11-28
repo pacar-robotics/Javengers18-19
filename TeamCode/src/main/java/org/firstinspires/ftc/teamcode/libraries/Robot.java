@@ -10,13 +10,14 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -42,7 +43,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[6];
 
     // Servos
-    private Servo[] servos = new Servo[2];
+    private Servo[] servos = new Servo[3];
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
@@ -60,7 +61,6 @@ public class Robot {
         dcMotors[MOTOR_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
         dcMotors[MOTOR_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
-       // dcMotors[MOTOR_INTAKE] = opMode.hardwareMap.get(DcMotor.class, "intake");
         dcMotors[MOTOR_LINEAR_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "linearSlide");
         dcMotors[MOTOR_SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
 
@@ -71,8 +71,10 @@ public class Robot {
     private void initServos() {
         servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
         servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
+        servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
+        servos[SERVO_INTAKE_ANGLE].setPosition(SERVO_INTAKE_ANGLE_POS_INTAKE);
     }
 
     private void initSensors() {

@@ -32,7 +32,8 @@ public class MainTeleOp extends LinearOpMode {
             // Gamepad 2
             teleLib.processIntake();
             teleLib.processLinearSlide();
-            teleLib.processIntakePosition();
+            teleLib.processAutomaticIntakePosition();
+            teleLib.processManualIntakePosition();
             teleLib.processScoring();
             idle();
         }
