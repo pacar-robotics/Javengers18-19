@@ -39,7 +39,7 @@ public class Constants {
     static final float SERVO_INTAKE_SPEED = .95f;
     static final float SERVO_OUTTAKE_SPEED = .05f;
     static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .42f;
-    static final float SERVO_INTAKE_ANGLE_POS_DEPOSIT = .42f;
+    static final float SERVO_INTAKE_ANGLE_POS_DEPOSIT = .42f;   // TODO: Measure later
 
 
     //********** Servo Deltas **********//
