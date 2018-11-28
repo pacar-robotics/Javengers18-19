@@ -15,6 +15,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_DELAY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_DELTA;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_DEPOSIT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
@@ -134,8 +136,16 @@ public class TeleLib {
         }
     }
 
+    public void processAutomaticIntakePosition() {
+        if (opMode.gamepad2.x) {
+            robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
+        } else if (opMode.gamepad2.b) {
+            robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_DEPOSIT);
+        }
+    }
+
     // Uses dpad on gamepad 2
-    public void processIntakePosition() {
+    public void processManualIntakePosition() {
         if ((opMode.gamepad2.dpad_up || opMode.gamepad2.dpad_down) &&
                 (elapsedTime.seconds() > SERVO_INTAKE_ANGLE_DELAY)) {
             if (opMode.gamepad2.dpad_up) {
