@@ -35,16 +35,16 @@ public class AutoDepotBase extends LinearOpMode {
 
         // Tensorflow
         Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-        telemetry.addData("Detecting Mineral","Left Mineral");
+        telemetry.addData("Detecting Mineral", "Left Mineral");
         telemetry.update();
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             autoLib.calcTurn(-50, 1f);
             autoLib.calcMove(100, 1f);
-            autoLib.calcTurn(60,.3f);
+            autoLib.calcTurn(60, .3f);
             autoLib.calcMove(70, 1f);
-            autoLib.calcTurn(35,.3f);
-            autoLib.calcMove(-190,1f);
+            autoLib.calcTurn(35, .3f);
+            autoLib.calcMove(-190, 1f);
 //            autoLib.calcMove(-60,.5f);
 //            autoLib.calcTurn(100,1f);
 //            autoLib.calcMove(150,1f);
@@ -54,19 +54,26 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.addData("pos", "Right");
             autoLib.calcTurn(25, 1f);
             autoLib.calcMove(78, 1f);
-            autoLib.calcMove(-28, 1f);
-            autoLib.calcTurn(70, 1f);
-            Thread.sleep(100);
-            autoLib.calcMove(134, .6f);
+            autoLib.calcTurn(-40, .3f);
+            autoLib.calcMove(70, .3f);
+            //Drop off marker
+            autoLib.calcTurn(-15, .3f);
+            autoLib.calcMove(-190, 1f);
+//            autoLib.calcMove(-28, 1f);
+//            autoLib.calcTurn(70, 1f);
+//            Thread.sleep(100);
+//            autoLib.calcMove(134, .6f);
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             autoLib.calcTurn(-15, 1f);
-            autoLib.calcMove(75, 1f);
-            Thread.sleep(100);
-            autoLib.calcMove(-40, 1f);
-            autoLib.calcTurn(107,1f );
-            autoLib.calcMove(-155,1f);
+            autoLib.calcMove(150, 1f);
+            //Drop off marker
+            autoLib.calcTurn(-30,.3f);
+            autoLib.calcMove(190,.3f);
+//            autoLib.calcMove(-40, 1f);
+//            autoLib.calcTurn(107, 1f);
+//            autoLib.calcMove(-155, 1f);
 
         } else {
             telemetry.addData("pos", "Nothing");
