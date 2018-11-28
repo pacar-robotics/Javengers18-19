@@ -155,9 +155,6 @@ public class TeleLib {
             }
             elapsedTime.reset();
         }
-
-        opMode.telemetry.addData("IntakeAngleServo", robot.getServoPosition(SERVO_INTAKE_ANGLE));
-        opMode.telemetry.update();
     }
 
     // Uses right joystick on gamepad 2
