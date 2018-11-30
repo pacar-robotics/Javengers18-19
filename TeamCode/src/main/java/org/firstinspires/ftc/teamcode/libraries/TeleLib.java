@@ -24,8 +24,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_TOP;
 
 /*
  * Title: TeleLib
@@ -129,13 +127,9 @@ public class TeleLib {
 
     // Uses triggers on gamepad 2
     public void processLinearSlide() {
-        if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isTouchSensorPressed(TOUCH_SLIDE_BOTTOM)) {
-            // Down
+        if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, opMode.gamepad2.left_trigger);
-        } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isTouchSensorPressed(TOUCH_SLIDE_TOP)) {
-            // Up
+        } else if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, -opMode.gamepad2.right_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, 0);

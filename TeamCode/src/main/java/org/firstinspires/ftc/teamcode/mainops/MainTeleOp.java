@@ -35,7 +35,6 @@ public class MainTeleOp extends LinearOpMode {
             teleLib.processAutomaticIntakePosition();
             teleLib.processManualIntakePosition();
             teleLib.processScoring();
-
             idle();
         }
     }
