@@ -148,7 +148,7 @@ public class TeleLib {
     public void processManualIntakePosition() {
         if ((opMode.gamepad2.dpad_up || opMode.gamepad2.dpad_down) &&
                 (elapsedTime.seconds() > SERVO_INTAKE_ANGLE_DELAY)) {
-            if (opMode.gamepad2.dpad_up) {
+            if (opMode.gamepad2.dpad_down) {
                 robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_DELTA);
             } else {
                 robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, -SERVO_INTAKE_ANGLE_DELTA);
