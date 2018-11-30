@@ -74,7 +74,7 @@ public class Robot {
         servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
-        servos[SERVO_INTAKE_ANGLE].setPosition(SERVO_INTAKE_ANGLE_POS_INTAKE);
+        servos[SERVO_INTAKE_ANGLE].setPosition(0);
     }
 
     private void initSensors() {

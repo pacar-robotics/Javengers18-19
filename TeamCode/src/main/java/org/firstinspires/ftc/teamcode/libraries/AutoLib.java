@@ -24,6 +24,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
@@ -124,7 +125,7 @@ public class AutoLib {
     public void landOnGround() throws InterruptedException {
         robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 5.2) {
+        while (robot.getGroundDistanceCenti() >= 5.3) {
             opMode.idle();
         }
 
@@ -232,15 +233,18 @@ public class AutoLib {
     public void depositMarker() {
         ElapsedTime time = new ElapsedTime();
         time.reset();
-        robot.setServoPosition(SERVO_INTAKE, SERVO_OUTTAKE_SPEED);
+        robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
         while (time.seconds() < 2) {
             opMode.idle();
         }
         robot.setServoPosition(SERVO_INTAKE, .5f);
     }
-    public void setServoAngle()  {
-        robot.setServoPosition(SERVO_INTAKE_ANGLE, .3f);
-
+    public void setServoAngle() throws InterruptedException {
+//        robot.setServoPosition(SERVO_INTAKE_ANGLE, .7f);
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
+        Thread.sleep(2000);
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
+        Thread.sleep(2000);
     }
 
 
