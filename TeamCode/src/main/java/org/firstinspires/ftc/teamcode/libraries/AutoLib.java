@@ -17,14 +17,17 @@ import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABE
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT_FORWARD;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT_REVERSE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
@@ -122,7 +125,7 @@ public class AutoLib {
     public void landOnGround() throws InterruptedException {
         robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 5.2) {
+        while (robot.getGroundDistanceCenti() >= 5.3) {
             opMode.idle();
         }
 
@@ -226,4 +229,22 @@ public class AutoLib {
 
         robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, 0);
     }
+
+    public void depositMarker() {
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
+        robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
+        while (time.seconds() < 2) {
+            opMode.idle();
+        }
+        robot.setServoPosition(SERVO_INTAKE, .5f);
+    }
+    public void setServoAngle() throws InterruptedException {
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
+        Thread.sleep(2000);
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
+        Thread.sleep(2000);
+    }
+
+
 }
