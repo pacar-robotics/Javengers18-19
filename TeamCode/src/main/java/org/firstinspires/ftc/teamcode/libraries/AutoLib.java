@@ -240,7 +240,6 @@ public class AutoLib {
         robot.setServoPosition(SERVO_INTAKE, .5f);
     }
     public void setServoAngle() throws InterruptedException {
-//        robot.setServoPosition(SERVO_INTAKE_ANGLE, .7f);
         robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
         Thread.sleep(2000);
         robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);

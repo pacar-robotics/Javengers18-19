@@ -40,23 +40,27 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(80, 2f);
             autoLib.setServoAngle();
             autoLib.depositMarker();
-            autoLib.calcTurn(35,.3f);
-            autoLib.calcMove(-185,4f);
-            autoLib.calcMove(-5,.4f);
-           autoLib.calcMove(-60,.5f);
-            autoLib.calcTurn(100,1f);
-            autoLib.calcMove(150,1f);
-            autoLib.calcTurn(35,1f);
-            autoLib.calcMove(40,1f);
+            autoLib.calcTurn(28,.3f);
+            autoLib.calcMove(-195,4f);
+            autoLib.calcMove(-10,.4f);
+//           autoLib.calcMove(-60,.5f);
+//            autoLib.calcTurn(100,1f);
+//            autoLib.calcMove(150,1f);
+//            autoLib.calcTurn(35,1f);
+//            autoLib.calcMove(40,1f);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            autoLib.calcTurn(25, 4f);
-            autoLib.calcMove(78, 4f);
-            autoLib.calcMove(-28, 4f);
-            autoLib.calcTurn(70, 4f);
-            autoLib.calcMove(134, 4f);
+            autoLib.calcTurn(40, 4f);
+            autoLib.calcMove(100, 4f);
+            //autoLib.calcMove(-5,5f);
+            autoLib.calcTurn(-70, 2f);
+            autoLib.calcMove(68,4f);
+            autoLib.calcTurn(5,4f);
             autoLib.setServoAngle();
             autoLib.depositMarker();
+            autoLib.calcTurn(-35,5f);
+            autoLib.calcMove(-168, 4f);
+
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
