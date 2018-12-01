@@ -32,53 +32,54 @@ public class AutoCraterBase extends LinearOpMode {
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             autoLib.calcTurn(-45, 5f);
-            autoLib.calcMove(77, 5f );
-            autoLib.calcMove(-20,5f);
-            autoLib.calcTurn(-79,5f);
-            autoLib.calcMove(100,5f);
-            autoLib.calcTurn(-45,5f);
-            autoLib.calcMove(115,5f);
+            autoLib.calcMove(73, 9f );
+            autoLib.calcMove(-20,9f);
+            autoLib.calcTurn(-70,5f);
+            autoLib.calcMove(110,9f);
+            autoLib.calcTurn(-40,5f);
+            autoLib.calcMove(110,9f);
+            autoLib.setServoAngle();
+            autoLib.depositMarker();
             autoLib.calcTurn(-5,5f);
-            autoLib.calcMove(-185,5f);
+            autoLib.calcMove(-185,9f);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
             autoLib.calcTurn(30,5f);
-            autoLib.calcMove(60,5f);
-            autoLib.calcMove(-36,5f);
-            autoLib.calcTurn(-135,5f);
-            autoLib.calcMove(140,5f);
-            autoLib.calcTurn(30,5f);
-            autoLib.calcMove(100,5f);
+            autoLib.calcMove(75,9f);
+            autoLib.calcMove(-41,9f);
+            autoLib.calcTurn(-130,5f);
+            autoLib.calcMove(143,9f);
+            autoLib.calcTurn(-57,5f);
+            autoLib.calcMove(130,9f);
             autoLib.setServoAngle();
             autoLib.depositMarker();
-            autoLib.calcTurn(-55,5f);
-            autoLib.calcMove(112,5f);
-            autoLib.calcMove(-180,5f);
+            autoLib.calcTurn(-5,5f);
+            autoLib.calcMove(-178,8f);
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
-            autoLib.calcTurn(-15,5f);
-            autoLib.calcMove(75,5f);
-//            Thread.sleep(100);
-            autoLib.calcMove(-40,5f);
+            autoLib.calcMove(75,9f);
+            autoLib.calcMove(-40,9f);
             autoLib.calcTurn(-100,5f);
-            autoLib.calcMove(110,5f);
+            autoLib.calcMove(110,9f);
             autoLib.calcTurn(-47,5f);
-            autoLib.calcMove(127,6f);
+            autoLib.calcMove(127,9f);
+            autoLib.setServoAngle();
+            autoLib.depositMarker();
             autoLib.calcTurn(-15,5f);
-            autoLib.calcMove(-170,7f);
+            autoLib.calcMove(-165,9f);
+
         } else {
             telemetry.addData("pos", "Nothing");
-            telemetry.addData("pos", "Center");
-            autoLib.calcTurn(-15,.5f);
-            autoLib.calcMove(75,.5f);
-//            Thread.sleep(100);
-            autoLib.calcMove(-40,5f);
+            autoLib.calcMove(75,9f);
+            autoLib.calcMove(-40,9f);
             autoLib.calcTurn(-100,5f);
-            autoLib.calcMove(110,5f);
+            autoLib.calcMove(110,9f);
             autoLib.calcTurn(-47,5f);
-            autoLib.calcMove(127,6f);
+            autoLib.calcMove(127,9f);
+            autoLib.setServoAngle();
+            autoLib.depositMarker();
             autoLib.calcTurn(-15,5f);
-            autoLib.calcMove(-170,7f);
+            autoLib.calcMove(-165,9f);
 
 
         }
