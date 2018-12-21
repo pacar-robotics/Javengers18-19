@@ -15,6 +15,11 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.BACKWARD;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.FORWARD;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.LEFT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.RIGHT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
@@ -28,7 +33,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
 /*
  * Title: AutoLib
@@ -52,12 +59,50 @@ public class AutoLib {
         initTfod();
     }
 
-    public void calcMove(float centimeters, float power) {
+    public void calcMove(float centimeters, float power, Constants.Direction direction) {
+        final int targetPosition = (int) ((centimeters / (Math.PI * WHEEL_DIAMETER)) *
+                GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION);
 
+        if (direction == FORWARD) {
+            prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
+        } else if (direction == BACKWARD) {
+            prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
+        } else if (direction == LEFT) {
+            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
+        } else if (direction == RIGHT) {
+            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
+        }
+
+        setBaseMotorPowers(power);
+
+        while (areBaseMotorsBusy()) {
+            opMode.idle();
+        }
+
+        setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
+        int leftTargetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
+                * GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION) /
+                (WHEEL_DIAMETER * 360));
 
+        prepMotorsForCalcMove(leftTargetPosition, -leftTargetPosition, leftTargetPosition, -leftTargetPosition);
+
+        setBaseMotorPowers(power);
+
+        while (areBaseMotorsBusy()) {
+            opMode.idle();
+        }
+
+        setBaseMotorPowers(0);
+    }
+
+    private void setBaseMotorPowers(float power) {
+        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
     }
 
     private void prepMotorsForCalcMove(int frontLeftTargetPosition, int frontRightTargetPosition,

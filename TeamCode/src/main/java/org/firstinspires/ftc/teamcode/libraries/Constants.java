@@ -54,6 +54,8 @@ public class Constants {
     static final float ENCODER_MARGIN = 50f;
     static final float TRACK_DISTANCE = 20.5f;
 
+    public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
+
     //********** Encoder Constants **********//
     static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT_FORWARD = -10000;   // TODO: Measure later
     static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT_REVERSE = 10000;   // TODO: Measure later
