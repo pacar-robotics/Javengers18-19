@@ -49,8 +49,8 @@ public class Constants {
     static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
 
     //********** CalcMove Constants **********//
-    static final float WHEEL_DIAMETER = 10.16f; // Centimeters
-    static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 1425.2f;
+    static final float WHEEL_DIAMETER = 9.525f; // Centimeters
+    static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 1680f;
     static final float ENCODER_MARGIN = 50f;
     static final float TRACK_DISTANCE = 20.5f;
 
