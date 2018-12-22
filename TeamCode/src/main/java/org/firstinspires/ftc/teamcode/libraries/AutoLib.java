@@ -36,6 +36,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_B
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATIO;
 
 /*
  * Title: AutoLib
@@ -60,8 +61,8 @@ public class AutoLib {
     }
 
     public void calcMove(float centimeters, float power, Constants.Direction direction) {
-        final int targetPosition = (int) ((centimeters / (Math.PI * WHEEL_DIAMETER)) *
-                GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION);
+        final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
+                GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION)) * WHEEL_GEAR_RATIO);
         opMode.telemetry.addData("Target Encoder", "Target Position");
         opMode.telemetry.update();
 

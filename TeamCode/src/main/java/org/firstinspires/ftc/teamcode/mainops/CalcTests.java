@@ -14,7 +14,7 @@ public class CalcTests extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         initialize();
 
-        autoLib.calcMove(20, .2f, Constants.Direction.RIGHT);
+        autoLib.calcMove(20, .2f, Constants.Direction.LEFT);
     }
 
     private void initialize() {
