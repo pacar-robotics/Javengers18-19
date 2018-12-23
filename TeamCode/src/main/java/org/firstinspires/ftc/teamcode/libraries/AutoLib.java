@@ -19,7 +19,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.BACKW
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.FORWARD;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.LEFT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.RIGHT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
@@ -62,7 +62,7 @@ public class AutoLib {
 
     public void calcMove(float centimeters, float power, Constants.Direction direction) {
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
-                GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION)) * WHEEL_GEAR_RATIO);
+                NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
         if (direction == FORWARD) {
             prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
@@ -85,7 +85,7 @@ public class AutoLib {
 
     public void calcTurn(int degrees, float power) {
         int leftTargetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
-                * GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION) /
+                * NEVEREST_40_REVOLUTION_ENCODER_COUNT) /
                 (WHEEL_DIAMETER * 360));
 
         prepMotorsForCalcMove(leftTargetPosition, -leftTargetPosition, leftTargetPosition, -leftTargetPosition);

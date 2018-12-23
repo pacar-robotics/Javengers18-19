@@ -49,9 +49,9 @@ public class Constants {
     static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
 
     //********** CalcMove Constants **********//
-    static final float WHEEL_DIAMETER = 10f; // Centimeters
-    static final float WHEEL_GEAR_RATIO = (2f/3);
-    static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 723.24f;
+    static final float WHEEL_DIAMETER = 10.16f; // Centimeters
+    static final float WHEEL_GEAR_RATIO = (2f / 3);
+    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1120f;
     static final float TRACK_DISTANCE = 20.5f;
 
     public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
