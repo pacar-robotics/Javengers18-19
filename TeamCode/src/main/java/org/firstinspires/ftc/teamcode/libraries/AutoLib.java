@@ -16,11 +16,17 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.BACKWARD;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.FORWARD;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.LEFT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.RIGHT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
@@ -31,6 +37,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_B
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATIO;
 
 /*
  * Title: AutoLib
@@ -54,70 +61,73 @@ public class AutoLib {
         initTfod();
     }
 
-    public void calcMove(float centimeters, float power) {
-        // Calculate how many encoder counts to move
-        final int targetPosition = (int) ((centimeters / (Math.PI * WHEEL_DIAMETER)) *
-                GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION);
+    public void calcMove(float centimeters, float power, Constants.Direction direction) {
+        final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
+                NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
-        prepMotorsForCalcMove(targetPosition, targetPosition);
+        if (direction == FORWARD) {
+            prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
+        } else if (direction == BACKWARD) {
+            prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
+        } else if (direction == LEFT) {
+            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
+        } else if (direction == RIGHT) {
+            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
+        }
 
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, power);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, power);
+        setBaseMotorPowers(power);
 
-        // Stays in this while loop until the motors are done moving to their positionp
         while (areBaseMotorsBusy()) {
             opMode.idle();
         }
 
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, 0);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, 0);
+        setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
         int leftTargetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
-                * GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION) /
+                * NEVEREST_40_REVOLUTION_ENCODER_COUNT) /
                 (WHEEL_DIAMETER * 360));
-        int rightTargetPosition = -leftTargetPosition;
 
-        float leftPower;
-        float rightPower;
+        prepMotorsForCalcMove(leftTargetPosition, -leftTargetPosition, leftTargetPosition, -leftTargetPosition);
 
-        // Will switch powers if turning the other way
-        if (degrees < 0) {
-            leftPower = power;
-            rightPower = -power;
-        } else {
-            leftPower = -power;
-            rightPower = power;
-        }
+        setBaseMotorPowers(power);
 
-        prepMotorsForCalcMove(leftTargetPosition, rightTargetPosition);
-
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, leftPower);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, rightPower);
-
-        // Stays in this while loop until the motors are done moving to their position
         while (areBaseMotorsBusy()) {
             opMode.idle();
         }
 
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, 0);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, 0);
+        setBaseMotorPowers(0);
     }
 
-    private void prepMotorsForCalcMove(int leftTargetPosition, int rightTargetPosition) {
-        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
-        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+    private void setBaseMotorPowers(float power) {
+        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
+    }
 
-        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, RUN_TO_POSITION);
-        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, RUN_TO_POSITION);
+    private void prepMotorsForCalcMove(int frontLeftTargetPosition, int frontRightTargetPosition,
+                                       int backLeftTargetPosition, int backRightTargetPosition) {
+        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
 
-        robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
-        robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
+        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, RUN_TO_POSITION);
+
+        robot.setDcMotorTargetPosition(MOTOR_FRONT_LEFT_WHEEL, frontLeftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_BACK_RIGHT_WHEEL, backRightTargetPosition);
     }
 
     private boolean areBaseMotorsBusy() {
-        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
+        return robot.isMotorBusy(MOTOR_FRONT_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_FRONT_RIGHT_WHEEL) ||
+                robot.isMotorBusy(MOTOR_BACK_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_BACK_RIGHT_WHEEL);
     }
 
     public void landOnGround() throws InterruptedException {

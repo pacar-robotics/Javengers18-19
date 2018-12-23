@@ -5,11 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LATCHING_DRIVE_FACTOR;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
@@ -68,14 +65,14 @@ public class TeleLib {
     // Used for when intake is front
     private void defaultDrive() {
         // Values need to be reversed (up on joystick is -1)
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
+//        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
+//        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
     }
 
     // Used for when latcher is front
     private void latchingDrive() {
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad1.right_stick_y * LATCHING_DRIVE_FACTOR);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad1.left_stick_y * LATCHING_DRIVE_FACTOR);
+//        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad1.right_stick_y * LATCHING_DRIVE_FACTOR);
+//        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad1.left_stick_y * LATCHING_DRIVE_FACTOR);
     }
 
     // Changes different drives

@@ -16,11 +16,13 @@ public class Constants {
     static final float GAMEPAD_TRIGGER_TOLERANCE = .05f;
 
     //********** DcMotor Indexes **********//
-    static final int MOTOR_LEFT_WHEEL = 0;
-    static final int MOTOR_RIGHT_WHEEL = 1;
-    static final int MOTOR_LATCHER = 2;
-    static final int MOTOR_LINEAR_SLIDE = 4;
-    static final int MOTOR_SCORING = 5;
+    static final int MOTOR_FRONT_LEFT_WHEEL = 0;
+    static final int MOTOR_FRONT_RIGHT_WHEEL = 1;
+    static final int MOTOR_BACK_LEFT_WHEEL = 2;
+    static final int MOTOR_BACK_RIGHT_WHEEL = 3;
+    static final int MOTOR_LATCHER = 4;
+    static final int MOTOR_LINEAR_SLIDE = 5;
+    static final int MOTOR_SCORING = 6;
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;
@@ -48,9 +50,11 @@ public class Constants {
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
-    static final float GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION = 1425.2f;
-    static final float ENCODER_MARGIN = 50f;
-    static final float TRACK_DISTANCE = 20.5f;
+    static final float WHEEL_GEAR_RATIO = (2f / 3);
+    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1120f;
+    static final float TRACK_DISTANCE = 23f;
+
+    public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
 
     //********** Encoder Constants **********//
     static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT_FORWARD = -10000;   // TODO: Measure later
