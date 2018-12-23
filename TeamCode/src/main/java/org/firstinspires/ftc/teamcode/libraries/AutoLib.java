@@ -63,8 +63,6 @@ public class AutoLib {
     public void calcMove(float centimeters, float power, Constants.Direction direction) {
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
                 GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION)) * WHEEL_GEAR_RATIO);
-        opMode.telemetry.addData("Target Encoder", "Target Position");
-        opMode.telemetry.update();
 
         if (direction == FORWARD) {
             prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
@@ -80,8 +78,6 @@ public class AutoLib {
 
         while (areBaseMotorsBusy()) {
             opMode.idle();
-            opMode.telemetry.addData("current encoder", robot.getDcMotorPosition(MOTOR_FRONT_LEFT_WHEEL));
-            opMode.telemetry.update();
         }
 
         setBaseMotorPowers(0);
