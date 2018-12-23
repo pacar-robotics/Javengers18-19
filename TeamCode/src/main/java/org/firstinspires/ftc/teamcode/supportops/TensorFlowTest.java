@@ -5,6 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 
+/*
+ * Title: TensorFlow Test
+ * Date Created: 12/23/2018
+ * Date Modified: 12/23/2018
+ * Author: Rahul, Poorvi, Varnika=
+ * Type: Testing
+ * Description: This tests only the TensorFlow object detection
+ */
+
 @Autonomous(name = "TensorFlow Test", group = "Support")
 public class TensorFlowTest extends LinearOpMode {
     private AutoLib autoLib;
