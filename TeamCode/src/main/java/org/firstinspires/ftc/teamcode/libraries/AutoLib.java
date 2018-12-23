@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.libraries;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.ConceptTensorFlowObjectDetectionWebcam;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -147,9 +146,6 @@ public class AutoLib {
 
 
     // Tensor Flow methods
-    private void initConceptTensorFlowObjectDetectionWebcam(){
-
-    }
     private void initTfod() {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.

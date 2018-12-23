@@ -53,38 +53,38 @@ public class Robot {
         this.opMode = opMode;
 
         initDcMotors();
-//        initServos();
-//        initSensors();
+        initServos();
+        initSensors();
     }
 
     private void initDcMotors() {
         dcMotors[MOTOR_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
         dcMotors[MOTOR_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
-     //   dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
-     //   dcMotors[MOTOR_LINEAR_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "linearSlide");
-     //   dcMotors[MOTOR_SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
+        dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
+        dcMotors[MOTOR_LINEAR_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "linearSlide");
+        dcMotors[MOTOR_SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
 
         dcMotors[MOTOR_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
-//        dcMotors[MOTOR_LATCHER].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_LATCHER].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-//    private void initServos() {
-//        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
-//        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
-//        servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
-//
-//        servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
-//        servos[SERVO_INTAKE_ANGLE].setPosition(0);
-//    }
+    private void initServos() {
+        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
+        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
+        servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
 
-//    private void initSensors() {
-//        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
-//
-//        touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
-//        touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
-//        touchSensors[TOUCH_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchTop");
-//        touchSensors[TOUCH_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchBottom");
-//    }
+        servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
+        servos[SERVO_INTAKE_ANGLE].setPosition(0);
+    }
+
+    private void initSensors() {
+        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
+
+        touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
+        touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
+        touchSensors[TOUCH_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchTop");
+        touchSensors[TOUCH_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchBottom");
+    }
 
     // Motor methods
     void setDcMotorPower(int index, float power) {
@@ -108,25 +108,25 @@ public class Robot {
     }
 
     // Servo methods
-//    void setServoPosition(int index, float position) {
-//        servos[index].setPosition(position);
-//    }
-//
-//    void setDeltaServoPosition(int index, float delta) {
-//        servos[index].setPosition(
-//                Range.clip(servos[index].getPosition() + delta, 0, 1));
-//    }
-//
-//    float getServoPosition(int index) {
-//        return (float) servos[index].getPosition();
-//    }
-//
-//    // Sensor methods
-//    double getGroundDistanceCenti() {
-//        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
-//    }
-//
-//    boolean isTouchSensorPressed(int index) {
-//        return touchSensors[index].isPressed();
-//    }
+    void setServoPosition(int index, float position) {
+        servos[index].setPosition(position);
+    }
+
+    void setDeltaServoPosition(int index, float delta) {
+        servos[index].setPosition(
+                Range.clip(servos[index].getPosition() + delta, 0, 1));
+    }
+
+    float getServoPosition(int index) {
+        return (float) servos[index].getPosition();
+    }
+
+    // Sensor methods
+    double getGroundDistanceCenti() {
+        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
+    }
+
+    boolean isTouchSensorPressed(int index) {
+        return touchSensors[index].isPressed();
+    }
 }
