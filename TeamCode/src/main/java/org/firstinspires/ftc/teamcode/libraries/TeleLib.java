@@ -5,6 +5,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
@@ -37,8 +41,6 @@ public class TeleLib {
 
     private ElapsedTime elapsedTime;
 
-    private boolean isLatchingDrive;
-
     public TeleLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
@@ -47,41 +49,19 @@ public class TeleLib {
 
         opMode.gamepad1.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
         opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
-
-        isLatchingDrive = false;
     }
 
     // Uses joysticks on gamepad 1 for tank drive
     public void processDrive() {
-        if (isLatchingDrive) {
-            latchingDrive();
-        } else {
-            defaultDrive();
-        }
+        // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
+        float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, opMode.gamepad1.left_stick_y);
+        float robotAngle = (float) (Math.atan2(opMode.gamepad1.left_stick_y, opMode.gamepad1.left_stick_x) - Math.PI / 4);
+        float rightX = opMode.gamepad1.right_stick_x;
 
-        changeDrive();
-    }
-
-    // Used for when intake is front
-    private void defaultDrive() {
-        // Values need to be reversed (up on joystick is -1)
-//        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
-//        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
-    }
-
-    // Used for when latcher is front
-    private void latchingDrive() {
-//        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad1.right_stick_y * LATCHING_DRIVE_FACTOR);
-//        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad1.left_stick_y * LATCHING_DRIVE_FACTOR);
-    }
-
-    // Changes different drives
-    private void changeDrive() {
-        if (opMode.gamepad1.a) {
-            isLatchingDrive = false;
-        } else if (opMode.gamepad1.b) {
-            isLatchingDrive = true;
-        }
+        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
+        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, (float) (r * Math.sin(robotAngle) + rightX));
+        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, (float) (r * Math.cos(robotAngle) - rightX));
     }
 
     // Uses both triggers on gamepad 1
