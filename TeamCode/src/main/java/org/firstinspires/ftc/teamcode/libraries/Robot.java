@@ -10,25 +10,15 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 11/27/2018
+ * Date Modified: 12/27/2018
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
@@ -40,14 +30,14 @@ public class Robot {
     private LinearOpMode opMode;
 
     // Motors
-    private DcMotor[] dcMotors = new DcMotor[6];
+    private DcMotor[] dcMotors = new DcMotor[4];
 
     // Servos
-    private Servo[] servos = new Servo[3];
+    private Servo[] servos = new Servo[0];
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
-    private RevTouchSensor[] touchSensors = new RevTouchSensor[4];
+    private RevTouchSensor[] touchSensors = new RevTouchSensor[0];
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -58,32 +48,20 @@ public class Robot {
     }
 
     private void initDcMotors() {
-        dcMotors[MOTOR_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
-        dcMotors[MOTOR_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
-        dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
-        dcMotors[MOTOR_LINEAR_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "linearSlide");
-        dcMotors[MOTOR_SCORING] = opMode.hardwareMap.get(DcMotor.class, "scoring");
+        dcMotors[MOTOR_FRONT_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontLeftWheel");
+        dcMotors[MOTOR_FRONT_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontRightWheel");
+        dcMotors[MOTOR_BACK_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backLeftWheel");
+        dcMotors[MOTOR_BACK_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backRightWheel");
 
-        dcMotors[MOTOR_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
-        dcMotors[MOTOR_LATCHER].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_FRONT_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_BACK_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
-        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
-        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
-        servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
-
-        servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
-        servos[SERVO_INTAKE_ANGLE].setPosition(0);
     }
 
     private void initSensors() {
         groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
-
-        touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
-        touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
-        touchSensors[TOUCH_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchTop");
-        touchSensors[TOUCH_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchBottom");
     }
 
     // Motor methods

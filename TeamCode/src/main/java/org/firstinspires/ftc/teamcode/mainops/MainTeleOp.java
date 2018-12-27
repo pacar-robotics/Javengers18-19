@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.libraries.TeleLib;
 /*
  * Title: MainTeleOp
  * Date Created: 10/14/2018
- * Date Modified: 11/27/2018
+ * Date Modified: 12/27/2018
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Main
  * Description: This is the main teleop program we will use
@@ -26,15 +26,6 @@ public class MainTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             // Gamepad 1
             teleLib.processDrive();
-            teleLib.processLatcher();
-            teleLib.processLatcherServo();
-
-            // Gamepad 2
-            teleLib.processIntake();
-            teleLib.processLinearSlide();
-            teleLib.processAutomaticIntakePosition();
-            teleLib.processManualIntakePosition();
-            teleLib.processScoring();
             idle();
         }
     }
