@@ -29,7 +29,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_T
 /*
  * Title: TeleLib
  * Date Created: 10/14/2018
- * Date Modified: 11/27/2018
+ * Date Modified: 12/26/2018
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
@@ -54,8 +54,8 @@ public class TeleLib {
     // Uses joysticks on gamepad 1 for tank drive
     public void processDrive() {
         // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
-        float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, opMode.gamepad1.left_stick_y);
-        float robotAngle = (float) (Math.atan2(opMode.gamepad1.left_stick_y, opMode.gamepad1.left_stick_x) - Math.PI / 4);
+        float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, -opMode.gamepad1.left_stick_y);
+        float robotAngle = (float) (Math.atan2(-opMode.gamepad1.left_stick_y, opMode.gamepad1.left_stick_x) - Math.PI / 4);
         float rightX = opMode.gamepad1.right_stick_x;
 
         robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
