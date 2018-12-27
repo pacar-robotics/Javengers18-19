@@ -24,16 +24,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -42,7 +34,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATI
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 12/23/2018
+ * Date Modified: 12/27/2018
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -60,6 +52,9 @@ public class AutoLib {
 
         initTfod();
     }
+
+
+    //********** Base Motor Methods **********//
 
     public void calcMove(float centimeters, float power, Constants.Direction direction) {
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
@@ -130,32 +125,34 @@ public class AutoLib {
                 robot.isMotorBusy(MOTOR_BACK_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_BACK_RIGHT_WHEEL);
     }
 
+
+    //********** Latcher Methods **********//
+
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
-        // The motor will stop when it detects that it's on the ground
-        while (robot.getGroundDistanceCenti() >= 5.3) {
-            opMode.idle();
-        }
-
-        // Waiting for the latcher to raise enough so it can unlatch
-        Thread.sleep(1000);
-        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
-
-        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
+//        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+//        // The motor will stop when it detects that it's on the ground
+//        while (robot.getGroundDistanceCenti() >= 5.3) {
+//            opMode.idle();
+//        }
+//
+//        // Waiting for the latcher to raise enough so it can unlatch
+//        Thread.sleep(1000);
+//        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
+//
+//        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
     }
 
-
-    // SupportOp Methods
     public void moveLatcherToBottom() {
-        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
-            opMode.idle();
-        }
-        robot.setDcMotorPower(MOTOR_LATCHER, 0);
+//        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
+//        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+//            opMode.idle();
+//        }
+//        robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }
 
 
-    // Tensor Flow methods
+    //********** Tensor Flow Methods **********//
+
     private void initTfod() {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
@@ -222,36 +219,5 @@ public class AutoLib {
         }
 
         return goldObjectPosition;
-    }
-
-    public void moveLinearSlide(int positionValue, float power) {
-        robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, STOP_AND_RESET_ENCODER);
-        robot.setDcMotorMode(MOTOR_LINEAR_SLIDE, RUN_TO_POSITION);
-        robot.setDcMotorTargetPosition(MOTOR_LINEAR_SLIDE, positionValue);
-
-        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, power);
-
-        while (robot.isMotorBusy(MOTOR_LINEAR_SLIDE)) {
-            opMode.idle();
-        }
-
-        robot.setDcMotorPower(MOTOR_LINEAR_SLIDE, 0);
-    }
-
-    public void depositMarker() {
-        ElapsedTime time = new ElapsedTime();
-        time.reset();
-        robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
-        while (time.seconds() < 2) {
-            opMode.idle();
-        }
-        robot.setServoPosition(SERVO_INTAKE, .5f);
-    }
-
-    public void setServoAngle() throws InterruptedException {
-        robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
-        Thread.sleep(2000);
-        robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
-        Thread.sleep(2000);
     }
 }
