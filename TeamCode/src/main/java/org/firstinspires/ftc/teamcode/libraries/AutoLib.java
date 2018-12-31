@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
@@ -149,37 +150,40 @@ public class AutoLib {
 
     // Tensor Flow methods
     private void initTfod() {
-        /*
-         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-         */
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+            /*
+             * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+             */
+            VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+            parameters.vuforiaLicenseKey = VUFORIA_KEY;
+            parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
 
-        //  Instantiate the Vuforia engine
-        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
+            //  Instantiate the Vuforia engine
+            VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
-        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+            // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
-        /*
-         * Configure Tensor Flow
-         */
-        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
-    }
-
-    public Constants.GoldObjectPosition readGoldObjectPosition() {
-        if (tfod != null) {
-            tfod.activate();
+            /*
+             * Configure Tensor Flow
+             */
+            int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                    "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+            TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+            tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+            tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
         }
 
-        Constants.GoldObjectPosition goldObjectPosition = null;
-        ElapsedTime time = new ElapsedTime();
-        time.reset();
+        public Constants.GoldObjectPosition readGoldObjectPosition() {
+            if (tfod != null) {
+                tfod.activate();
+            }
+
+            Constants.GoldObjectPosition goldObjectPosition = null;
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+
+
+
 
         while(time.seconds() < TENSOR_READING_TIME) {
             // getUpdatedRecognitions() will return null if no new information is available since
