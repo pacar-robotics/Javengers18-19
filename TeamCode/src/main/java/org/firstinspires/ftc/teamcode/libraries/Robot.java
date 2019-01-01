@@ -47,7 +47,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[6];
 
     // Servos
-    private Servo[] servos = new Servo[3];
+    private Servo[] servos = new Servo[5];
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
@@ -76,7 +76,7 @@ public class Robot {
         servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
         servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
         servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
-        servos[SERVO_DEPOSIT]= opMode.hardwareMap.get(Servo.class, "depositServo");
+        servos[SERVO_DEPOSIT] = opMode.hardwareMap.get(Servo.class, "depositServo");
         servos[SERVO_DEPOSIT_ANGLE] = opMode.hardwareMap.get(Servo.class, "depositServoAngle");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);

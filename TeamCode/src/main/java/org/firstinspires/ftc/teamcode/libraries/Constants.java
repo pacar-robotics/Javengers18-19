@@ -23,7 +23,7 @@ public class Constants {
     static final int MOTOR_SCORING = 0;
 
     //********** Servo Indexes **********//
-    static final int SERVO_LATCHER = 0;
+    static final int SERVO_LATCHER = 4;
     static final int SERVO_INTAKE = 1;
     static final int SERVO_INTAKE_ANGLE = 0;
     static final int SERVO_DEPOSIT = 2;
