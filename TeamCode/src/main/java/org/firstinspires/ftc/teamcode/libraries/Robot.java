@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -15,8 +16,11 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_DEPOSIT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
@@ -72,6 +76,8 @@ public class Robot {
         servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "latcherServo");
         servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class, "intakeServo");
         servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class, "intakeServoAngle");
+        servos[SERVO_DEPOSIT]= opMode.hardwareMap.get(Servo.class, "depositServo");
+        servos[SERVO_DEPOSIT_ANGLE] = opMode.hardwareMap.get(Servo.class, "depositServoAngle");
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
         servos[SERVO_INTAKE_ANGLE].setPosition(0);

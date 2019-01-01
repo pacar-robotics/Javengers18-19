@@ -22,6 +22,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
@@ -150,42 +152,40 @@ public class AutoLib {
 
     // Tensor Flow methods
     private void initTfod() {
-            /*
-             * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-             */
-            VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
-            parameters.vuforiaLicenseKey = VUFORIA_KEY;
-            parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
 
-            //  Instantiate the Vuforia engine
-            VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
+        //  Instantiate the Vuforia engine
+        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
-            // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
-            /*
-             * Configure Tensor Flow
-             */
-            int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
-                    "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-            TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-            tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-            tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+        /*
+         * Configure Tensor Flow
+         */
+        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+
+    public Constants.GoldObjectPosition readGoldObjectPosition() {
+        if (tfod != null) {
+            tfod.activate();
         }
 
-        public Constants.GoldObjectPosition readGoldObjectPosition() {
-            if (tfod != null) {
-                tfod.activate();
-            }
-
-            Constants.GoldObjectPosition goldObjectPosition = null;
-            ElapsedTime time = new ElapsedTime();
-            time.reset();
+        Constants.GoldObjectPosition goldObjectPosition = null;
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
 
 
-
-
-        while(time.seconds() < TENSOR_READING_TIME) {
+        while (time.seconds() < TENSOR_READING_TIME) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
@@ -207,7 +207,7 @@ public class AutoLib {
                                 goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
                             }
                         } else if (goldMineralX == -1 && silverMineralX != 1) {
-                            goldObjectPosition =  Constants.GoldObjectPosition.LEFT;
+                            goldObjectPosition = Constants.GoldObjectPosition.LEFT;
                         }
                     }
                 }
@@ -243,12 +243,20 @@ public class AutoLib {
         }
         robot.setServoPosition(SERVO_INTAKE, .5f);
     }
+
     public void setServoAngle() throws InterruptedException {
         robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
         Thread.sleep(2000);
         robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
         Thread.sleep(2000);
     }
+    //Marker Dropping Servo
+    public  void setServoPosition()throws InterruptedException {
+        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 0 ); // TODO:
+        Thread.sleep (2000);
+        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 1); //TODO
+    }
+
 
 
 }
