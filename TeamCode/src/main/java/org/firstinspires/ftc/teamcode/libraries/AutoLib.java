@@ -29,11 +29,14 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_AN
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
@@ -175,15 +178,20 @@ public class AutoLib {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
 
-    public Constants.GoldObjectPosition readGoldObjectPosition() {
+    public Constants.GoldObjectPosition readGoldObjectPosition() throws InterruptedException {
         if (tfod != null) {
             tfod.activate();
+        }
+
+        if (tfod == null) {
+            opMode.telemetry.addData("TFOD", "Null");
+            opMode.telemetry.update();
+            Thread.sleep(10000);
         }
 
         Constants.GoldObjectPosition goldObjectPosition = null;
         ElapsedTime time = new ElapsedTime();
         time.reset();
-
 
         while (time.seconds() < TENSOR_READING_TIME) {
             // getUpdatedRecognitions() will return null if no new information is available since
@@ -250,13 +258,11 @@ public class AutoLib {
         robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
         Thread.sleep(2000);
     }
+
     //Marker Dropping Servo
-    public  void setServoPosition()throws InterruptedException {
-        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 0 ); // TODO:
-        Thread.sleep (2000);
+    public void setServoPosition() throws InterruptedException {
+        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 0); // TODO:
+        Thread.sleep(2000);
         robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 1); //TODO
     }
-
-
-
 }
