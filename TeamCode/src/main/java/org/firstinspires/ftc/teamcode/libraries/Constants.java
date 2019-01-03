@@ -27,7 +27,6 @@ public class Constants {
     static final int SERVO_INTAKE = 1;
     static final int SERVO_INTAKE_ANGLE = 2;
     static final int SERVO_DEPOSIT = 3;
-    static final int SERVO_DEPOSIT_ANGLE = 4;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
