@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.libraries;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -20,14 +19,12 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SLIDE_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: Robot
@@ -88,8 +85,8 @@ public class Robot {
 
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchTop");
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "latcherTouchBottom");
-        touchSensors[TOUCH_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchTop");
-        touchSensors[TOUCH_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "slideTouchBottom");
+        touchSensors[TOUCH_SCORING_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "scoringTouchTop");
+        touchSensors[TOUCH_SCORING_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "scoringTouchBottom");
     }
 
     // Motor methods

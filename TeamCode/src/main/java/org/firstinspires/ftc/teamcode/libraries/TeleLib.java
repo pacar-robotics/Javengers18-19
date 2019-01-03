@@ -24,6 +24,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: TeleLib
@@ -159,6 +161,10 @@ public class TeleLib {
 
     // Uses right joystick on gamepad 2
     public void processScoring() {
-        robot.setDcMotorPower(MOTOR_SCORING, opMode.gamepad2.right_stick_y);
+        if ((robot.isTouchSensorPressed(TOUCH_SCORING_BOTTOM) && opMode.gamepad2.right_stick_y < 0) ||
+                (robot.isTouchSensorPressed(TOUCH_SCORING_TOP) && opMode.gamepad2.right_stick_y > 0) ||
+                (!robot.isTouchSensorPressed(TOUCH_SCORING_TOP) && !robot.isTouchSensorPressed(TOUCH_SCORING_BOTTOM))) {
+            robot.setDcMotorPower(MOTOR_SCORING, opMode.gamepad2.right_stick_y);
+        }
     }
 }
