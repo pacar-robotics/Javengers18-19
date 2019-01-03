@@ -20,14 +20,14 @@ public class Constants {
     static final int MOTOR_RIGHT_WHEEL = 1;
     static final int MOTOR_LATCHER = 2;
     static final int MOTOR_LINEAR_SLIDE = 3;
-    static final int MOTOR_SCORING = 0;
+    static final int MOTOR_SCORING = 5;
 
     //********** Servo Indexes **********//
-    static final int SERVO_LATCHER = 4;
+    static final int SERVO_LATCHER = 0;
     static final int SERVO_INTAKE = 1;
-    static final int SERVO_INTAKE_ANGLE = 0;
-    static final int SERVO_DEPOSIT = 2;
-    static final int SERVO_DEPOSIT_ANGLE = 3;
+    static final int SERVO_INTAKE_ANGLE = 2;
+    static final int SERVO_DEPOSIT = 3;
+    static final int SERVO_DEPOSIT_ANGLE = 4;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
@@ -36,8 +36,8 @@ public class Constants {
     static final int TOUCH_SCORING_BOTTOM = 3;
 
     //********** Servo Positions **********//
-    static final float SERVO_LATCHER_POS_GRAB = .6f;
-    static final float SERVO_LATCHER_POS_REST = .05f;
+    static final float SERVO_LATCHER_POS_GRAB = 0.6f;
+    static final float SERVO_LATCHER_POS_REST = 0.05f;
     static final float SERVO_INTAKE_SPEED = .95f;
     static final float SERVO_OUTTAKE_SPEED = .05f;
     static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .42f;
