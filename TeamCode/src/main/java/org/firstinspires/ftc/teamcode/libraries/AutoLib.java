@@ -58,6 +58,11 @@ public class AutoLib {
         robot = new Robot(opMode);
         this.opMode = opMode;
 
+        ElapsedTime elapsedTime = new ElapsedTime();
+        while (elapsedTime.seconds() < 5) {
+            opMode.idle();
+        }
+
         initTfod();
     }
 
@@ -162,14 +167,8 @@ public class AutoLib {
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
         parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
 
-        opMode.telemetry.addLine("Yo");
-        opMode.telemetry.update();
-
         //  Instantiate the Vuforia engine
         VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
-        opMode.telemetry.addLine("Outstanding move");
-        opMode.telemetry.update();
 
         // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
