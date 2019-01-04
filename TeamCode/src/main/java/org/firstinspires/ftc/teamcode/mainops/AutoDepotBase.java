@@ -44,7 +44,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcTurn(60, .3f);
             autoLib.calcMove(70, 1f);
             autoLib.calcTurn(35, .3f);
-            autoLib.calcMove(-190, 1f);
+            autoLib.calcMove(-150, 1f);
 //            autoLib.calcMove(-60,.5f);
 //            autoLib.calcTurn(100,1f);
 //            autoLib.calcMove(150,1f);
