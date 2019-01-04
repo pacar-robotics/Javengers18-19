@@ -23,14 +23,14 @@ public class AutoCraterBase extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         initialize();
 
-//        autoLib.landOnGround();
+        autoLib.landOnGround();
         autoLib.calcMove(25, .3f);
 
         // Tensorflow
         Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
 
-        if (gold == Constants.GoldObjectPosition.LEFT) {
-            telemetry.addData("pos", "Left");
+  //      if (gold == Constants.GoldObjectPosition.LEFT) {
+ //           telemetry.addData("pos", "Left");
             autoLib.calcTurn(-45, 5f);
             autoLib.calcMove(73, 9f );
             autoLib.calcMove(-20,9f);
@@ -42,8 +42,8 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.depositMarker();
             autoLib.calcTurn(-5,5f);
             autoLib.calcMove(-185,9f);
-        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
-            telemetry.addData("pos", "Right");
+  //      } else if (gold == Constants.GoldObjectPosition.RIGHT) {
+  //          telemetry.addData("pos", "Right");
             autoLib.calcTurn(30,5f);
             autoLib.calcMove(75,9f);
             autoLib.calcMove(-41,9f);
@@ -55,8 +55,8 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.depositMarker();
             autoLib.calcTurn(-5,5f);
             autoLib.calcMove(-178,8f);
-        } else if (gold == Constants.GoldObjectPosition.CENTER) {
-            telemetry.addData("pos", "Center");
+//        } else if (gold == Constants.GoldObjectPosition.CENTER) {
+//            telemetry.addData("pos", "Center");
             autoLib.calcMove(75,9f);
             autoLib.calcMove(-40,9f);
             autoLib.calcTurn(-100,5f);
@@ -68,8 +68,8 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcTurn(-15,5f);
             autoLib.calcMove(-165,9f);
 
-        } else {
-            telemetry.addData("pos", "Nothing");
+//        } else {
+//            telemetry.addData("pos", "Nothing");
             autoLib.calcMove(75,9f);
             autoLib.calcMove(-40,9f);
             autoLib.calcTurn(-100,5f);
@@ -83,13 +83,13 @@ public class AutoCraterBase extends LinearOpMode {
 
 
         }
-        telemetry.update();
+//        telemetry.update();
 
 //        autoLib.calcTurn(-80,.2f);
 //        autoLib.calcMove(200,.2f);
 //        autoLib.moveLinearSlideToDepot();
 //        autoLib.calcMove(200,-.2f);
-    }
+ //   }
 
     private void initialize() {
         telemetry.addData("Status", "Initializing...");

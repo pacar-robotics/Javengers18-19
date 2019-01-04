@@ -23,7 +23,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
@@ -32,11 +31,11 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
-//import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
-//import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
@@ -163,14 +162,17 @@ public class AutoLib {
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
         parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
 
+        opMode.telemetry.addLine("Yo");
+        opMode.telemetry.update();
+
         //  Instantiate the Vuforia engine
         VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
+        opMode.telemetry.addLine("Outstanding move");
+        opMode.telemetry.update();
+
         // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
-        /*
-         * Configure Tensor Flow
-         */
         int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
@@ -261,8 +263,8 @@ public class AutoLib {
 
     //Marker Dropping Servo
     public void setServoPosition() throws InterruptedException {
-        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 0); // TODO:
+        robot.setServoPosition(SERVO_DEPOSIT, 0); // TODO:
         Thread.sleep(2000);
-        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 1); //TODO
+        robot.setServoPosition(SERVO_DEPOSIT, 1); //TODO
     }
 }

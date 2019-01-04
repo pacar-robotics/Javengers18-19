@@ -16,7 +16,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
