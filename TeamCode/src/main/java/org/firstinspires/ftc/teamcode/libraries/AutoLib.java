@@ -127,7 +127,7 @@ public class AutoLib {
     }
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.3) {
             opMode.idle();
