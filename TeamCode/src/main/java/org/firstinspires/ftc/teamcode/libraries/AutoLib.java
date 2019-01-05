@@ -16,27 +16,20 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.ENCODER_MARGIN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GOBILDA_MOTOR_ENCODER_COUNTS_PER_REVOLUTION;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_OUTTAKE_SPEED;
-//import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
-//import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 
@@ -58,6 +51,11 @@ public class AutoLib {
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
+
+        ElapsedTime elapsedTime = new ElapsedTime();
+        while (elapsedTime.seconds() < 5) {
+            opMode.idle();
+        }
 
         initTfod();
     }
@@ -129,7 +127,7 @@ public class AutoLib {
     }
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
         // The motor will stop when it detects that it's on the ground
         while (robot.getGroundDistanceCenti() >= 5.3) {
             opMode.idle();
@@ -168,9 +166,6 @@ public class AutoLib {
 
         // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
-        /*
-         * Configure Tensor Flow
-         */
         int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
@@ -261,8 +256,8 @@ public class AutoLib {
 
     //Marker Dropping Servo
     public void setServoPosition() throws InterruptedException {
-        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 0); // TODO:
+        robot.setServoPosition(SERVO_DEPOSIT, 0); // TODO:
         Thread.sleep(2000);
-        robot.setServoPosition(SERVO_DEPOSIT_ANGLE, 1); //TODO
+        robot.setServoPosition(SERVO_DEPOSIT, 1); //TODO
     }
 }
