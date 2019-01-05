@@ -16,7 +16,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LINEAR_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_POS_CLOSE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
@@ -77,6 +77,7 @@ public class Robot {
 
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
         servos[SERVO_INTAKE_ANGLE].setPosition(0);
+        servos[SERVO_DEPOSIT].setPosition(SERVO_DEPOSIT_POS_CLOSE);
     }
 
     private void initSensors() {
