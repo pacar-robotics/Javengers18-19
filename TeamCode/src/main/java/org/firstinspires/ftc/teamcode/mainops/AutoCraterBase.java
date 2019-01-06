@@ -71,7 +71,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.setServoAngle();
             //autoLib.depositMarker();
             autoLib.calcTurn(-7, .7f);
-            autoLib.calcMove(-185, 9f);
+            autoLib.calcMove(-175, 9f);
             autoLib.calcMove(-8,.3f);
 
         } else {
