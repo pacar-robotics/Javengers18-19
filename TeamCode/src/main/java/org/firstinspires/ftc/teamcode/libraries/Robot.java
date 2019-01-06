@@ -78,6 +78,7 @@ public class Robot {
         servos[SERVO_LATCHER].setPosition(SERVO_LATCHER_POS_GRAB);
         servos[SERVO_INTAKE_ANGLE].setPosition(0);
         servos[SERVO_DEPOSIT].setPosition(SERVO_DEPOSIT_POS_CLOSE);
+
     }
 
     private void initSensors() {

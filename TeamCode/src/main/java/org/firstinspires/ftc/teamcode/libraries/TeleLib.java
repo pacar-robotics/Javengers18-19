@@ -13,13 +13,11 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_POS_CLOSE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_POS_OPEN;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_DEPOSIT_POS_FULL_OPEN;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_DELAY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_DELTA;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_DEPOSIT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
@@ -144,7 +142,7 @@ public class TeleLib {
     // Uses x and y buttons on gamepad 2
     public void processAutomaticDepositPosition() {
         if (opMode.gamepad2.x) {
-            robot.setServoPosition(SERVO_DEPOSIT, SERVO_DEPOSIT_POS_OPEN);
+            robot.setServoPosition(SERVO_DEPOSIT, SERVO_DEPOSIT_POS_FULL_OPEN);
         } else if (opMode.gamepad2.b) {
             robot.setServoPosition(SERVO_DEPOSIT, SERVO_DEPOSIT_POS_CLOSE);
         }
