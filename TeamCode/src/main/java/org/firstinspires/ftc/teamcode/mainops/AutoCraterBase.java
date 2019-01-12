@@ -33,7 +33,7 @@ public class AutoCraterBase extends LinearOpMode {
 //            telemetry.addData("pos", "Left");
 //            autoLib.calcTurn(-45, 5f);
 //            autoLib.calcMove(73, 9f );
-//            autoLib.calcMove(-20,9f);
+//            autoLib.calcM ove(-20,9f);
 //            autoLib.calcTurn(-70,5f);
 //            autoLib.calcMove(110,9f);
 //            autoLib.calcTurn(-40,5f);
