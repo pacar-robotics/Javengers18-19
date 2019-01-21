@@ -34,7 +34,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATI
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 12/27/2018
+ * Date Modified: 1/20/2019
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -44,6 +44,7 @@ public class AutoLib {
     private Robot robot;
     private LinearOpMode opMode;
 
+    // Declaring TensorFlow detection
     private TFObjectDetector tfod;
 
     public AutoLib(LinearOpMode opMode) {
@@ -57,9 +58,11 @@ public class AutoLib {
     //********** Base Motor Methods **********//
 
     public void calcMove(float centimeters, float power, Constants.Direction direction) {
+        // Calculates target encoder position
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
                 NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
+        // Specific directions require different wheels to move for mecanum
         if (direction == FORWARD) {
             prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
         } else if (direction == BACKWARD) {
@@ -80,6 +83,7 @@ public class AutoLib {
     }
 
     public void calcTurn(int degrees, float power) {
+        // Calculates target encoder position
         int leftTargetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
                 * NEVEREST_40_REVOLUTION_ENCODER_COUNT) /
                 (WHEEL_DIAMETER * 360));

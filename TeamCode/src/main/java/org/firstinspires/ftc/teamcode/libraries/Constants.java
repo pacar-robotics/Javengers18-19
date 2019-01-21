@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 /*
  * Title: Constants
  * Date Created: 10/14/2018
- * Date Modified: 12/27/2018
+ * Date Modified: 1/20/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain all of the constants we will use in any of our programs.
@@ -28,6 +28,7 @@ public class Constants {
 
 
     //********** Servo Deltas **********//
+    // Used for slowly moving a servo like a motor
     static final float SERVO_INTAKE_ANGLE_DELTA = .01f;
     static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
 
@@ -44,8 +45,8 @@ public class Constants {
     //********** Driving Multipliers **********//
 
     //********** TensorFlow **********//
+    // Vuforia Key compatible with external camera
     static final String VUFORIA_KEY = "AXKAgZb/////AAABmUS4ua80h0IOpsYtCk/GLTBlnQxMgwAqHFWy/jk/+c1LzWYsECeqyVFo8lr8efZWyITbeMxf4IhhNmROQ3O13t8pqcHIOhDPfp82HmA54VHiYCt3n3xpcz/xi0Vs1mh9/xe0L1coIN1cL8EnkLHVkziy8jhQV5piuKMYeqxhY0tg0OekmPBb41Bw+LE8a76/dNJjAW/uCjefuWo0pBYETldIdqnyjeRP6hmfJbo9LbSOT70zmH4fFbMKJiYnz543nF9/SpxjkNnrgjijP7f9FV98Mdhgr7f6uyqMV37oFIQIhkCh5ro737KfXQyvWfPDedbEDFy3Z2duM9JzYJA8ybFKozEtjUeB82XQgaPeDNwS";
-    static final float TENSOR_READING_TIME = 2f;   // Seconds
-
+    static final float TENSOR_READING_TIME = 2f;   
     public enum GoldObjectPosition {LEFT, CENTER, RIGHT}
 }

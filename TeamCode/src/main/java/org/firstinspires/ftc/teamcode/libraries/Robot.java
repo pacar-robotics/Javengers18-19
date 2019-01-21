@@ -18,7 +18,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIG
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 12/27/2018
+ * Date Modified: 1/20/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
@@ -48,6 +48,7 @@ public class Robot {
     }
 
     private void initDcMotors() {
+        //Naming our motors
         dcMotors[MOTOR_FRONT_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontLeftWheel");
         dcMotors[MOTOR_FRONT_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontRightWheel");
         dcMotors[MOTOR_BACK_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backLeftWheel");
@@ -92,6 +93,7 @@ public class Robot {
 
     void setDeltaServoPosition(int index, float delta) {
         servos[index].setPosition(
+                // This makes sure the servo positions are between 0 and 1
                 Range.clip(servos[index].getPosition() + delta, 0, 1));
     }
 
