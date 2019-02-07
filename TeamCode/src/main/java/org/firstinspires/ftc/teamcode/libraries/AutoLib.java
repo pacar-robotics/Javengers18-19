@@ -25,6 +25,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGH
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_SPEED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
@@ -154,74 +156,100 @@ public class AutoLib {
 //        robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }
 
-
-    //********** Tensor Flow Methods **********//
-
-    private void initTfod() {
-        /*
-         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-         */
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
-
-        //  Instantiate the Vuforia engine
-        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
-        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
-
-        /*
-         * Configure Tensor Flow
-         */
-        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    public void intakeMinerals() {
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
+        robot.setServoPosition(SERVO_INTAKE, SERVO_INTAKE_SPEED);
+        while (time.seconds() < 2) {
+            opMode.idle();
+        }
+        robot.setServoPosition(SERVO_INTAKE, .5f);
     }
 
-    public Constants.GoldObjectPosition readGoldObjectPosition() {
-        if (tfod != null) {
-            tfod.activate();
-        }
-
-        Constants.GoldObjectPosition goldObjectPosition = null;
+    public void setServoAngle() throws InterruptedException {
         ElapsedTime time = new ElapsedTime();
         time.reset();
 
-        while (time.seconds() < TENSOR_READING_TIME) {
-            // getUpdatedRecognitions() will return null if no new information is available since
-            // the last time that call was made.
-            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-            if (updatedRecognitions != null) {
-                if (updatedRecognitions.size() == 2) {
-                    int goldMineralX = -1;
-                    int silverMineralX = -1;
-                    for (Recognition recognition : updatedRecognitions) {
-                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                            goldMineralX = (int) recognition.getLeft();
-                        } else if (silverMineralX == -1) {
-                            silverMineralX = (int) recognition.getLeft();
-                        }
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 0);
+        while (time.seconds() < 2) {
+            opMode.idle();
+        }
 
-                        if (goldMineralX != -1 && silverMineralX != -1) {
-                            if (goldMineralX < silverMineralX) {
-                                goldObjectPosition = Constants.GoldObjectPosition.CENTER;
-                            } else if (goldMineralX > silverMineralX) {
-                                goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
+        time.reset();
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, 1);
+        while (time.seconds() < 2) {
+            opMode.idle();
+        }
+    }
+
+
+        //********** Tensor Flow Methods **********//
+
+        private void initTfod () {
+            /*
+             * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+             */
+            VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+            parameters.vuforiaLicenseKey = VUFORIA_KEY;
+            parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
+
+            //  Instantiate the Vuforia engine
+            VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+            // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+
+            /*
+             * Configure Tensor Flow
+             */
+            int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                    "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+            TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+            tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+            tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+        }
+
+        public Constants.GoldObjectPosition readGoldObjectPosition () {
+            if (tfod != null) {
+                tfod.activate();
+            }
+
+            Constants.GoldObjectPosition goldObjectPosition = null;
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+
+            while (time.seconds() < TENSOR_READING_TIME) {
+                // getUpdatedRecognitions() will return null if no new information is available since
+                // the last time that call was made.
+                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                if (updatedRecognitions != null) {
+                    if (updatedRecognitions.size() == 2) {
+                        int goldMineralX = -1;
+                        int silverMineralX = -1;
+                        for (Recognition recognition : updatedRecognitions) {
+                            if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                                goldMineralX = (int) recognition.getLeft();
+                            } else if (silverMineralX == -1) {
+                                silverMineralX = (int) recognition.getLeft();
                             }
-                        } else if (goldMineralX == -1 && silverMineralX != 1) {
-                            goldObjectPosition = Constants.GoldObjectPosition.LEFT;
+
+                            if (goldMineralX != -1 && silverMineralX != -1) {
+                                if (goldMineralX < silverMineralX) {
+                                    goldObjectPosition = Constants.GoldObjectPosition.CENTER;
+                                } else if (goldMineralX > silverMineralX) {
+                                    goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
+                                }
+                            } else if (goldMineralX == -1 && silverMineralX != 1) {
+                                goldObjectPosition = Constants.GoldObjectPosition.LEFT;
+                            }
                         }
                     }
                 }
             }
-        }
-        if (tfod != null) {
-            tfod.shutdown();
-        }
+            if (tfod != null) {
+                tfod.shutdown();
+            }
 
-        return goldObjectPosition;
+            return goldObjectPosition;
+        }
     }
-}

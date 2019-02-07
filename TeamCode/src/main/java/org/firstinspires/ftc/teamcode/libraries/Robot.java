@@ -14,6 +14,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
 
 /*
  * Title: Robot
@@ -59,6 +60,7 @@ public class Robot {
     }
 
     private void initServos() {
+        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class,"");
     }
 
     private void initSensors() {

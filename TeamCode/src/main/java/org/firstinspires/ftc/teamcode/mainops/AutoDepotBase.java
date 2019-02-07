@@ -39,7 +39,7 @@ public class AutoDepotBase extends LinearOpMode {
 //            autoLib.calcTurn(70, .3f);
 //            autoLib.calcMove(80, 2f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(28,.3f);
 //            autoLib.calcMove(-195,4f);
 //            autoLib.calcMove(-10,.4f);
@@ -57,7 +57,7 @@ public class AutoDepotBase extends LinearOpMode {
 //            autoLib.calcMove(68,4f);
 //            autoLib.calcTurn(5,4f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(-35,5f);
 //            autoLib.calcMove(-168, 4f);
 //
@@ -66,7 +66,7 @@ public class AutoDepotBase extends LinearOpMode {
 //            telemetry.addData("pos", "Center");
 //            autoLib.calcMove(155, 4f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(73, 4f);
 //            autoLib.calcMove(-83, 4f);
 //            autoLib.calcTurn(-20, 4f);
@@ -77,7 +77,7 @@ public class AutoDepotBase extends LinearOpMode {
 //            telemetry.addData("pos", "Nothing");
 //            autoLib.calcMove(155, .3f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(73, 4f);
 //            autoLib.calcMove(-83, 4f);
 //            autoLib.calcTurn(-15, 4f);

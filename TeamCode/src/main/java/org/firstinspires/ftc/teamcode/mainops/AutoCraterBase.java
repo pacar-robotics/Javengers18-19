@@ -39,7 +39,7 @@ public class AutoCraterBase extends LinearOpMode {
 //            autoLib.calcTurn(-40,5f);
 //            autoLib.calcMove(110,9f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(-5,5f);
 //            autoLib.calcMove(-185,9f);
 //        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
@@ -52,7 +52,7 @@ public class AutoCraterBase extends LinearOpMode {
 //            autoLib.calcTurn(-57,5f);
 //            autoLib.calcMove(130,9f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(-5,5f);
 //            autoLib.calcMove(-178,8f);
 //        } else if (gold == Constants.GoldObjectPosition.CENTER) {
@@ -64,7 +64,7 @@ public class AutoCraterBase extends LinearOpMode {
 //            autoLib.calcTurn(-47,5f);
 //            autoLib.calcMove(127,9f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(-15,5f);
 //            autoLib.calcMove(-165,9f);
 //
@@ -77,7 +77,7 @@ public class AutoCraterBase extends LinearOpMode {
 //            autoLib.calcTurn(-47,5f);
 //            autoLib.calcMove(127,9f);
 //            autoLib.setServoAngle();
-//            autoLib.depositMarker();
+//            autoLib.intakeMinerals();
 //            autoLib.calcTurn(-15,5f);
 //            autoLib.calcMove(-165,9f);
 //
