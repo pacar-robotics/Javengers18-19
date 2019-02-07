@@ -15,12 +15,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGH
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 2/3/2019
+ * Date Modified: 2/7/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
@@ -39,7 +40,7 @@ public class Robot {
 
     // Sensors
     private Rev2mDistanceSensor groundSensor;
-    private RevTouchSensor[] touchSensors = new RevTouchSensor[1];
+    private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -68,6 +69,7 @@ public class Robot {
         groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
 
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherTop");
+        touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherbottom");
     }
 
     // Motor methods

@@ -9,12 +9,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGH
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
 /*
  * Title: TeleLib
  * Date Created: 10/14/2018
- * Date Modified: 2/3/2019
+ * Date Modified: 2/7/2019
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
@@ -49,7 +50,8 @@ public class TeleLib {
         if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
                 !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             robot.setDcMotorPower(MOTOR_LATCHER, opMode.gamepad1.left_trigger);
-        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
+                !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             robot.setDcMotorPower(MOTOR_LATCHER, -opMode.gamepad1.right_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_LATCHER, 0);
