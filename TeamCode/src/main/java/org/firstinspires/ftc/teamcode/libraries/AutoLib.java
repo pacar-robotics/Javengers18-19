@@ -56,9 +56,9 @@ public class AutoLib {
 
         ElapsedTime elapsedTime = new ElapsedTime();
         while (elapsedTime.seconds() < 5) {
-            initTfod();
-            opMode.idle();
+             opMode.idle();
         }
+        initTfod();
 
     }
 

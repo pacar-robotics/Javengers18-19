@@ -37,8 +37,8 @@ public class Constants {
 
     //********** Servo Deltas **********//
     // Used for slowly moving a servo like a motor
-    static final float SERVO_INTAKE_ANGLE_DELTA = .01f;
-    static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
+    static final float SERVO_INTAKE_ANGLE_DELTA = 0f;
+    private static final float SERVO_INTAKE_ANGLE_DELAY = 1f;    // Seconds
     static final float SERVO_INTAKE_SPEED = .2f;
 
     //********** CalcMove Constants **********//

@@ -23,16 +23,20 @@ public class AutoDepotBase extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
+//        telemetry.addData("Please Work","About to initialize");
+//        telemetry.update();
         initialize();
-//        autoLib.setServoAngle();
-        autoLib.calcMove(5,.5f,Constants.Direction.FORWARD);
-        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-        if (gold != null) {
-            telemetry.addData("Position", gold.toString());
-        } else {
-            telemetry.addData("Position", "null");
-        }
-        telemetry.update();
+//        telemetry.addData("Trying to Work","Initialized");
+//        telemetry.update();
+        autoLib.setServoAngle();
+        //autoLib.calcMove(5,.5f,Constants.Direction.FORWARD);
+//        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+//        if (gold != null) {
+//            telemetry.addData("Position", gold.toString());
+//        } else {
+//            telemetry.addData("Position", "null");
+//        }
+//        telemetry.update();
 //        Thread.sleep(5000);
 
 //        autoLib.landOnGround();
@@ -54,11 +58,11 @@ public class AutoDepotBase extends LinearOpMode {
 //            autoLib.calcTurn(28,.3f);
 //            autoLib.calcMove(-195,4f);
 //            autoLib.calcMove(-10,.4f);
-////           autoLib.calcMove(-60,.5f);
-////            autoLib.calcTurn(100,1f);
-////            autoLib.calcMove(150,1f);
-////            autoLib.calcTurn(35,1f);
-////            autoLib.calcMove(40,1f);
+//           autoLib.calcMove(-60,.5f);
+//            autoLib.calcTurn(100,1f);
+//            autoLib.calcMove(150,1f);
+//            autoLib.calcTurn(35,1f);
+//            autoLib.calcMove(40,1f);
 //        } else if (gold == Constants.GoldObjectPosition.RIGHT) {
 //            telemetry.addData("pos", "Right");
 //            autoLib.calcTurn(40, 4f);
