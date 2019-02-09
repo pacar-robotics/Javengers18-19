@@ -23,7 +23,18 @@ public class AutoDepotBase extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
-//        initialize();
+        initialize();
+//        autoLib.setServoAngle();
+        autoLib.calcMove(5,.5f,Constants.Direction.FORWARD);
+        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+        if (gold != null) {
+            telemetry.addData("Position", gold.toString());
+        } else {
+            telemetry.addData("Position", "null");
+        }
+        telemetry.update();
+//        Thread.sleep(5000);
+
 //        autoLib.landOnGround();
 //        autoLib.calcMove(5,3f );
 //
@@ -100,5 +111,6 @@ public class AutoDepotBase extends LinearOpMode {
 
         telemetry.addData("Status", "Running");
         telemetry.update();
+
     }
 }

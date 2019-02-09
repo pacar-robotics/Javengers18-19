@@ -14,7 +14,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
 /*
  * Title: Robot
@@ -31,14 +37,14 @@ public class Robot {
     private LinearOpMode opMode;
 
     // Motors
-    private DcMotor[] dcMotors = new DcMotor[4];
+    private DcMotor[] dcMotors = new DcMotor[5];
 
     // Servos
-    private Servo[] servos = new Servo[0];
+    private Servo[] servos = new Servo[3];
 
     // Sensors
-    private Rev2mDistanceSensor groundSensor;
-    private RevTouchSensor[] touchSensors = new RevTouchSensor[0];
+//    private Rev2mDistanceSensor groundSensor;
+    private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -54,17 +60,24 @@ public class Robot {
         dcMotors[MOTOR_FRONT_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontRightWheel");
         dcMotors[MOTOR_BACK_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backLeftWheel");
         dcMotors[MOTOR_BACK_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backRightWheel");
+        dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
 
         dcMotors[MOTOR_FRONT_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
         dcMotors[MOTOR_BACK_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
-        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class,"");
+        servos[SERVO_INTAKE] = opMode.hardwareMap.get(Servo.class,"intakeServo");
+        servos[SERVO_INTAKE_ANGLE] = opMode.hardwareMap.get(Servo.class,"intakeServoAngle");
+        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class,"servoLatcher");
+
+        setServoPosition(SERVO_LATCHER,SERVO_LATCHER_POS_GRAB);
     }
 
     private void initSensors() {
-        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
+//        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
+        touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class,"touchLatcherBottom");
+        touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class,"touchLatcherTop");
     }
 
     // Motor methods
@@ -104,9 +117,9 @@ public class Robot {
     }
 
     // Sensor methods
-    double getGroundDistanceCenti() {
-        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
-    }
+//    double getGroundDistanceCenti() {
+//        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
+//    }
 
     boolean isTouchSensorPressed(int index) {
         return touchSensors[index].isPressed();
