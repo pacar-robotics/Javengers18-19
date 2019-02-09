@@ -23,12 +23,13 @@ public class AutoDepotBase extends LinearOpMode {
     @SuppressWarnings("RedundantThrows")
     @Override
     public void runOpMode() throws InterruptedException {
-//        telemetry.addData("Please Work","About to initialize");
-//        telemetry.update();
+        telemetry.addData("Please Work","About to initialize");
+        telemetry.update();
         initialize();
-//        telemetry.addData("Trying to Work","Initialized");
-//        telemetry.update();
+        telemetry.addData("Trying to Work","Initialized");
+        telemetry.update();
         autoLib.setServoAngle();
+        telemetry.addData("Move Servo","Moved Servo Angle");
         //autoLib.calcMove(5,.5f,Constants.Direction.FORWARD);
 //        Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
 //        if (gold != null) {
