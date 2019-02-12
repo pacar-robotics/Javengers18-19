@@ -47,12 +47,12 @@ public class TeleLib {
     }
 
     public void processLatcher() {
-        if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
-            robot.setDcMotorPower(MOTOR_LATCHER, opMode.gamepad1.left_trigger);
-        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE &&
-                !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
-            robot.setDcMotorPower(MOTOR_LATCHER, -opMode.gamepad1.right_trigger);
+        if (opMode.gamepad1.right_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
+            // Extend
+            robot.setDcMotorPower(MOTOR_LATCHER, .6f);
+        } else if (opMode.gamepad1.left_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+            // Retract
+            robot.setDcMotorPower(MOTOR_LATCHER, -.6f);
         } else {
             robot.setDcMotorPower(MOTOR_LATCHER, 0);
         }
