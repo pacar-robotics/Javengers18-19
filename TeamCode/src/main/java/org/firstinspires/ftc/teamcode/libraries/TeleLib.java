@@ -10,6 +10,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGH
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -81,6 +82,17 @@ public class TeleLib {
                 robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_LATCHED);
             }
             latcherServoInputDelay.reset();
+        }
+    }
+
+    public void processScoringSlide() {
+        // TODO: Add safety limits
+        if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
+        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.right_trigger);
+        } else {
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, 0);
         }
     }
 }

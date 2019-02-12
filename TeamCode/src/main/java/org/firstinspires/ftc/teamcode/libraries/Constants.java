@@ -21,6 +21,7 @@ public class Constants {
     static final int MOTOR_BACK_LEFT_WHEEL = 2;
     static final int MOTOR_BACK_RIGHT_WHEEL = 3;
     static final int MOTOR_LATCHER = 4;
+    static final int MOTOR_SCORING_SLIDE = 5;
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;

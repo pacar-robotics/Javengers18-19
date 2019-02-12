@@ -27,6 +27,8 @@ public class MainTeleOp extends LinearOpMode {
             // Gamepad 1
             teleLib.processDrive();
             teleLib.processLatcher();
+            teleLib.processScoringSlide();
+
             idle();
         }
     }
