@@ -39,7 +39,6 @@ public class Robot {
     private Servo[] servos = new Servo[0];
 
     // Sensors
-    private Rev2mDistanceSensor groundSensor;
     private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
 
     Robot(LinearOpMode opMode) {
@@ -66,8 +65,6 @@ public class Robot {
     }
 
     private void initSensors() {
-        groundSensor = opMode.hardwareMap.get(Rev2mDistanceSensor.class, "groundSensor");
-
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherTop");
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherbottom");
     }
@@ -106,11 +103,6 @@ public class Robot {
 
     float getServoPosition(int index) {
         return (float) servos[index].getPosition();
-    }
-
-    // Sensor methods
-    double getGroundDistanceCenti() {
-        return (groundSensor.getDistance(DistanceUnit.METER) * 100);
     }
 
     boolean isTouchSensorPressed(int index) {
