@@ -16,6 +16,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: TeleLib
@@ -86,13 +88,12 @@ public class TeleLib {
     }
 
     public void processScoringSlide() {
-        // TODO: Add safety limits
-        if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+        if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_SCORING_BOTTOM)) {
             // Extend
-            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.left_trigger);
-        } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.right_trigger);
+        } else if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_SCORING_TOP)) {
             // Retract
-            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.right_trigger);
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, 0);
         }

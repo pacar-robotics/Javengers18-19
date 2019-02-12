@@ -16,6 +16,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_S
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: Robot
@@ -38,7 +40,7 @@ public class Robot {
     private Servo[] servos = new Servo[1];
 
     // Sensors
-    private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
+    private RevTouchSensor[] touchSensors = new RevTouchSensor[4];
 
     Robot(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -68,6 +70,8 @@ public class Robot {
     private void initSensors() {
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherTop");
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherBottom");
+        touchSensors[TOUCH_SCORING_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "scoringTouchTop");
+        touchSensors[TOUCH_SCORING_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "scoringTouchBottom");
     }
 
     // Motor methods
