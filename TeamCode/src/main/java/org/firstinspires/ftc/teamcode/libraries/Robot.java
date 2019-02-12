@@ -12,6 +12,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGH
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
@@ -33,7 +34,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[5];
 
     // Servos
-    private Servo[] servos = new Servo[0];
+    private Servo[] servos = new Servo[1];
 
     // Sensors
     private RevTouchSensor[] touchSensors = new RevTouchSensor[2];
@@ -59,6 +60,7 @@ public class Robot {
     }
 
     private void initServos() {
+        servos[SERVO_LATCHER] = opMode.hardwareMap.get(Servo.class, "servoLatcher");
     }
 
     private void initSensors() {

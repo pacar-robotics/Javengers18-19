@@ -23,13 +23,15 @@ public class Constants {
     static final int MOTOR_LATCHER = 4;
 
     //********** Servo Indexes **********//
+    static final int SERVO_LATCHER = 0;
+
+    //********** Servo Positions **********//
+    static final float SERVO_LATCHER_POS_LATCHED = 1;
+    static final float SERVO_LATCHER_POS_REST = .71f;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
     static final int TOUCH_LATCHER_BOTTOM = 1;
-
-    //********** Servo Positions **********//
-
 
     //********** Servo Deltas **********//
     // Used for slowly moving a servo like a motor
