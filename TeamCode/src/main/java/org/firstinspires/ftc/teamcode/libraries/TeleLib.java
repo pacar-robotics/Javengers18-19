@@ -88,9 +88,11 @@ public class TeleLib {
     public void processScoringSlide() {
         // TODO: Add safety limits
         if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
-            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
+            // Extend
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.left_trigger);
         } else if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
-            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.right_trigger);
+            // Retract
+            robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.right_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, 0);
         }
