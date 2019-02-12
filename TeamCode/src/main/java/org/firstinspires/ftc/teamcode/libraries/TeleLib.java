@@ -41,7 +41,7 @@ public class TeleLib {
         latcherServoInputDelay = new ElapsedTime();
     }
 
-    // Uses joysticks on gamepad 1 for tank drive
+    // Uses gamepad 1 joysticks for tank drive
     public void processDrive() {
         // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
         float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, -opMode.gamepad1.left_stick_y);
@@ -59,6 +59,7 @@ public class TeleLib {
         latcherServo();
     }
 
+    // Uses gamepad 1 bumpers to control movement
     private void latcherMotor() {
         if (opMode.gamepad1.right_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             // Extend
@@ -71,6 +72,7 @@ public class TeleLib {
         }
     }
 
+    // Uses gamepad 1 B to switch between positions
     private void latcherServo() {
         if (opMode.gamepad1.b && latcherServoInputDelay.seconds() > .25) {
             if (robot.getServoPosition(SERVO_LATCHER) == SERVO_LATCHER_POS_LATCHED) {
