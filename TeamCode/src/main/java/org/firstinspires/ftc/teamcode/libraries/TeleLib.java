@@ -9,6 +9,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
@@ -87,6 +88,7 @@ public class TeleLib {
         }
     }
 
+    // Uses gamepad 1 triggers for movement
     public void processScoringSlide() {
         if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_SCORING_BOTTOM)) {
             // Extend
@@ -96,6 +98,17 @@ public class TeleLib {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, 0);
+        }
+    }
+
+    // Uses gamepad 2 triggers to move the intake
+    public void processIntakeSlide() {
+        if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -opMode.gamepad2.right_trigger);
+        } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger);
+        } else {
+            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
         }
     }
 }

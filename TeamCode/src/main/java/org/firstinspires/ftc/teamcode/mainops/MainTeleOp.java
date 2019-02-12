@@ -28,6 +28,7 @@ public class MainTeleOp extends LinearOpMode {
             teleLib.processDrive();
             teleLib.processLatcher();
             teleLib.processScoringSlide();
+            teleLib.processIntakeSlide();
 
             idle();
         }
