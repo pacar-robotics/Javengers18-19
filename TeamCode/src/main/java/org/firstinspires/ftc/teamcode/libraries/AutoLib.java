@@ -24,8 +24,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -133,25 +138,23 @@ public class AutoLib {
     //********** Latcher Methods **********//
 
     public void landOnGround() throws InterruptedException {
-//        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
-//        // The motor will stop when it detects that it's on the ground
-//        while (robot.getGroundDistanceCenti() >= 5.3) {
-//            opMode.idle();
-//        }
-//
-//        // Waiting for the latcher to raise enough so it can unlatch
-//        Thread.sleep(1000);
-//        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
-//
-//        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
+        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+        // The motor will stop when it detects that it's on the ground
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+            opMode.idle();
+        }
+
+        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
+
+        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
     }
 
     public void moveLatcherToBottom() {
-//        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
-//        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
-//            opMode.idle();
-//        }
-//        robot.setDcMotorPower(MOTOR_LATCHER, 0);
+        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
+            opMode.idle();
+        }
+        robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }
 
 

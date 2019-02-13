@@ -34,55 +34,56 @@ public class AutoDepotBase extends LinearOpMode {
         telemetry.update();
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
-            autoLib.calcTurn(40, 2f);
-            autoLib.calcMove(100, 2f,Constants.Direction.FORWARD);
-            autoLib.calcTurn(70, .3f);
-            autoLib.calcMove(80, 2f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(40, .9f);
+            autoLib.calcMove(100, .1f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(70, .1f);
+            autoLib.calcMove(80, .1f,Constants.Direction.FORWARD);
 //            autoLib.setServoAngle();
 //            autoLib.depositMarker();
-            autoLib.calcTurn(28,.3f);
-            autoLib.calcMove(195,4f,Constants.Direction.BACKWARD);
-            autoLib.calcMove(10,.4f,Constants.Direction.BACKWARD);
-           autoLib.calcMove(60,.5f,Constants.Direction.BACKWARD);
-            autoLib.calcTurn(100,1f);
-            autoLib.calcMove(150,1f,Constants.Direction.FORWARD);
-            autoLib.calcTurn(35,1f);
-            autoLib.calcMove(40,1f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(28,.1f);
+            autoLib.calcMove(195,.1f,Constants.Direction.BACKWARD);
+            autoLib.calcMove(10,.1f,Constants.Direction.BACKWARD);
+           autoLib.calcMove(60,.1f,Constants.Direction.BACKWARD);
+            autoLib.calcTurn(100,.1f);
+            autoLib.calcMove(150,.1f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(35,.1f);
+            autoLib.calcMove(40,.1f,Constants.Direction.FORWARD);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            autoLib.calcTurn(40, 4f);
-            autoLib.calcMove(100, 4f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(40, .1f);
+            autoLib.calcMove(100, .1f,Constants.Direction.FORWARD);
             //autoLib.calcMove(-5,5f);
-            autoLib.calcTurn(70, 2f);
-            autoLib.calcMove(68,4f,Constants.Direction.FORWARD);
-            autoLib.calcTurn(5,4f);
+            autoLib.calcTurn(70, .1f);
+            autoLib.calcMove(68,.1f,Constants.Direction.FORWARD);
+            autoLib.calcTurn(5,.1f);
 //            autoLib.setServoAngle();
 //            autoLib.depositMarker();
-            autoLib.calcTurn(35,5f);
-            autoLib.calcMove(168, 4f,Constants.Direction.BACKWARD);
+            autoLib.calcTurn(35,.1f);
+            autoLib.calcMove(168, .1f,Constants.Direction.BACKWARD);
 
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
-            autoLib.calcMove(155, 4f,Constants.Direction.FORWARD);
+            autoLib.calcMove(120, .1f,Constants.Direction.FORWARD);
 //            autoLib.setServoAngle();
 //            autoLib.depositMarker();
-            autoLib.calcTurn(73, 4f);
-            autoLib.calcMove(83, 4f,Constants.Direction.BACKWARD);
-            autoLib.calcTurn(20, 4f);
-            autoLib.calcMove(140, 4f,Constants.Direction.BACKWARD);
-            autoLib.calcMove(5, .4f,Constants.Direction.BACKWARD);
+            autoLib.calcTurn(73, .1f);
+            autoLib.calcMove(83, .1f,Constants.Direction.BACKWARD);
+            autoLib.calcTurn(-20, .1f);
+            autoLib.calcMove(140, .1f,Constants.Direction.BACKWARD);
+            autoLib.calcMove(5, .1f,Constants.Direction.BACKWARD);
 
         } else {
             telemetry.addData("pos", "Nothing");
-            autoLib.calcMove(155, .3f,Constants.Direction.FORWARD);
+            autoLib.calcMove(125, .1f,Constants.Direction.FORWARD);
 //            autoLib.setServoAngle();
 //            autoLib.depositMarker();
-            autoLib.calcTurn(73, 4f);
-            autoLib.calcMove(83, 4f,Constants.Direction.BACKWARD);
-            autoLib.calcTurn(15, 4f);
-            autoLib.calcMove(140, 4f,Constants.Direction.BACKWARD);
-            autoLib.calcMove(5, .4f,Constants.Direction.BACKWARD);
+            autoLib.calcTurn(-20, .5f);
+            autoLib.calcMove(200,.1f,Constants.Direction.LEFT);
+//            autoLib.calcMove(83, .1f,Constants.Direction.BACKWARD);
+//            autoLib.calcTurn(15, .1f);
+//            autoLib.calcMove(140, .1f,Constants.Direction.BACKWARD);
+//            autoLib.calcMove(5, .1f,Constants.Direction.BACKWARD);
         }
         telemetry.update();
 
