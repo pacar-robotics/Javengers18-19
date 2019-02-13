@@ -78,7 +78,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(125, .1f,Constants.Direction.FORWARD);
 //            autoLib.setServoAngle();
 //            autoLib.depositMarker();
-            autoLib.calcTurn(-20, .5f);
+            autoLib.calcTurn(-110, .5f);
             autoLib.calcMove(200,.1f,Constants.Direction.LEFT);
 //            autoLib.calcMove(83, .1f,Constants.Direction.BACKWARD);
 //            autoLib.calcTurn(15, .1f);
