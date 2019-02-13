@@ -9,6 +9,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
@@ -113,6 +114,17 @@ public class TeleLib {
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
+        }
+    }
+
+    // Uses gamepad 2 bumpers & Y
+    public void processIntake() {
+        if (opMode.gamepad2.right_bumper) {
+            robot.setDcMotorPower(MOTOR_INTAKE, .7f);
+        } else if (opMode.gamepad2.left_bumper) {
+            robot.setDcMotorPower(MOTOR_INTAKE, -7f);
+        } else if (opMode.gamepad2.y) {
+            robot.setDcMotorPower(MOTOR_INTAKE, 0);
         }
     }
 }
