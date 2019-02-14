@@ -27,6 +27,7 @@ public class Constants {
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;
+    static final int SERVO_INTAKE_ANGLE = 1;
 
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_LATCHED = 1;
