@@ -94,10 +94,10 @@ public class TeleLib {
 
     // Uses gamepad 1 bumpers to control movement
     private void latcherMotor() {
-        if (opMode.gamepad1.right_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
+        if (opMode.gamepad1.right_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             // Extend
             robot.setDcMotorPower(MOTOR_LATCHER, .6f);
-        } else if (opMode.gamepad1.left_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+        } else if (opMode.gamepad1.left_bumper && !robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             // Retract
             robot.setDcMotorPower(MOTOR_LATCHER, -.6f);
         } else {
