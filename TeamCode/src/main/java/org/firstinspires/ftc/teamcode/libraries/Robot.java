@@ -42,7 +42,7 @@ public class Robot {
     private DcMotor[] dcMotors = new DcMotor[8];
 
     // Servos
-    private Servo[] servos = new Servo[1];
+    private Servo[] servos = new Servo[2];
 
     // Sensors
     private RevTouchSensor[] touchSensors = new RevTouchSensor[6];
