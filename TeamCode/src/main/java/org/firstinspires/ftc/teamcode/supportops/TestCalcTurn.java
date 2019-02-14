@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.supportops;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.internal.android.dx.ssa.DomFront;
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
 import org.firstinspires.ftc.teamcode.libraries.Constants;
 
@@ -25,7 +26,7 @@ public class TestCalcTurn extends LinearOpMode {
         initialize();
         telemetry.addData("about to turn","initialized");
         telemetry.update();
-        autoLib.calcTurn(360,.8f);
+        autoLib.calcTurn(30,.2f);
         telemetry.addData("Just turned","finished turning");
         telemetry.update();
     }
