@@ -187,8 +187,10 @@ public class TeleLib {
 
         if (opMode.gamepad2.dpad_left && intakeAngleServoInputDelay.seconds() > .2f) {
             robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, .02f);
+            intakeAngleServoInputDelay.reset();
         } else if (opMode.gamepad2.dpad_right && intakeAngleServoInputDelay.seconds() > .2f) {
             robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, -.02f);
+            intakeAngleServoInputDelay.reset();
         }
     }
 }
