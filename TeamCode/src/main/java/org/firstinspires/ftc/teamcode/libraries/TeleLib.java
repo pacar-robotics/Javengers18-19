@@ -79,9 +79,9 @@ public class TeleLib {
 
     private void gamepad2Drive() {
         // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
-        float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, -opMode.gamepad1.left_stick_y) * .25f;
-        float robotAngle = (float) (Math.atan2(-opMode.gamepad1.left_stick_y, -opMode.gamepad1.left_stick_x) - Math.PI / 4);
-        float rightX = opMode.gamepad1.right_stick_x * .25f;
+        float r = (float) Math.hypot(opMode.gamepad2.left_stick_x, -opMode.gamepad2.left_stick_y) * .5f;
+        float robotAngle = (float) (Math.atan2(-opMode.gamepad2.left_stick_y, -opMode.gamepad2.left_stick_x) - Math.PI / 4);
+        float rightX = opMode.gamepad2.right_stick_x * .5f;
 
         robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
         robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));
@@ -90,9 +90,9 @@ public class TeleLib {
     }
 
     private boolean isGamepad2Drive() {
-        return (opMode.gamepad2.left_stick_x > GAMEPAD_JOYSTICK_TOLERANCE ||
-                opMode.gamepad2.left_stick_y > GAMEPAD_JOYSTICK_TOLERANCE ||
-                opMode.gamepad2.right_stick_x > GAMEPAD_JOYSTICK_TOLERANCE);
+        return (Math.abs(opMode.gamepad2.left_stick_x) > GAMEPAD_JOYSTICK_TOLERANCE ||
+                Math.abs(opMode.gamepad2.left_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE ||
+                Math.abs(opMode.gamepad2.right_stick_x) > GAMEPAD_JOYSTICK_TOLERANCE);
     }
 
     public void processLatcher() {
