@@ -171,9 +171,9 @@ public class TeleLib {
     // Uses gamepad 2 bumpers & Y
     public void processIntake() {
         if (opMode.gamepad2.right_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, .7f);
+            robot.setDcMotorPower(MOTOR_INTAKE, -.4f);
         } else if (opMode.gamepad2.left_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, -7f);
+            robot.setDcMotorPower(MOTOR_INTAKE, .4f);
         } else if (opMode.gamepad2.y) {
             robot.setDcMotorPower(MOTOR_INTAKE, 0);
         }
