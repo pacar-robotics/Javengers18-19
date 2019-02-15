@@ -16,6 +16,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_S
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -37,6 +38,7 @@ public class TeleLib {
     private LinearOpMode opMode;
 
     private ElapsedTime latcherServoInputDelay;
+    private ElapsedTime scoringServoInputDelay;
 
     public TeleLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
@@ -46,6 +48,7 @@ public class TeleLib {
         opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
 
         latcherServoInputDelay = new ElapsedTime();
+        scoringServoInputDelay = new ElapsedTime();
     }
 
     // Uses gamepad 1 joysticks for tank drive
@@ -127,6 +130,23 @@ public class TeleLib {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, 0);
+        }
+    }
+
+    // Uses gamepad 1 Y and d-pad up/down
+    public void processScoringServo() {
+        // Preset
+        if (opMode.gamepad1.y) {
+            robot.setServoPosition(SERVO_SCORING, SERVO_LATCHER_POS_REST);
+        }
+
+        // Manual
+        if (opMode.gamepad1.dpad_up && scoringServoInputDelay.seconds() > .2f) {
+            robot.setDeltaServoPosition(SERVO_SCORING, .02f);
+            scoringServoInputDelay.reset();
+        } else if (opMode.gamepad1.dpad_down && scoringServoInputDelay.seconds() > .2f) {
+            robot.setDeltaServoPosition(SERVO_SCORING, -.02f);
+            scoringServoInputDelay.reset();
         }
     }
 
