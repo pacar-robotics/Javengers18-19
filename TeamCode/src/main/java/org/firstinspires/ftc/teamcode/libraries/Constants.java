@@ -41,11 +41,6 @@ public class Constants {
     static final int TOUCH_INTAKE_SLIDE_TOP = 4;
     static final int TOUCH_INTAKE_SLIDE_BOTTOM = 5;
 
-    //********** Servo Deltas **********//
-    // Used for slowly moving a servo like a motor
-    static final float SERVO_INTAKE_ANGLE_DELTA = .01f;
-    static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
-
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters
     static final float WHEEL_GEAR_RATIO = (2f / 3);
@@ -53,10 +48,6 @@ public class Constants {
     static final float TRACK_DISTANCE = 23f;
 
     public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
-
-    //********** Encoder Constants **********//
-
-    //********** Driving Multipliers **********//
 
     //********** TensorFlow **********//
     // Vuforia Key compatible with external camera
