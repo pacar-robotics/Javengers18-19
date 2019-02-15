@@ -17,6 +17,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RECEIVE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
@@ -137,7 +138,7 @@ public class TeleLib {
     public void processScoringServo() {
         // Preset
         if (opMode.gamepad1.y) {
-            robot.setServoPosition(SERVO_SCORING, SERVO_LATCHER_POS_REST);
+            robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RECEIVE);
         }
 
         // Manual
