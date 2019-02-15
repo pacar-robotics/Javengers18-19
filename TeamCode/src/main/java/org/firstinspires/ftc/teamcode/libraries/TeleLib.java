@@ -13,6 +13,8 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -40,6 +42,7 @@ public class TeleLib {
 
     private ElapsedTime latcherServoInputDelay;
     private ElapsedTime scoringServoInputDelay;
+    private ElapsedTime intakeAngleServoInputDelay;
 
     public TeleLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
@@ -50,6 +53,7 @@ public class TeleLib {
 
         latcherServoInputDelay = new ElapsedTime();
         scoringServoInputDelay = new ElapsedTime();
+        intakeAngleServoInputDelay = new ElapsedTime();
     }
 
     // Uses gamepad 1 joysticks for tank drive
@@ -172,6 +176,19 @@ public class TeleLib {
             robot.setDcMotorPower(MOTOR_INTAKE, -7f);
         } else if (opMode.gamepad2.y) {
             robot.setDcMotorPower(MOTOR_INTAKE, 0);
+        }
+    }
+
+    // Uses gamepad 2 B and d-pad
+    public void processIntakeAngle() {
+        if (opMode.gamepad2.b) {
+            robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
+        }
+
+        if (opMode.gamepad2.dpad_left && intakeAngleServoInputDelay.seconds() > .2f) {
+            robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, .02f);
+        } else if (opMode.gamepad2.dpad_right && intakeAngleServoInputDelay.seconds() > .2f) {
+            robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, -.02f);
         }
     }
 }

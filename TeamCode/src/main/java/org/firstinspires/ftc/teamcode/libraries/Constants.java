@@ -34,6 +34,7 @@ public class Constants {
     static final float SERVO_LATCHER_POS_LATCHED = 1;
     static final float SERVO_LATCHER_POS_REST = .71f;
     static final float SERVO_SCORING_POS_RECEIVE = .5f; // TODO: find actual position
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .5f; // TODO: find actual position
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
