@@ -20,11 +20,13 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.BACKW
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.FORWARD;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.LEFT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.RIGHT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.LINEAR_SLIDE_DEPOT_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -127,6 +129,18 @@ public class AutoLib {
         robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
         robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
         robot.setDcMotorTargetPosition(MOTOR_BACK_RIGHT_WHEEL, backRightTargetPosition);
+    }
+
+    private void moveLinearSlideToDepot() {
+        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, RUN_TO_POSITION);
+        robot.setDcMotorTargetPosition(MOTOR_INTAKE_SLIDE, LINEAR_SLIDE_DEPOT_ENCODER_COUNT);
+
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE,.4f);
+        while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)){
+            opMode.idle();
+        }
+        setBaseMotorPowers(0);
     }
 
     private boolean areBaseMotorsBusy() {
