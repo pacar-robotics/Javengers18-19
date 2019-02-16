@@ -24,7 +24,6 @@ public class AutoCraterBase extends LinearOpMode {
         autoLib.moveLinearSlideToDepot();
 
 //
-//        autoLib.landOnGround();
 //        autoLib.calcMove(5, .3f);
 //
 //        // Tensorflow

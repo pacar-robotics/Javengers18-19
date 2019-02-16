@@ -129,8 +129,8 @@ public class AutoLib {
     public void moveLinearSlideToDepot() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -.4f);
-        while (time.seconds() <= .3f) {
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -1f);
+        while (time.seconds() <= .0005) {
             opMode.idle();
         }
         setBaseMotorPowers(0);
@@ -146,7 +146,7 @@ public class AutoLib {
     //********** Latcher Methods **********//
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, 0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
         // The motor will stop when it detects that it's on the ground
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
@@ -158,7 +158,7 @@ public class AutoLib {
     }
 
     public void moveLatcherToBottom() {
-        robot.setDcMotorPower(MOTOR_LATCHER, -.2f);
+        robot.setDcMotorPower(MOTOR_LATCHER, .2f);
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             opMode.idle();
         }
