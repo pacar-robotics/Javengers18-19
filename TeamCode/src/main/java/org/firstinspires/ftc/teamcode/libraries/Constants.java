@@ -23,13 +23,18 @@ public class Constants {
     static final int MOTOR_LATCHER = 4;
     static final int MOTOR_SCORING_SLIDE = 5;
     static final int MOTOR_INTAKE_SLIDE = 6;
+    static final int MOTOR_INTAKE = 7;
 
     //********** Servo Indexes **********//
     static final int SERVO_LATCHER = 0;
+    static final int SERVO_INTAKE_ANGLE = 1;
+    static final int SERVO_SCORING = 2;
 
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_LATCHED = 1;
     static final float SERVO_LATCHER_POS_REST = .71f;
+    static final float SERVO_SCORING_POS_RECEIVE = .5f; // TODO: find actual position
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .5f; // TODO: find actual position
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
@@ -39,22 +44,13 @@ public class Constants {
     static final int TOUCH_INTAKE_SLIDE_TOP = 4;
     static final int TOUCH_INTAKE_SLIDE_BOTTOM = 5;
 
-    //********** Servo Deltas **********//
-    // Used for slowly moving a servo like a motor
-    static final float SERVO_INTAKE_ANGLE_DELTA = .01f;
-    static final float SERVO_INTAKE_ANGLE_DELAY = .1f;    // Seconds
-
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10f; // Centimeters
     static final float WHEEL_GEAR_RATIO = (3f / 2);
-    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 383.6f;
+    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1425.2f;
     static final float TRACK_DISTANCE = 23f;
 
     public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
-
-    //********** Encoder Constants **********//
-
-    //********** Driving Multipliers **********//
 
     //********** TensorFlow **********//
     // Vuforia Key compatible with external camera
