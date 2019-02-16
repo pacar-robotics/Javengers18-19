@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.libraries.AutoLib;
-import org.firstinspires.ftc.teamcode.libraries.Constants;
 
 /*
  * Title: AutoBlueCraterBase
@@ -21,7 +20,9 @@ public class AutoCraterBase extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-//        initialize();
+        initialize();
+        autoLib.moveLinearSlideToDepot();
+
 //
 //        autoLib.landOnGround();
 //        autoLib.calcMove(5, .3f);

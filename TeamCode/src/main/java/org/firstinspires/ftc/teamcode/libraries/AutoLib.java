@@ -130,7 +130,7 @@ public class AutoLib {
         robot.setDcMotorTargetPosition(MOTOR_BACK_RIGHT_WHEEL, backRightTargetPosition);
     }
 
-    private void moveLinearSlideToDepot() {
+    public void moveLinearSlideToDepot() {
         ElapsedTime time = new ElapsedTime();
 
         robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -.4f);
