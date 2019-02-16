@@ -133,7 +133,7 @@ public class AutoLib {
     private void moveLinearSlideToDepot() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .4f);
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -.4f);
         while (time.seconds() <= .3f) {
             opMode.idle();
         }
