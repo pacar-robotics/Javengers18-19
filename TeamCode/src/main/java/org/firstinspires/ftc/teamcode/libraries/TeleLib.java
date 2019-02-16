@@ -5,13 +5,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_JOYSTICK_TOLERANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.GAMEPAD_TRIGGER_TOLERANCE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
@@ -20,8 +18,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RECEIVE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
@@ -56,43 +52,30 @@ public class TeleLib {
         intakeAngleServoInputDelay = new ElapsedTime();
     }
 
-    // Uses gamepad 1 joysticks for tank drive
     public void processDrive() {
         if (!isGamepad2Drive()) {
-            gamepad1Drive();
+            defaultDrive();
         } else {
-            gamepad2Drive();
+            latchingDrive();
         }
     }
 
-    private void gamepad1Drive() {
-        // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
-        float r = (float) Math.hypot(opMode.gamepad1.left_stick_x, -opMode.gamepad1.left_stick_y);
-        float robotAngle = (float) (Math.atan2(-opMode.gamepad1.left_stick_y, -opMode.gamepad1.left_stick_x) - Math.PI / 4);
-        float rightX = opMode.gamepad1.right_stick_x;
-
-        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
-        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));
-        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, (float) (r * Math.sin(robotAngle) + rightX));
-        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, (float) (r * Math.cos(robotAngle) - rightX));
+    // Uses gamepad 1 for when intake is front
+    private void defaultDrive() {
+        // Values need to be reversed (up on joystick is -1)
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
     }
 
-    private void gamepad2Drive() {
-        // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example
-        float r = (float) Math.hypot(opMode.gamepad2.left_stick_x, -opMode.gamepad2.left_stick_y) * .5f;
-        float robotAngle = (float) (Math.atan2(-opMode.gamepad2.left_stick_y, -opMode.gamepad2.left_stick_x) - Math.PI / 4);
-        float rightX = opMode.gamepad2.right_stick_x * .5f;
-
-        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
-        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));
-        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, (float) (r * Math.sin(robotAngle) + rightX));
-        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, (float) (r * Math.cos(robotAngle) - rightX));
+    // Uses gamepad 2 when latcher is front
+    private void latchingDrive() {
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad2.right_stick_y * .25f);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad2.left_stick_y * .25f);
     }
 
     private boolean isGamepad2Drive() {
-        return (Math.abs(opMode.gamepad2.left_stick_x) > GAMEPAD_JOYSTICK_TOLERANCE ||
-                Math.abs(opMode.gamepad2.left_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE ||
-                Math.abs(opMode.gamepad2.right_stick_x) > GAMEPAD_JOYSTICK_TOLERANCE);
+        return (Math.abs(opMode.gamepad2.left_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE ||
+                Math.abs(opMode.gamepad2.right_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE);
     }
 
     public void processLatcher() {
@@ -157,11 +140,11 @@ public class TeleLib {
 
     // Uses gamepad 2 triggers to move the intake
     public void processIntakeSlide() {
-        if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_INTAKE_SLIDE_BOTTOM)) {
+        if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Extend
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -opMode.gamepad2.right_trigger);
-        } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_INTAKE_SLIDE_TOP)) {
-             // Retract
+        } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
+            // Retract
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger);
         } else {
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);

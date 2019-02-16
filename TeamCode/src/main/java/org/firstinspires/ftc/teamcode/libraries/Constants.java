@@ -16,10 +16,8 @@ public class Constants {
     static final float GAMEPAD_TRIGGER_TOLERANCE = .05f;
 
     //********** DcMotor Indexes **********//
-    static final int MOTOR_FRONT_LEFT_WHEEL = 0;
-    static final int MOTOR_FRONT_RIGHT_WHEEL = 1;
-    static final int MOTOR_BACK_LEFT_WHEEL = 2;
-    static final int MOTOR_BACK_RIGHT_WHEEL = 3;
+    static final int MOTOR_LEFT_WHEEL = 0;
+    static final int MOTOR_RIGHT_WHEEL = 1;
     static final int MOTOR_LATCHER = 4;
     static final int MOTOR_SCORING_SLIDE = 5;
     static final int MOTOR_INTAKE_SLIDE = 6;
@@ -41,8 +39,6 @@ public class Constants {
     static final int TOUCH_LATCHER_BOTTOM = 1;
     static final int TOUCH_SCORING_TOP = 2;
     static final int TOUCH_SCORING_BOTTOM = 3;
-    static final int TOUCH_INTAKE_SLIDE_TOP = 4;
-    static final int TOUCH_INTAKE_SLIDE_BOTTOM = 5;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10f; // Centimeters
