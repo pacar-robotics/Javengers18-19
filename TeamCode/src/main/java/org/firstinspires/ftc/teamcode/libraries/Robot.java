@@ -7,13 +7,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
@@ -58,17 +56,14 @@ public class Robot {
 
     private void initDcMotors() {
         //Naming our motors
-        dcMotors[MOTOR_FRONT_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontLeftWheel");
-        dcMotors[MOTOR_FRONT_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "frontRightWheel");
-        dcMotors[MOTOR_BACK_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backLeftWheel");
-        dcMotors[MOTOR_BACK_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "backRightWheel");
+        dcMotors[MOTOR_LEFT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "leftWheel");
+        dcMotors[MOTOR_RIGHT_WHEEL] = opMode.hardwareMap.get(DcMotor.class, "rightWheel");
         dcMotors[MOTOR_LATCHER] = opMode.hardwareMap.get(DcMotor.class, "latcher");
         dcMotors[MOTOR_SCORING_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "scoring");
         dcMotors[MOTOR_INTAKE_SLIDE] = opMode.hardwareMap.get(DcMotor.class, "intakeSlide");
         dcMotors[MOTOR_INTAKE] = opMode.hardwareMap.get(DcMotor.class, "intakeRollers");
 
-        dcMotors[MOTOR_FRONT_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
-        dcMotors[MOTOR_BACK_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
