@@ -39,8 +39,6 @@ public class Constants {
     static final int TOUCH_LATCHER_BOTTOM = 1;
     static final int TOUCH_SCORING_TOP = 2;
     static final int TOUCH_SCORING_BOTTOM = 3;
-    static final int TOUCH_INTAKE_SLIDE_TOP = 4;
-    static final int TOUCH_INTAKE_SLIDE_BOTTOM = 5;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 10.16f; // Centimeters

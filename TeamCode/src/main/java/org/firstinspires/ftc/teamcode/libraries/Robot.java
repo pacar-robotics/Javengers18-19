@@ -16,8 +16,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_S
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
@@ -64,6 +62,7 @@ public class Robot {
         dcMotors[MOTOR_INTAKE] = opMode.hardwareMap.get(DcMotor.class, "intakeRollers");
 
         dcMotors[MOTOR_LEFT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
+        dcMotors[MOTOR_RIGHT_WHEEL].setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     private void initServos() {
@@ -77,8 +76,6 @@ public class Robot {
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherBottom");
         touchSensors[TOUCH_SCORING_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringTop");
         touchSensors[TOUCH_SCORING_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringBottom");
-        touchSensors[TOUCH_INTAKE_SLIDE_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchSlideTop");
-        touchSensors[TOUCH_INTAKE_SLIDE_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchSlideBottom");
     }
 
     // Motor methods

@@ -18,8 +18,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RECEIVE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_INTAKE_SLIDE_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
@@ -55,10 +53,10 @@ public class TeleLib {
     }
 
     public void processDrive() {
-        if (isGamepad2Drive()) {
-            latchingDrive();
-        } else {
+        if (!isGamepad2Drive()) {
             defaultDrive();
+        } else {
+            latchingDrive();
         }
     }
 
@@ -71,13 +69,13 @@ public class TeleLib {
 
     // Uses gamepad 2 when latcher is front
     private void latchingDrive() {
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad1.right_stick_y * .25f);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad1.left_stick_y * .25f);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad2.right_stick_y * .25f);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad2.left_stick_y * .25f);
     }
 
     private boolean isGamepad2Drive() {
-        return !(opMode.gamepad1.right_stick_y > GAMEPAD_JOYSTICK_TOLERANCE ||
-                opMode.gamepad1.left_stick_y > GAMEPAD_JOYSTICK_TOLERANCE);
+        return (Math.abs(opMode.gamepad2.left_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE ||
+                Math.abs(opMode.gamepad2.right_stick_y) > GAMEPAD_JOYSTICK_TOLERANCE);
     }
 
     public void processLatcher() {
@@ -142,10 +140,10 @@ public class TeleLib {
 
     // Uses gamepad 2 triggers to move the intake
     public void processIntakeSlide() {
-        if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_INTAKE_SLIDE_BOTTOM)) {
+        if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Extend
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -opMode.gamepad2.right_trigger);
-        } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_INTAKE_SLIDE_TOP)) {
+        } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Retract
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger);
         } else {
