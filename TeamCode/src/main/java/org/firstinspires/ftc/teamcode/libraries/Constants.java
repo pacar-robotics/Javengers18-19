@@ -50,9 +50,6 @@ public class Constants {
     static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1425.2f;
     static final float TRACK_DISTANCE = 23f;
 
-    //********** Encoder Constants **********//
-    static final int LINEAR_SLIDE_DEPOT_ENCODER_COUNT = 9000;  //TODO: test for position
-
     public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
 
     //********** TensorFlow **********//
