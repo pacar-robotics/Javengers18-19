@@ -136,9 +136,9 @@ public class AutoLib {
     }
 
     private boolean areBaseMotorsBusy() {
-//        return robot.isMotorBusy(MOTOR_FRONT_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_FRONT_RIGHT_WHEEL) ||
-//                robot.isMotorBusy(MOTOR_BACK_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_BACK_RIGHT_WHEEL);
-        return true;
+        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL) ||
+                robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
+        //return true;
     }
 
 
@@ -147,14 +147,14 @@ public class AutoLib {
     public void landOnGround() throws InterruptedException {
         robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
         // The motor will stop when it detects that it's on the ground
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             opMode.idle();
-            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
-            opMode.telemetry.update();
+//            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
+//            opMode.telemetry.update();
 
         }
-        opMode.telemetry.addData("Status", "Pressed");
-        opMode.telemetry.update();
+//        opMode.telemetry.addData("Status", "Pressed");
+//        opMode.telemetry.update();
 
         robot.setDcMotorPower(MOTOR_LATCHER,0);
 

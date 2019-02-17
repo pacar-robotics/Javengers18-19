@@ -26,7 +26,7 @@ public class TestCalcTurn extends LinearOpMode {
         initialize();
         telemetry.addData("about to turn","initialized");
         telemetry.update();
-        autoLib.calcMove(5,.3f);
+        autoLib.calcTurn(90,.3f);
         telemetry.addData("Just turned","finished turning");
         telemetry.update();
     }
