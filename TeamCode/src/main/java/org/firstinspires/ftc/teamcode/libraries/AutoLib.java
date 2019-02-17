@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import java.util.List;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
@@ -16,12 +16,10 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.BACKWARD;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.FORWARD;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.LEFT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.Direction.RIGHT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -59,21 +57,22 @@ public class AutoLib {
 
     //********** Base Motor Methods **********//
 
-    public void calcMove(float centimeters, float power, Constants.Direction direction) {
+    public void calcMove(float centimeters, float power) {
         // Calculates target encoder position
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
                 NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
         // Specific directions require different wheels to move for mecanum
-        if (direction == FORWARD) {
-            prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
-        } else if (direction == BACKWARD) {
-            prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
-        } else if (direction == LEFT) {
-            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
-        } else if (direction == RIGHT) {
-            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
-        }
+    /*    if (direction == FORWARD) {*/
+            prepMotorsForCalcMove(targetPosition, targetPosition);
+       /* } else if (direction == BACKWARD) {
+            prepMotorsForCalcMove(-targetPosition, -targetPosition);
+        }*/
+// else if (direction == LEFT) {
+//            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
+//        } else if (direction == RIGHT) {
+//            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
+//        }
 
         setBaseMotorPowers(power);
 
@@ -86,11 +85,12 @@ public class AutoLib {
 
     public void calcTurn(int degrees, float power) {
         // Calculates target encoder position
-        int leftTargetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
+        int targetPosition = (int) (2 * ((TRACK_DISTANCE) * degrees
                 * NEVEREST_40_REVOLUTION_ENCODER_COUNT) /
                 (WHEEL_DIAMETER * 360));
 
-        prepMotorsForCalcMove(leftTargetPosition, -leftTargetPosition, leftTargetPosition, -leftTargetPosition);
+
+        prepMotorsForCalcMove(targetPosition,targetPosition);
 
         setBaseMotorPowers(power);
 
@@ -102,28 +102,27 @@ public class AutoLib {
     }
 
     private void setBaseMotorPowers(float power) {
-//        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, power);
 //        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
-//        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, power);
 //        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
     }
 
-    private void prepMotorsForCalcMove(int frontLeftTargetPosition, int frontRightTargetPosition,
-                                       int backLeftTargetPosition, int backRightTargetPosition) {
-//        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+    private void prepMotorsForCalcMove(int leftTargetPosition, int rightTargetPosition) {
+        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
 //        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
-//        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
 //        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
 //
-//        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, RUN_TO_POSITION);
-//        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, RUN_TO_POSITION);
 //        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, RUN_TO_POSITION);
 //        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, RUN_TO_POSITION);
 //
-//        robot.setDcMotorTargetPosition(MOTOR_FRONT_LEFT_WHEEL, frontLeftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
 //        robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
 //        robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
-//        robot.setDcMotorTargetPosition(MOTOR_BACK_RIGHT_WHEEL, backRightTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
     }
 
     public void moveLinearSlideToDepot() {
@@ -150,17 +149,25 @@ public class AutoLib {
         // The motor will stop when it detects that it's on the ground
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
-        }
+            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
+            opMode.telemetry.update();
 
-        robot.setDcMotorPower(MOTOR_LATCHER, 0f);
+        }
+        opMode.telemetry.addData("Status", "Pressed");
+        opMode.telemetry.update();
+
+        robot.setDcMotorPower(MOTOR_LATCHER,0);
 
         robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
     }
 
     public void moveLatcherToBottom() {
         robot.setDcMotorPower(MOTOR_LATCHER, .2f);
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
+        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
+            opMode.telemetry.addData("Status", robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
+            opMode.telemetry.update();
+
         }
         robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }

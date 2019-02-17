@@ -41,12 +41,14 @@ public class Constants {
     static final int TOUCH_SCORING_BOTTOM = 3;
 
     //********** CalcMove Constants **********//
-    static final float WHEEL_DIAMETER = 10f; // Centimeters
-    static final float WHEEL_GEAR_RATIO = (3f / 2);
-    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1425.2f;
-    static final float TRACK_DISTANCE = 23f;
+    static final float WHEEL_DIAMETER = 9f; // Centimeters
+    static final float WHEEL_GEAR_RATIO = (2f / 2);
+    static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1120f;
+    static final float TRACK_DISTANCE = 15.25f;
+    static final int LEFT_WHEEL = 0;
+    static final int RIGHT_WHEEL = 1;
 
-    public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
+    //public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
 
     //********** TensorFlow **********//
     // Vuforia Key compatible with external camera
