@@ -110,10 +110,10 @@ public class TeleLib {
 
     // Uses gamepad 1 triggers for movement
     public void processScoringSlide() {
-        if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_SCORING_BOTTOM)) {
+        if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Extend
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -opMode.gamepad1.right_trigger);
-        } else if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE && !robot.isTouchSensorPressed(TOUCH_SCORING_TOP)) {
+        } else if (opMode.gamepad1.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Retract
             robot.setDcMotorPower(MOTOR_SCORING_SLIDE, opMode.gamepad1.left_trigger);
         } else {

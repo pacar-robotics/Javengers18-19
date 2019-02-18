@@ -74,8 +74,8 @@ public class Robot {
     private void initSensors() {
         touchSensors[TOUCH_LATCHER_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherTop");
         touchSensors[TOUCH_LATCHER_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchLatcherBottom");
-        touchSensors[TOUCH_SCORING_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringTop");
-        touchSensors[TOUCH_SCORING_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringBottom");
+//        touchSensors[TOUCH_SCORING_TOP] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringTop");
+//        touchSensors[TOUCH_SCORING_BOTTOM] = opMode.hardwareMap.get(RevTouchSensor.class, "touchScoringBottom");
     }
 
     // Motor methods

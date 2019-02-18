@@ -22,6 +22,9 @@ public class AutoCraterBase extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         initialize();
         autoLib.landOnGround();
+        Thread.sleep(1000);
+        autoLib.moveLatcherToBottom();
+        autoLib.moveLinearSlideToDepot();
         //autoLib.moveLinearSlideToDepot();
 
 //
