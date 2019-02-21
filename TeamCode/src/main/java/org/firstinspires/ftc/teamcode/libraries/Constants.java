@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 /*
  * Title: Constants
  * Date Created: 10/14/2018
- * Date Modified: 2/12/2019
+ * Date Modified: 2/20/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain all of the constants we will use in any of our programs.
@@ -37,8 +37,6 @@ public class Constants {
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
     static final int TOUCH_LATCHER_BOTTOM = 1;
-    static final int TOUCH_SCORING_TOP = 2;
-    static final int TOUCH_SCORING_BOTTOM = 3;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 9f; // Centimeters

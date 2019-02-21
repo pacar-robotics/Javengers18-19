@@ -18,13 +18,11 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 2/12/2019
+ * Date Modified: 2/20/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
