@@ -24,10 +24,13 @@ public class TestCalcTurn extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
-        telemetry.addData("about to turn","initialized");
+        telemetry.addData("about to move","initialized");
         telemetry.update();
-        autoLib.calcTurn(90,.3f);
-        telemetry.addData("Just turned","finished turning");
+        Thread.sleep(1000);
+        autoLib.calcMove(10,.3f);
+        Thread.sleep(1000);
+        autoLib.calcMove(-10,-.3f);
+        telemetry.addData("Just moved","finished moving");
         telemetry.update();
     }
 

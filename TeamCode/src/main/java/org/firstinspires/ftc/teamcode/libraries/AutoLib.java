@@ -49,36 +49,37 @@ public class AutoLib {
     private LinearOpMode opMode;
 
     // Declaring TensorFlow detection
-//    private TFObjectDetector tfod;
+    private TFObjectDetector tfod;
 //
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
 
-//        initTfod();
-//    }
+        initTfod();
+    }
 
 
     //********** Base Motor Methods **********//
 
-//    public void calcMove(float centimeters, float power) {
-//        // Calculates target encoder position
-//        final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
-//                NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
+    public void calcMove(float centimeters, float power) {
+        // Calculates target encoder position
+        final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
+                NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
         // Specific directions require different wheels to move for mecanum
-        /*    if (direction == FORWARD) {*/
-        //prepMotorsForCalcMove(targetPosition, targetPosition);
-       /* } else if (direction == BACKWARD) {
-            prepMotorsForCalcMove(-targetPosition, -targetPosition);
-        }*/
+            if (targetPosition >0) {
+                prepMotorsForCalcMove(targetPosition, targetPosition);
+
+        } else  {
+                prepMotorsForCalcMove(-targetPosition, -targetPosition);
+        }
 // else if (direction == LEFT) {
 //            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
 //        } else if (direction == RIGHT) {
 //            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
 //        }
 
-        //setBaseMotorPowers(power);
+        setBaseMotorPowers(power);
 
         while (areBaseMotorsBusy()) {
             opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
@@ -87,7 +88,7 @@ public class AutoLib {
             opMode.idle();
         }
 
-        setBaseMotorPowers(0);
+      //  setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
@@ -185,71 +186,71 @@ public class AutoLib {
 
     //********** Tensor Flow Methods **********//
 
-//    private void initTfod() {
-//        /*
-//         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-//         */
-//        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-//
-//        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-//        parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
-//
-//        //  Instantiate the Vuforia engine
-//        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
+    private void initTfod() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraName = opMode.hardwareMap.get(WebcamName.class, "Webcam");
+
+        //  Instantiate the Vuforia engine
+        VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
     // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
     /*
      * Configure Tensor Flow
      */
-//        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
-//                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-//        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-//        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-//        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
-//    }
-//
-//    public Constants.GoldObjectPosition readGoldObjectPosition() {
-//        if (tfod != null) {
-//            tfod.activate();
-//        }
-//
-//        Constants.GoldObjectPosition goldObjectPosition = null;
-//        ElapsedTime time = new ElapsedTime();
-//        time.reset();
-//
-//        while (time.seconds() < TENSOR_READING_TIME) {
-//            // getUpdatedRecognitions() will return null if no new information is available since
-//            // the last time that call was made.
-//            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-//            if (updatedRecognitions != null) {
-//                if (updatedRecognitions.size() == 2) {
-//                    int goldMineralX = -1;
-//                    int silverMineralX = -1;
-//                    for (Recognition recognition : updatedRecognitions) {
-//                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-//                            goldMineralX = (int) recognition.getLeft();
-//                        } else if (silverMineralX == -1) {
-//                            silverMineralX = (int) recognition.getLeft();
-//                        }
-//
-//                        if (goldMineralX != -1 && silverMineralX != -1) {
-//                            if (goldMineralX < silverMineralX) {
-//                                goldObjectPosition = Constants.GoldObjectPosition.CENTER;
-//                            } else if (goldMineralX > silverMineralX) {
-//                                goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
-//                            }
-//                        } else if (goldMineralX == -1 && silverMineralX != 1) {
-//                            goldObjectPosition = Constants.GoldObjectPosition.LEFT;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (tfod != null) {
-//            tfod.shutdown();
-//        }
-//
-//        return goldObjectPosition;
-//    }
+        int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+
+    public Constants.GoldObjectPosition readGoldObjectPosition() {
+        if (tfod != null) {
+            tfod.activate();
+        }
+
+        Constants.GoldObjectPosition goldObjectPosition = null;
+        ElapsedTime time = new ElapsedTime();
+        time.reset();
+
+        while (time.seconds() < TENSOR_READING_TIME) {
+            // getUpdatedRecognitions() will return null if no new information is available since
+            // the last time that call was made.
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                if (updatedRecognitions.size() == 2) {
+                    int goldMineralX = -1;
+                    int silverMineralX = -1;
+                    for (Recognition recognition : updatedRecognitions) {
+                        if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            goldMineralX = (int) recognition.getLeft();
+                        } else if (silverMineralX == -1) {
+                            silverMineralX = (int) recognition.getLeft();
+                        }
+
+                        if (goldMineralX != -1 && silverMineralX != -1) {
+                            if (goldMineralX < silverMineralX) {
+                                goldObjectPosition = Constants.GoldObjectPosition.CENTER;
+                            } else if (goldMineralX > silverMineralX) {
+                                goldObjectPosition = Constants.GoldObjectPosition.RIGHT;
+                            }
+                        } else if (goldMineralX == -1 && silverMineralX != 1) {
+                            goldObjectPosition = Constants.GoldObjectPosition.LEFT;
+                        }
+                    }
+                }
+            }
+        }
+        if (tfod != null) {
+            tfod.shutdown();
+        }
+
+        return goldObjectPosition;
+    }
 }
