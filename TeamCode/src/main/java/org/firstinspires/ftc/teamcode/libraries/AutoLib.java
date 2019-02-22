@@ -66,18 +66,7 @@ public class AutoLib {
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
                 NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
-        // Specific directions require different wheels to move for mecanum
-            if (targetPosition >0) {
-                prepMotorsForCalcMove(targetPosition, targetPosition);
-
-        } else  {
-                prepMotorsForCalcMove(-targetPosition, -targetPosition);
-        }
-// else if (direction == LEFT) {
-//            prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
-//        } else if (direction == RIGHT) {
-//            prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
-//        }
+        prepMotorsForCalcMove(targetPosition, targetPosition);
 
         setBaseMotorPowers(power);
 
