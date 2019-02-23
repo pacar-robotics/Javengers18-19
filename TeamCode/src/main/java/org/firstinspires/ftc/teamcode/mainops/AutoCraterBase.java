@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.libraries.Constants;
 /*
  * Title: AutoBlueCraterBase
  * Date Created: 11/23/2018
- * Date Modified: 11/26/2018
+ * Date Modified: 2/22/2019
  * Author: Rahul, Poorvi, Varnika
  * Type: Main
  * Description: Starts on blue crater latcher
@@ -35,6 +35,8 @@ public class AutoCraterBase extends LinearOpMode {
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
+            autoLib.calcMove(60,.2f);
+            autoLib.calcTurn(35,.2f);
 
         } else {
             telemetry.addData("pos", "Nothing");

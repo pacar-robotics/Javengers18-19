@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.libraries.Constants;
 /*
  * Title: CalcTurn Test
  * Date Created: 2/13/2019
- * Date Modified: 2/13/2019
+ * Date Modified: 2/22/2019
  * Author: Poorvi
  * Type: Support
  * Description: This will test if the robot can actually turn
@@ -27,9 +27,8 @@ public class TestCalcTurn extends LinearOpMode {
         telemetry.addData("about to move","initialized");
         telemetry.update();
         Thread.sleep(1000);
-        autoLib.calcMove(10,.3f);
+        autoLib.calcTurn(45,.3f);
         Thread.sleep(1000);
-        autoLib.calcMove(-10,-.3f);
         telemetry.addData("Just moved","finished moving");
         telemetry.update();
     }

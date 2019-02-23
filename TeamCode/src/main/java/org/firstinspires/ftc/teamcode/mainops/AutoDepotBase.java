@@ -1,37 +1,43 @@
-//package org.firstinspires.ftc.teamcode.mainops;
+package org.firstinspires.ftc.teamcode.mainops;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import org.firstinspires.ftc.teamcode.libraries.AutoLib;
+
+
+/*
+ * Title: AutoBlueDepotBase
+ * Date Created: 11/3/2018
+ * Date Modified: 2/22/2019
+ * Author: Rahul, Poorvi, Varnika
+ * Type: Main
+ * Description: Starts on blue depot latcher
+ */
+
+@Autonomous(group = "Main")
+public class AutoDepotBase extends LinearOpMode {
+    private AutoLib autoLib;
+
+    @SuppressWarnings("RedundantThrows")
+    @Override
+    public void runOpMode() throws InterruptedException {
+        initialize();
+        Thread.sleep(1000);
+        telemetry.addData("About to set position for intaking minerals","initialized");
+        telemetry.update();
+        autoLib.setPositionintakeMinerals();
+        telemetry.addData("Just set position for intaking minerals","Set position");
+        telemetry.update();
+        autoLib.intakeMinerals();
+//        autoLib.calcMove(5,3f );
 //
-//import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-//import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-//
-//import org.firstinspires.ftc.teamcode.libraries.AutoLib;
-//import org.firstinspires.ftc.teamcode.libraries.Constants;
-//
-//
-///*
-// * Title: AutoBlueDepotBase
-// * Date Created: 11/3/2018
-// * Date Modified: 11/26/2018
-// * Author: Rahul, Poorvi, Varnika
-// * Type: Main
-// * Description: Starts on blue depot latcher
-// */
-//
-//@Autonomous(group = "Main")
-//public class AutoDepotBase extends LinearOpMode {
-//    private AutoLib autoLib;
-//
-//    @SuppressWarnings("RedundantThrows")
-//    @Override
-//    public void runOpMode() throws InterruptedException {
-//        initialize();
-////        autoLib.calcMove(5,3f );
-////
-//        autoLib.landOnGround();
-//        // Tensorflow
-//       // Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-////        telemetry.addData("Detecting Mineral", "Left Mineral");
-////        telemetry.update();
-//        //if (gold == Constants.GoldObjectPosition.LEFT) {
+        // autoLib.landOnGround();
+        // Tensorflow
+        // Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
+//        telemetry.addData("Detecting Mineral", "Left Mineral");
+//        telemetry.update();
+        //if (gold == Constants.GoldObjectPosition.LEFT) {
 //            telemetry.addData("pos", "Left");
 //            telemetry.update();
 //            autoLib.calcTurn(40, .9f);
@@ -87,19 +93,19 @@
 //        }
 //        //telemetry.update();
 //
-//    }
-//
-//    private void initialize() {
-//        telemetry.addData("Status", "Initializing...");
-//        telemetry.update();
-//
-//        autoLib = new AutoLib(this);
-//
-//        telemetry.addData("Status", "Ready");
-//        telemetry.update();
-//        waitForStart();
-//
-//        telemetry.addData("Status", "Running");
-//        telemetry.update();
-//    }
-//}
+    }
+
+    private void initialize() {
+        telemetry.addData("Status", "Initializing...");
+        telemetry.update();
+
+        autoLib = new AutoLib(this);
+
+        telemetry.addData("Status", "Ready");
+        telemetry.update();
+        waitForStart();
+
+        telemetry.addData("Status", "Running");
+        telemetry.update();
+    }
+}

@@ -24,7 +24,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_T
 /*
  * Title: Robot
  * Date Created: 10/14/2018
- * Date Modified: 2/12/2019
+ * Date Modified: 2/22/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This is the base library for any main op to be based off. It will contain all the
@@ -113,5 +113,8 @@ public class Robot {
 
     boolean isTouchSensorPressed(int index) {
         return touchSensors[index].isPressed();
+    }
+
+    public void setServoPosition(int servoIntakeAngle) {
     }
 }

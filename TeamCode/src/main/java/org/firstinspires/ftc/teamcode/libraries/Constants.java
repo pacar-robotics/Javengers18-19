@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 /*
  * Title: Constants
  * Date Created: 10/14/2018
- * Date Modified: 2/12/2019
+ * Date Modified: 2/22/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain all of the constants we will use in any of our programs.
@@ -31,8 +31,8 @@ public class Constants {
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_LATCHED = .68f;
     static final float SERVO_LATCHER_POS_REST = .35f;
-    static final float SERVO_SCORING_POS_RECEIVE = .5f; // TODO: find actual position
-    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .39f;
+    static final float SERVO_SCORING_POS_RECEIVE = .19f;
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .15f;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;

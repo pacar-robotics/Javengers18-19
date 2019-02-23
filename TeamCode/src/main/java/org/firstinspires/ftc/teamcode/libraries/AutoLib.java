@@ -19,12 +19,14 @@ import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABE
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
@@ -38,7 +40,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATI
 /*
  * Title: AutoLib
  * Date Created: 10/28/2018
- * Date Modified: 1/20/2019
+ * Date Modified: 1/22/2019
  * Author: Rahul, Poorvi, Varnika
  * Type: Library
  * Description: This will contain the methods for Autonomous, and other autonomous-related programs.
@@ -141,6 +143,16 @@ public class AutoLib {
         //return true;
     }
 
+    public void intakeMinerals(){
+        ElapsedTime time = new ElapsedTime();
+
+        robot.setDcMotorPower(MOTOR_INTAKE,-.2f);
+        while(time.seconds()<= 1){
+            opMode.idle();
+        }
+        setBaseMotorPowers(0f);
+    }
+
 
     //********** Latcher Methods **********//
 
@@ -170,6 +182,12 @@ public class AutoLib {
 
         }
         robot.setDcMotorPower(MOTOR_LATCHER, 0);
+    }
+
+    //********** Servo Methods **********//
+
+    public void setPositionintakeMinerals() throws InterruptedException{
+        robot.setServoPosition(SERVO_INTAKE_ANGLE);
     }
 
 
