@@ -35,8 +35,11 @@ public class AutoCraterBase extends LinearOpMode {
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
-            autoLib.calcMove(60,.2f);
-            autoLib.calcTurn(35,.2f);
+            autoLib.calcMove(10,.2f);
+            autoLib.calcTurn(-10,.2f);
+            autoLib.calcMove(64,.2f);
+            autoLib.calcMove(-30,.2f);
+            autoLib.calcTurn(100,.2f);
 
         } else {
             telemetry.addData("pos", "Nothing");

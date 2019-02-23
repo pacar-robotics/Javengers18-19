@@ -114,7 +114,4 @@ public class Robot {
     boolean isTouchSensorPressed(int index) {
         return touchSensors[index].isPressed();
     }
-
-    public void setServoPosition(int servoIntakeAngle) {
-    }
 }

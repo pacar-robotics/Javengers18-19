@@ -9,8 +9,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import java.util.List;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
@@ -27,6 +25,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
@@ -52,7 +51,8 @@ public class AutoLib {
 
     // Declaring TensorFlow detection
     private TFObjectDetector tfod;
-//
+
+    //
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
@@ -79,7 +79,7 @@ public class AutoLib {
             opMode.idle();
         }
 
-      //  setBaseMotorPowers(0);
+        //  setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
@@ -89,7 +89,7 @@ public class AutoLib {
                 (WHEEL_DIAMETER * 360));
 
 
-        prepMotorsForCalcMove(targetPosition, targetPosition);
+        prepMotorsForCalcMove(-targetPosition, targetPosition);
 
         setBaseMotorPowers(power);
 
@@ -127,30 +127,33 @@ public class AutoLib {
         robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
     }
 
-    public void moveLinearSlideToDepot() {
-        ElapsedTime time = new ElapsedTime();
+    public void moveLinearSlideToDepot(int encoderCount) {
+        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, RUN_TO_POSITION);
+        robot.setDcMotorTargetPosition(MOTOR_INTAKE_SLIDE, encoderCount);
 
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -1f);
-        while (time.seconds() <= 1) {
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .1f);
+
+        while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)) {
+            opMode.telemetry.addData("Intake count", robot.getDcMotorPosition(MOTOR_INTAKE_SLIDE));
+            opMode.telemetry.update();
             opMode.idle();
         }
-        setBaseMotorPowers(0);
+
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
     }
 
     private boolean areBaseMotorsBusy() {
-        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL) ||
-                robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
-        //return true;
+        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
     }
 
-    public void intakeMinerals(){
+    public void intakeMinerals() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_INTAKE,-.2f);
-        while(time.seconds()<= 1){
+        robot.setDcMotorPower(MOTOR_INTAKE, -.2f);
+        while (time.seconds() <= 1) {
             opMode.idle();
         }
-        setBaseMotorPowers(0f);
     }
 
 
@@ -186,8 +189,8 @@ public class AutoLib {
 
     //********** Servo Methods **********//
 
-    public void setPositionintakeMinerals() throws InterruptedException{
-        robot.setServoPosition(SERVO_INTAKE_ANGLE);
+    public void setPositionintakeMinerals() {
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
     }
 
 
@@ -205,11 +208,11 @@ public class AutoLib {
         //  Instantiate the Vuforia engine
         VuforiaLocalizer vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
-    // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
 
-    /*
-     * Configure Tensor Flow
-     */
+        /*
+         * Configure Tensor Flow
+         */
         int tfodMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
