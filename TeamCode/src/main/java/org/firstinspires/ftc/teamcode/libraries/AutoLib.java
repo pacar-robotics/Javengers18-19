@@ -155,7 +155,19 @@ public class AutoLib {
             opMode.idle();
         }
     }
+    public void depositMarker() {
+        ElapsedTime time = new ElapsedTime();
 
+        robot.setDcMotorPower(MOTOR_INTAKE, 2f);
+        while (time.seconds() <= 1) {
+            opMode.idle();
+        }
+    }
+    public void stopintake() {
+        ElapsedTime time = new ElapsedTime();
+
+        robot.setDcMotorPower(MOTOR_INTAKE, 0);
+    }
 
     //********** Latcher Methods **********//
 

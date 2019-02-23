@@ -44,6 +44,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(150,.1f);
             autoLib.calcTurn(35,.1f);
             autoLib.calcMove(40,.1f);
+
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
             telemetry.update();
