@@ -43,17 +43,17 @@ public class AutoCraterBase extends LinearOpMode {
 
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            autoLib.calcMove(10,.2f);
-            autoLib.calcTurn(-15,.2f);
-            autoLib.calcMove(20,.2f);
-           autoLib.calcMove(-10,.2f);
-           autoLib.calcTurn(70,.2f);
-           autoLib.calcMove(120,.2f);
-           autoLib.calcTurn(40,.2f);
-           autoLib.calcMove(100,.2f);
+            autoLib.calcMove(10,.5f);
+            autoLib.calcTurn(-50,.5f);
+            autoLib.calcMove(60,.5f);
+           autoLib.calcMove(-28,.5f);
+           autoLib.calcTurn(149,.5f);
+           autoLib.calcMove(115,.5f);
+           autoLib.calcTurn(40,.5f);
+           autoLib.calcMove(80,.5f);
             autoLib.depositMarker();
             autoLib.stopintake();
-            autoLib.calcMove(-104,.2f);
+//            autoLib.calcMove(-104,.5f);
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
