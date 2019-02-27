@@ -162,7 +162,7 @@ public class TeleLib {
 
     // Uses gamepad 2 B and d-pad
     public void processIntakeAngle() {
-        if (opMode.gamepad2.b) {
+        if (opMode.gamepad2.a) {
             robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
         }
 
