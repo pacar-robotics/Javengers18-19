@@ -21,6 +21,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_P
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RECEIVE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_SCORE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 
@@ -49,6 +50,7 @@ public class TeleLib {
         opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
 
         robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_HOLD);
+        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RECEIVE);
 
         latcherServoInputDelay = new ElapsedTime();
         scoringServoInputDelay = new ElapsedTime();
@@ -127,8 +129,10 @@ public class TeleLib {
     // Uses gamepad 1 Y and d-pad up/down
     public void processScoringServo() {
         // Preset
-        if (opMode.gamepad1.y) {
+        if (opMode.gamepad1.a) {
             robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RECEIVE);
+        } else if (opMode.gamepad1.y) {
+            robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_SCORE);
         }
 
         // Manual
