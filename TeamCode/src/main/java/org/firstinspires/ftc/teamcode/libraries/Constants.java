@@ -27,12 +27,15 @@ public class Constants {
     static final int SERVO_LATCHER = 0;
     static final int SERVO_INTAKE_ANGLE = 1;
     static final int SERVO_SCORING = 2;
+    static final int SERVO_INTAKE_HOLDER = 3;
 
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_LATCHED = .68f;
     static final float SERVO_LATCHER_POS_REST = .35f;
     static final float SERVO_SCORING_POS_RECEIVE = .5f; // TODO: find actual position
     static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .07f;
+    static final float SERVO_INTAKE_HOLDER_POS_HOLD = 0;    // TODO: find actual position
+    static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = 1;    // TODO: find actual position
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;

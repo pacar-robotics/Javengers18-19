@@ -34,6 +34,7 @@ public class MainTeleOp extends LinearOpMode {
             teleLib.processIntakeSlide();
             teleLib.processIntake();
             teleLib.processIntakeAngle();
+            teleLib.processIntakeHolder();
 
             idle();
         }

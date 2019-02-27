@@ -13,6 +13,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER_POS_DEPOSIT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER_POS_HOLD;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
@@ -160,7 +163,7 @@ public class TeleLib {
         }
     }
 
-    // Uses gamepad 2 B and d-pad
+    // Uses gamepad 2 A and d-pad
     public void processIntakeAngle() {
         if (opMode.gamepad2.a) {
             robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
@@ -172,6 +175,15 @@ public class TeleLib {
         } else if (opMode.gamepad2.dpad_right && intakeAngleServoInputDelay.seconds() > .2f) {
             robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, -.02f);
             intakeAngleServoInputDelay.reset();
+        }
+    }
+
+    // Uses gamepad 2 B and X
+    public void processIntakeHolder() {
+        if (opMode.gamepad2.b) {
+            robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_HOLD);
+        } else if (opMode.gamepad2.x) {
+            robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_DEPOSIT);
         }
     }
 }
