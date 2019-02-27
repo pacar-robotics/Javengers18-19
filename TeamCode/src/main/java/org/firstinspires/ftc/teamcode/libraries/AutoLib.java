@@ -22,6 +22,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SL
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
@@ -160,10 +161,14 @@ public class AutoLib {
     public void depositMarker() {
         robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_MARKER_DEP);
 
-//        robot.setDcMotorPower(MOTOR_INTAKE, 2f);
-//        while (time.seconds() <= 1) {
-//            opMode.idle();
-//        }
+    }
+    public void moveScoringArm(){
+        ElapsedTime time = new ElapsedTime();
+
+        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.2f);
+        while (time.seconds() <= .8) {
+            opMode.idle();
+        }
     }
     public void stopintake() {
         ElapsedTime time = new ElapsedTime();
