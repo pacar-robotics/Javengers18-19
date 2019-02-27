@@ -13,20 +13,22 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER_POS_DEPOSIT;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER_POS_HOLD;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RECEIVE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_SCORE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_SCORING_TOP;
 
 /*
  * Title: TeleLib
  * Date Created: 10/14/2018
- * Date Modified: 2/12/2019
+ * Date Modified: 2/27/2019
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain the methods for TeleOp, and other TeleOp-related programs.
@@ -46,6 +48,9 @@ public class TeleLib {
 
         opMode.gamepad1.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
         opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
+
+        robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_HOLD);
+        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RECEIVE);
 
         latcherServoInputDelay = new ElapsedTime();
         scoringServoInputDelay = new ElapsedTime();
@@ -124,8 +129,10 @@ public class TeleLib {
     // Uses gamepad 1 Y and d-pad up/down
     public void processScoringServo() {
         // Preset
-        if (opMode.gamepad1.y) {
+        if (opMode.gamepad1.a) {
             robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RECEIVE);
+        } else if (opMode.gamepad1.y) {
+            robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_SCORE);
         }
 
         // Manual
@@ -162,9 +169,9 @@ public class TeleLib {
         }
     }
 
-    // Uses gamepad 2 B and d-pad
+    // Uses gamepad 2 A and d-pad
     public void processIntakeAngle() {
-        if (opMode.gamepad2.b) {
+        if (opMode.gamepad2.a) {
             robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
         }
 
@@ -174,6 +181,15 @@ public class TeleLib {
         } else if (opMode.gamepad2.dpad_right && intakeAngleServoInputDelay.seconds() > .2f) {
             robot.setDeltaServoPosition(SERVO_INTAKE_ANGLE, -.02f);
             intakeAngleServoInputDelay.reset();
+        }
+    }
+
+    // Uses gamepad 2 B and X
+    public void processIntakeHolder() {
+        if (opMode.gamepad2.b) {
+            robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_HOLD);
+        } else if (opMode.gamepad2.x) {
+            robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_DEPOSIT);
         }
     }
 }
