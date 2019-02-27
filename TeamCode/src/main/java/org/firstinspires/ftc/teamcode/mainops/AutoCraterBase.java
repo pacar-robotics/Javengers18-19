@@ -30,31 +30,32 @@ public class AutoCraterBase extends LinearOpMode {
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             autoLib.calcMove(10, .2f);
-            autoLib.calcTurn(15, .2f);
-            autoLib.calcMove(50, .2f);
-            autoLib.calcMove(-20, .2f);
-            autoLib.calcTurn(-70, .2f);
-            autoLib.calcMove(-80, .2f);
-            autoLib.calcTurn(-30, .2f);
-            autoLib.calcMove(-100, .2f);
-//            autoLib.depositMarker();
-            autoLib.calcMove(98, .2f);
+            autoLib.calcTurn(45, .2f);
+            autoLib.calcMove(60, .2f);
+            autoLib.calcMove(-28, .2f);
+            autoLib.calcTurn(-190, .2f);
+            autoLib.calcMove(-70, .2f);
+            autoLib.calcTurn(-50, .2f);
+            autoLib.calcMove(-75, .2f);
+            autoLib.depositMarker();
+            autoLib.calcMove(86, .2f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(1000);
 
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            autoLib.calcMove(10, .5f);
-            autoLib.calcTurn(-47, .5f);
-            autoLib.calcMove(60, .5f);
-            autoLib.calcMove(-28, .5f);
-            autoLib.calcTurn(-80, .5f);
-            autoLib.calcMove(-91, .5f);
-            autoLib.calcTurn(43, .5f);
-            autoLib.calcMove(-80, .5f);
-  //          autoLib.depositMarker();
-  //          autoLib.calcTurn(240, .6f);
-            autoLib.calcMove(86, .6f);
+            autoLib.calcMove(10, .7f);
+            autoLib.calcTurn(-45, .7f);
+            autoLib.calcMove(60, .7f);
+            autoLib.calcMove(-28, .7f);
+            autoLib.calcTurn(-77, .7f);
+            autoLib.calcMove(-99, .7f);
+            autoLib.calcTurn(60, .7f);
+            autoLib.calcMove(-84, .7f);
+            autoLib.depositMarker();
+            Thread.sleep(1000);
+            autoLib.calcTurn(6,.7f);
+            autoLib.calcMove(90, .7f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
 
@@ -66,12 +67,12 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(44, .7f);
             autoLib.calcMove(-28, .7f);
             autoLib.calcTurn(-120, .7f);
-            autoLib.calcMove(-100, .6f);
-            autoLib.calcTurn(61, .6f);
-            autoLib.calcMove(-64, .6f);
+            autoLib.calcMove(-100, .7f);
+            autoLib.calcTurn(61, .7f);
+            autoLib.calcMove(-64, .7f);
 //            autoLib.depositMarker();
 //            autoLib.calcTurn(210, .6f);
-            autoLib.calcMove(86, .6f);
+            autoLib.calcMove(86, .7f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
 
