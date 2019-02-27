@@ -48,6 +48,8 @@ public class TeleLib {
         opMode.gamepad1.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
         opMode.gamepad2.setJoystickDeadzone(GAMEPAD_JOYSTICK_TOLERANCE);
 
+        robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_HOLD);
+
         latcherServoInputDelay = new ElapsedTime();
         scoringServoInputDelay = new ElapsedTime();
         intakeAngleServoInputDelay = new ElapsedTime();
