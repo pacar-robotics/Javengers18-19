@@ -51,12 +51,16 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.addData("status","just detected");
             telemetry.update();
             autoLib.calcMove(5,.2f);
-            autoLib.calcTurn(-50, .1f);
-            autoLib.calcMove(90, .1f);
-            autoLib.calcTurn(100, .1f);
-            autoLib.calcMove(60,.1f);
-            autoLib.calcTurn(180,.1f);
+            autoLib.calcTurn(-45, .1f);
+            autoLib.calcMove(45, .1f);
+            autoLib.setPositionintakeMinerals();
+            autoLib.intakeMinerals();
+            autoLib.calcTurn(30,.2f);
+            autoLib.calcMove(50,.2f);
+            autoLib.calcTurn(180,.2f);
+            autoLib.moveScoringArm();
             autoLib.depositMarker();
+            autoLib.calcTurn(30,.2f);
             autoLib.calcMove(168, .1f);
 
 

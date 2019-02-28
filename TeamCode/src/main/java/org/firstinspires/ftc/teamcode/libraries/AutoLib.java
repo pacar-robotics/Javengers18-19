@@ -155,8 +155,8 @@ public class AutoLib {
     public void intakeMinerals() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_INTAKE, .2f);
-        while (time.seconds() <= 1) {
+        robot.setDcMotorPower(MOTOR_INTAKE, .5f);
+        while (time.seconds() <= 3) {
             opMode.idle();
         }
     }
