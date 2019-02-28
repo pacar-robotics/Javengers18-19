@@ -52,6 +52,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(-99, .7f);
             autoLib.calcTurn(60, .7f);
             autoLib.calcMove(-84, .7f);
+
             autoLib.depositMarker();
             Thread.sleep(1000);
             autoLib.calcTurn(6,.7f);
@@ -75,7 +76,6 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(86, .7f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
-
 
         } else {
             telemetry.addData("pos", "Nothing");
