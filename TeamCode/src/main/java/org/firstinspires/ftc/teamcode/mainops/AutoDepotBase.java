@@ -52,15 +52,12 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.update();
             autoLib.calcMove(5,.2f);
             autoLib.calcTurn(-45, .1f);
-            autoLib.calcMove(45, .1f);
-            autoLib.setPositionintakeMinerals();
-            autoLib.intakeMinerals();
-            autoLib.calcTurn(30,.2f);
-            autoLib.calcMove(50,.2f);
+            autoLib.calcMove(55, .1f);
+            autoLib.calcTurn(80,.2f);
+            autoLib.calcMove(100,.2f);
             autoLib.calcTurn(180,.2f);
-            autoLib.moveScoringArm();
             autoLib.depositMarker();
-            autoLib.calcTurn(30,.2f);
+            autoLib.calcTurn(100,.2f);
             autoLib.calcMove(168, .1f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
@@ -69,6 +66,7 @@ public class AutoDepotBase extends LinearOpMode {
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
+            autoLib.calcTurn(5,.2f);
             autoLib.calcMove(120, .1f);
             autoLib.calcTurn(185,.2f);
             autoLib.depositMarker();
