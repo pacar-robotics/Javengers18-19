@@ -34,6 +34,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RETRACT_MARKER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
@@ -165,6 +166,10 @@ public class AutoLib {
         robot.setServoPosition(SERVO_SCORING,SERVO_SCORING_POS_MARKER_DEP);
         }
 
+        public void retractDeposit() {
+        robot.setServoPosition(SERVO_SCORING,SERVO_SCORING_POS_RETRACT_MARKER);
+
+        }
      public void moveScoringArm(){
          ElapsedTime time = new ElapsedTime();
 
