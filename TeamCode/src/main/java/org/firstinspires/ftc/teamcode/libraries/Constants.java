@@ -39,7 +39,7 @@ public class Constants {
     static final float SERVO_INTAKE_HOLDER_POS_HOLD = .62f;
     static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
     static final float SERVO_SCORING_POS_MARKER_DEP = .87f;
-    static final float SERVO_SCORING_POS_RETRACT_MARKER = .32f;
+    static final float SERVO_SCORING_POS_RETRACT_MARKER = .65f;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
