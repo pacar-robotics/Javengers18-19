@@ -50,34 +50,41 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.update();
             telemetry.addData("status","just detected");
             telemetry.update();
-            autoLib.calcTurn(40, .1f);
-            telemetry.addData("status","just turned");
-            telemetry.update();
-            autoLib.calcMove(100, .1f);
-            autoLib.calcMove(-5,5f);
-            autoLib.calcTurn(70, .1f);
-            autoLib.calcMove(68,.1f);
-            autoLib.calcTurn(5,.1f);
-            autoLib.calcTurn(35,.1f);
+            autoLib.calcMove(5,.2f);
+            autoLib.calcTurn(-50, .1f);
+            autoLib.calcMove(90, .1f);
+            autoLib.calcTurn(100, .1f);
+            autoLib.calcMove(60,.1f);
+            autoLib.calcTurn(180,.1f);
+            autoLib.depositMarker();
             autoLib.calcMove(168, .1f);
 
 
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
-            autoLib.calcMove(115, .1f);
-            autoLib.intakeMinerals();
-            autoLib.calcTurn(315, .1f);
-            autoLib.calcMove(83, .1f);
-            autoLib.calcTurn(-20, .1f);
-            autoLib.calcMove(50, .1f);
+            autoLib.calcMove(120, .1f);
+            autoLib.calcTurn(185,.2f);
+            autoLib.depositMarker();
+            autoLib.calcTurn(-35,.2f);
+            autoLib.calcMove(30, .1f);
+            autoLib.calcTurn(30,.2f);
+            autoLib.calcMove(120,.2f);
+            autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
 
         } else {
             telemetry.addData("pos", "Nothing");
             telemetry.update();
-            autoLib.calcMove(125, .1f);
-            autoLib.calcTurn(-50, .5f);
+            autoLib.calcMove(5,.2f);
+            autoLib.calcTurn(-50, .1f);
+            autoLib.calcMove(90, .1f);
+            autoLib.calcTurn(100, .1f);
+            autoLib.calcMove(60,.1f);
+            autoLib.calcTurn(180,.1f);
+            autoLib.depositMarker();
+            autoLib.calcMove(168, .1f);
+
 
         }
         telemetry.update();
