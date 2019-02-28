@@ -52,10 +52,9 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(-99, .7f);
             autoLib.calcTurn(60, .7f);
             autoLib.calcMove(-84, .7f);
-
             autoLib.depositMarker();
             Thread.sleep(1000);
-            autoLib.calcTurn(6,.7f);
+            autoLib.calcTurn(6, .7f);
             autoLib.calcMove(90, .7f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
@@ -63,19 +62,19 @@ public class AutoCraterBase extends LinearOpMode {
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
-            autoLib.calcMove(10, .7f);
-            autoLib.calcTurn(-14, .7f);
-            autoLib.calcMove(44, .7f);
-            autoLib.calcMove(-28, .7f);
-            autoLib.calcTurn(-120, .7f);
-            autoLib.calcMove(-100, .7f);
-            autoLib.calcTurn(61, .7f);
-            autoLib.calcMove(-64, .7f);
-//            autoLib.depositMarker();
-//            autoLib.calcTurn(210, .6f);
-            autoLib.calcMove(86, .7f);
+            autoLib.calcMove(10, .4f);
+            autoLib.calcTurn(-10, .4f);
+            autoLib.calcMove(40, .4f);
+            autoLib.calcMove(-28, .4f);
+            autoLib.calcTurn(-120, .4f);
+            autoLib.calcMove(-93, .4f);
+            autoLib.calcTurn(85, .4f);
+            autoLib.calcMove(-64, .4f);
+            autoLib.depositMarker();
+            Thread.sleep(1000);
+            autoLib.calcMove(80, .4f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(900);
+            autoLib.moveLinearSlideToDepot(1000);
 
         } else {
             telemetry.addData("pos", "Nothing");
