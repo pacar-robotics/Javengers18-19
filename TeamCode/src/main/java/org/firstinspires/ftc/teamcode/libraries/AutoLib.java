@@ -26,6 +26,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_S
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
@@ -214,7 +215,7 @@ public class AutoLib {
     //********** Servo Methods **********//
 
     public void setPositionintakeMinerals() {
-        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_CRATER);
     }
 
 

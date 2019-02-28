@@ -67,12 +67,13 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(49, .4f);
             autoLib.calcMove(-19, .4f);
             autoLib.calcTurn(-120, .4f);
-            autoLib.calcMove(-93, .4f);
+            autoLib.calcMove(-96, .4f);
             autoLib.calcTurn(65, .4f);
             autoLib.calcMove(-100, .4f);
             autoLib.depositMarker();
             Thread.sleep(1000);
-            autoLib.calcMove(94, .4f);
+            autoLib.calcTurn(5,.4f);
+            autoLib.calcMove(102, .4f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(1000);
 
