@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.libraries;
 /*
  * Title: Constants
  * Date Created: 10/14/2018
- * Date Modified: 2/22/2019
+ * Date Modified: 2/27/2019
  * Author: Rahul, Poorvi, Varnika, Sarvesh, Sachin, Shivani
  * Type: Library
  * Description: This will contain all of the constants we will use in any of our programs.
@@ -27,19 +27,22 @@ public class Constants {
     static final int SERVO_LATCHER = 0;
     static final int SERVO_INTAKE_ANGLE = 1;
     static final int SERVO_SCORING = 2;
+    static final int SERVO_INTAKE_HOLDER = 3;
 
     //********** Servo Positions **********//
     static final float SERVO_LATCHER_POS_LATCHED = .64f;
     static final float SERVO_LATCHER_POS_REST = .45f;
-    static final float SERVO_SCORING_POS_RECEIVE = .19f;
-    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .39f;
+    static final float SERVO_SCORING_POS_RECEIVE = .5f;
+    static final float SERVO_SCORING_POS_SCORE = .82f;
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .15f;
+    static final float SERVO_INTAKE_ANGLE_POS_CRATER = .37f;
+    static final float SERVO_INTAKE_HOLDER_POS_HOLD = .62f;
+    static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
     static final float SERVO_SCORING_POS_MARKER_DEP = .87f;
 
     //********** Touch Sensor Indexes **********//
     static final int TOUCH_LATCHER_TOP = 0;
     static final int TOUCH_LATCHER_BOTTOM = 1;
-    static final int TOUCH_SCORING_TOP = 2;
-    static final int TOUCH_SCORING_BOTTOM = 3;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 9f; // Centimeters

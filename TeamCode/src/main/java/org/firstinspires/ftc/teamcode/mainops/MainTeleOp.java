@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.libraries.TeleLib;
 /*
  * Title: MainTeleOp
  * Date Created: 10/14/2018
- * Date Modified: 2/3/2019
+ * Date Modified: 2/27/2019
  * Author: Rahul, Sarvesh, Sachin, Shivani
  * Type: Main
  * Description: This is the main teleop program we will use
@@ -34,6 +34,7 @@ public class MainTeleOp extends LinearOpMode {
             teleLib.processIntakeSlide();
             teleLib.processIntake();
             teleLib.processIntakeAngle();
+            teleLib.processIntakeHolder();
 
             idle();
         }
