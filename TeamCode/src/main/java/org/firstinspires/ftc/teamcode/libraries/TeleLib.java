@@ -12,6 +12,7 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEE
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_HOLDER_POS_DEPOSIT;
@@ -68,14 +69,14 @@ public class TeleLib {
     // Uses gamepad 1 for when intake is front
     private void defaultDrive() {
         // Values need to be reversed (up on joystick is -1)
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.left_stick_y);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.right_stick_y);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.right_stick_y);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.left_stick_y);
     }
 
     // Uses gamepad 2 when latcher is front
     private void latchingDrive() {
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad2.right_stick_y * .25f);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad2.left_stick_y * .25f);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad2.left_stick_y);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad2.right_stick_y);
     }
 
     private boolean isGamepad2Drive() {
@@ -171,8 +172,10 @@ public class TeleLib {
 
     // Uses gamepad 2 A and d-pad
     public void processIntakeAngle() {
-        if (opMode.gamepad2.a) {
+        if (opMode.gamepad2.dpad_down) {
             robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
+        } else if (opMode.gamepad2.dpad_up) {
+            robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_CRATER);
         }
 
         if (opMode.gamepad2.dpad_left && intakeAngleServoInputDelay.seconds() > .2f) {

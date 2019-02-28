@@ -33,8 +33,9 @@ public class Constants {
     static final float SERVO_LATCHER_POS_LATCHED = .68f;
     static final float SERVO_LATCHER_POS_REST = .35f;
     static final float SERVO_SCORING_POS_RECEIVE = .5f;
-    static final float SERVO_SCORING_POS_SCORE = .89f;
-    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .07f;
+    static final float SERVO_SCORING_POS_SCORE = .82f;
+    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .15f;
+    static final float SERVO_INTAKE_ANGLE_POS_CRATER = .37f;
     static final float SERVO_INTAKE_HOLDER_POS_HOLD = .62f;
     static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
 
