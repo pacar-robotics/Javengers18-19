@@ -162,15 +162,15 @@ public class TeleLib {
     // Uses gamepad 2 bumpers & Y
     public void processIntake() {
         if (opMode.gamepad2.right_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, -.4f);
+            robot.setDcMotorPower(MOTOR_INTAKE, -.75f);
         } else if (opMode.gamepad2.left_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, .4f);
+            robot.setDcMotorPower(MOTOR_INTAKE, .75f);
         } else if (opMode.gamepad2.y) {
             robot.setDcMotorPower(MOTOR_INTAKE, 0);
         }
     }
 
-    // Uses gamepad 2 A and d-pad
+    // Uses gamepad 2 d-pad
     public void processIntakeAngle() {
         if (opMode.gamepad2.dpad_down) {
             robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INTAKE);
