@@ -69,14 +69,14 @@ public class TeleLib {
     // Uses gamepad 1 for when intake is front
     private void defaultDrive() {
         // Values need to be reversed (up on joystick is -1)
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad1.right_stick_y);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad1.left_stick_y);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad1.right_stick_y);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad1.left_stick_y);
     }
 
     // Uses gamepad 2 when latcher is front
     private void latchingDrive() {
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, opMode.gamepad2.left_stick_y);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, opMode.gamepad2.right_stick_y);
+        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, -opMode.gamepad2.left_stick_y);
+        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, -opMode.gamepad2.right_stick_y);
     }
 
     private boolean isGamepad2Drive() {
