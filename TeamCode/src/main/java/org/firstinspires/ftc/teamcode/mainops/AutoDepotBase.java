@@ -52,10 +52,10 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.update();
             autoLib.calcMove(5,.2f);
             autoLib.calcTurn(-45, .1f);
-            autoLib.calcMove(55, .1f);
-            autoLib.calcTurn(80,.2f);
-            autoLib.calcMove(100,.2f);
-            autoLib.calcTurn(180,.2f);
+            autoLib.calcMove(70, .1f);
+            autoLib.calcTurn(75,.2f);
+            autoLib.calcMove(70,.2f);
+            autoLib.calcTurn(150,.2f);
             autoLib.depositMarker();
             autoLib.calcTurn(100,.2f);
             autoLib.calcMove(168, .1f);
@@ -63,17 +63,18 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.moveLinearSlideToDepot(900);
 
 
+
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
-            autoLib.calcTurn(-9,.6f);
+            autoLib.calcTurn(-9,.2f);
             autoLib.calcMove(120, .6f);
             autoLib.calcTurn(215,.6f);
             autoLib.depositMarker();
             Thread.sleep(2500);
-            autoLib.calcTurn(-65,.6f);
+            autoLib.calcTurn(-75,.6f);
             autoLib.calcMove(50, .6f);
-            autoLib.calcTurn(40,.6f);
+            autoLib.calcTurn(27,.6f);
             autoLib.calcMove(100,.4f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
@@ -82,13 +83,17 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.addData("pos", "Nothing");
             telemetry.update();
             autoLib.calcMove(5,.2f);
-            autoLib.calcTurn(-50, .1f);
-            autoLib.calcMove(90, .1f);
-            autoLib.calcTurn(100, .1f);
-            autoLib.calcMove(60,.1f);
-            autoLib.calcTurn(180,.1f);
+            autoLib.calcTurn(-45, .1f);
+            autoLib.calcMove(70, .1f);
+            autoLib.calcTurn(75,.2f);
+            autoLib.calcMove(70,.2f);
+            autoLib.calcTurn(150,.2f);
             autoLib.depositMarker();
+            autoLib.calcTurn(100,.2f);
             autoLib.calcMove(168, .1f);
+            autoLib.setPositionintakeMinerals();
+            autoLib.moveLinearSlideToDepot(900);
+
 
 
         }
