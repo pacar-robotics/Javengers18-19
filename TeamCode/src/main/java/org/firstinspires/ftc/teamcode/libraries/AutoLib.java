@@ -27,9 +27,6 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REV
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INTAKE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
@@ -162,24 +159,26 @@ public class AutoLib {
             opMode.idle();
         }
     }
+
     public void depositMarker() {
-        robot.setServoPosition(SERVO_SCORING,SERVO_SCORING_POS_MARKER_DEP);
+        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_MARKER_DEP);
+    }
+
+    public void retractDeposit() {
+        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RETRACT_MARKER);
+
+    }
+
+    public void moveScoringArm() {
+        ElapsedTime time = new ElapsedTime();
+
+        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.2f);
+        while (time.seconds() <= .8) {
+            opMode.idle();
         }
 
-        public void retractDeposit() {
-        robot.setServoPosition(SERVO_SCORING,SERVO_SCORING_POS_RETRACT_MARKER);
 
-        }
-     public void moveScoringArm(){
-         ElapsedTime time = new ElapsedTime();
-
-         robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.2f);
-         while (time.seconds() <= .8) {
-             opMode.idle();
-         }
-
-
-     }
+    }
 
     public void stopintake() {
         ElapsedTime time = new ElapsedTime();
