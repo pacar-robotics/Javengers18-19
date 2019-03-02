@@ -37,6 +37,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(-67, .8f);
             autoLib.calcTurn(96, .8f);
             autoLib.calcMove(-105, .8f);
+            autoLib.moveScoringArm();
             autoLib.depositMarker();
             Thread.sleep(1000);
             autoLib.calcMove(100, .8f);
@@ -53,6 +54,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcMove(-119, .8f);
             autoLib.calcTurn(58, .8f);
             autoLib.calcMove(-95, .8f);
+            autoLib.moveScoringArm();
             autoLib.depositMarker();
             Thread.sleep(1000);
             autoLib.calcTurn(12, .8f);
@@ -65,12 +67,15 @@ public class AutoCraterBase extends LinearOpMode {
             telemetry.update();
             autoLib.calcMove(10, .8f);
             autoLib.calcTurn(-5, .8f);
+            autoLib.intakeMinerals();
             autoLib.calcMove(49, .8f);
             autoLib.calcMove(-19, .8f);
+            autoLib.stopintake();
             autoLib.calcTurn(-115, .8f);
             autoLib.calcMove(-92, .8f);
             autoLib.calcTurn(60, .8f);
             autoLib.calcMove(-106, .8f);
+            autoLib.moveScoringArm();
             autoLib.depositMarker();
             Thread.sleep(1000);
             autoLib.calcTurn(6,.8f);

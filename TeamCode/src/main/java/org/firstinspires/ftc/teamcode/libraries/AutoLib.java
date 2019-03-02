@@ -154,7 +154,7 @@ public class AutoLib {
     public void moveScoringArm() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.6f);
+        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.8f);
         while (time.seconds() <= .9) {
             opMode.idle();
         }
