@@ -27,7 +27,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REV
 import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_INIT;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_LATCHED;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
@@ -59,6 +61,8 @@ public class AutoLib {
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
+
+        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_INIT);
 
         initTfod();
     }
@@ -121,7 +125,7 @@ public class AutoLib {
         robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, RUN_TO_POSITION);
         robot.setDcMotorTargetPosition(MOTOR_INTAKE_SLIDE, encoderCount);
 
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .1f);
+        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .5f);
 
         while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)) {
             opMode.idle();
@@ -135,12 +139,7 @@ public class AutoLib {
     }
 
     public void intakeMinerals() {
-        ElapsedTime time = new ElapsedTime();
-
         robot.setDcMotorPower(MOTOR_INTAKE, .5f);
-        while (time.seconds() <= 3) {
-            opMode.idle();
-        }
     }
 
     public void depositMarker() {
@@ -156,7 +155,7 @@ public class AutoLib {
         ElapsedTime time = new ElapsedTime();
 
         robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.6f);
-        while (time.seconds() <= .6) {
+        while (time.seconds() <= .9) {
             opMode.idle();
         }
         robot.setDcMotorPower(MOTOR_SCORING_SLIDE,0f);
@@ -164,8 +163,6 @@ public class AutoLib {
     }
 
     public void stopintake() {
-        ElapsedTime time = new ElapsedTime();
-
         robot.setDcMotorPower(MOTOR_INTAKE, 0);
     }
 
@@ -189,6 +186,8 @@ public class AutoLib {
             opMode.idle();
         }
         robot.setDcMotorPower(MOTOR_LATCHER, 0);
+
+        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_LATCHED);
     }
 
     //********** Servo Methods **********//

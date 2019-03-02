@@ -38,13 +38,13 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(75, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.calcMove(-70, .6f);
-//            autoLib.moveScoringArm();
+            autoLib.moveScoringArm();
             autoLib.depositMarker();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             autoLib.calcTurn(-30, .6f);
             autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(970);
+            autoLib.moveLinearSlideToDepot(1100);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
             telemetry.update();
@@ -56,26 +56,30 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcTurn(150, .6f);
             autoLib.moveScoringArm();
             autoLib.depositMarker();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             autoLib.calcTurn(-55, .6f);
             autoLib.calcMove(140, .6f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(970);
+            autoLib.moveLinearSlideToDepot(1100);
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
+            autoLib.calcMove(5,.2f);
             autoLib.calcTurn(-9, .2f);
+            autoLib.intakeMinerals();
             autoLib.calcMove(120, .6f);
+            autoLib.stopintake();
+            autoLib.calcMove(-5,.6f);
             autoLib.calcTurn(215, .6f);
             autoLib.moveScoringArm();
             autoLib.depositMarker();
-            Thread.sleep(1000);
-            autoLib.calcTurn(-75, .6f);
+            Thread.sleep(1500);
+            autoLib.calcTurn(-80, .6f);
             autoLib.calcMove(50, .6f);
-            autoLib.calcTurn(27, .6f);
-            autoLib.calcMove(100, .4f);
+            autoLib.calcTurn(20, .6f);
+            autoLib.calcMove(105, .4f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(970);
+            autoLib.moveLinearSlideToDepot(1100);
         } else {
             telemetry.addData("pos", "Nothing");
             telemetry.update();
@@ -84,13 +88,13 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(75, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.calcMove(-70, .6f);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             autoLib.moveScoringArm();
             autoLib.depositMarker();
             autoLib.calcTurn(-30, .6f);
             autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(970);
+            autoLib.moveLinearSlideToDepot(1100);
         }
     }
 
