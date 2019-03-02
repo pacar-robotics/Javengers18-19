@@ -24,11 +24,12 @@ public class AutoDepotBase extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
+
         autoLib.landOnGround();
+
         // Tensorflow
         Constants.GoldObjectPosition gold = autoLib.readGoldObjectPosition();
-        telemetry.addData("Detecting Mineral", "Left Mineral");
-        telemetry.update();
+
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             telemetry.update();
@@ -37,18 +38,15 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(75, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.calcMove(-70, .6f);
-            autoLib.moveScoringArm();
+//            autoLib.moveScoringArm();
             autoLib.depositMarker();
             Thread.sleep(1000);
             autoLib.calcTurn(-30, .6f);
             autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(970);
-
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
-            telemetry.update();
-            telemetry.addData("status", "just detected");
             telemetry.update();
             autoLib.calcMove(5, .2f);
             autoLib.calcTurn(-44, .2f);
@@ -63,8 +61,6 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(140, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(970);
-
-
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
@@ -80,7 +76,6 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(100, .4f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(970);
-
         } else {
             telemetry.addData("pos", "Nothing");
             telemetry.update();
@@ -96,11 +91,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(970);
-
-
         }
-        telemetry.update();
-
     }
 
     private void initialize() {

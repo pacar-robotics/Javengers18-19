@@ -56,7 +56,6 @@ public class AutoLib {
     // Declaring TensorFlow detection
     private TFObjectDetector tfod;
 
-    //
     public AutoLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
         this.opMode = opMode;
@@ -77,13 +76,10 @@ public class AutoLib {
         setBaseMotorPowers(power);
 
         while (areBaseMotorsBusy()) {
-            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
-            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
-            opMode.telemetry.update();
             opMode.idle();
         }
 
-        //  setBaseMotorPowers(0);
+          setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
@@ -98,9 +94,6 @@ public class AutoLib {
         setBaseMotorPowers(power);
 
         while (areBaseMotorsBusy()) {
-            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
-            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
-            opMode.telemetry.update();
             opMode.idle();
         }
 
@@ -109,25 +102,17 @@ public class AutoLib {
 
     private void setBaseMotorPowers(float power) {
         robot.setDcMotorPower(MOTOR_LEFT_WHEEL, power);
-//        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
         robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, power);
-//        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
     }
 
     private void prepMotorsForCalcMove(int leftTargetPosition, int rightTargetPosition) {
         robot.setDcMotorMode(MOTOR_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
-//        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
         robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
-//        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
 //
         robot.setDcMotorMode(MOTOR_LEFT_WHEEL, RUN_TO_POSITION);
         robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, RUN_TO_POSITION);
-//        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, RUN_TO_POSITION);
-//        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, RUN_TO_POSITION);
 //
         robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
-//        robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
-//        robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
         robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
     }
 
@@ -139,8 +124,6 @@ public class AutoLib {
         robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .1f);
 
         while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)) {
-            opMode.telemetry.addData("Intake count", robot.getDcMotorPosition(MOTOR_INTAKE_SLIDE));
-            opMode.telemetry.update();
             opMode.idle();
         }
 
@@ -192,13 +175,8 @@ public class AutoLib {
         robot.setDcMotorPower(MOTOR_LATCHER, -0.7f);
         // The motor will stop when it detects that it's on the ground
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
-            //opMode.idle();
-//            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
-//            opMode.telemetry.update();
-
+            opMode.idle();
         }
-//        opMode.telemetry.addData("Status", "Pressed");
-//        opMode.telemetry.update();
 
         robot.setDcMotorPower(MOTOR_LATCHER, 0);
 
@@ -209,9 +187,6 @@ public class AutoLib {
         robot.setDcMotorPower(MOTOR_LATCHER, .6f);
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
             opMode.idle();
-            opMode.telemetry.addData("Status", robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
-            opMode.telemetry.update();
-
         }
         robot.setDcMotorPower(MOTOR_LATCHER, 0);
     }
