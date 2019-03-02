@@ -172,11 +172,11 @@ public class AutoLib {
     public void moveScoringArm() {
         ElapsedTime time = new ElapsedTime();
 
-        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.2f);
-        while (time.seconds() <= .8) {
+        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.6f);
+        while (time.seconds() <= .6) {
             opMode.idle();
         }
-
+        robot.setDcMotorPower(MOTOR_SCORING_SLIDE,0f);
 
     }
 
