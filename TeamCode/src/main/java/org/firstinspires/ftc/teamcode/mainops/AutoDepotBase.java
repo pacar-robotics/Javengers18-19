@@ -38,7 +38,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcTurn(150, .6f);
             autoLib.calcMove(-70, .6f);
             autoLib.depositMarker();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             autoLib.calcTurn(-30, .6f);
             autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
@@ -56,7 +56,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(70, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.depositMarker();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             autoLib.calcTurn(-55, .6f);
             autoLib.calcMove(140, .6f);
             autoLib.setPositionintakeMinerals();
@@ -70,7 +70,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(120, .6f);
             autoLib.calcTurn(215, .6f);
             autoLib.depositMarker();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             autoLib.calcTurn(-75, .6f);
             autoLib.calcMove(50, .6f);
             autoLib.calcTurn(27, .6f);
@@ -86,7 +86,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(75, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.calcMove(-70, .6f);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             autoLib.depositMarker();
             autoLib.calcTurn(-30, .6f);
             autoLib.calcMove(155, .6f);

@@ -189,7 +189,7 @@ public class AutoLib {
     //********** Latcher Methods **********//
 
     public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, -0.5f);
+        robot.setDcMotorPower(MOTOR_LATCHER, -0.7f);
         // The motor will stop when it detects that it's on the ground
         while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
             //opMode.idle();
