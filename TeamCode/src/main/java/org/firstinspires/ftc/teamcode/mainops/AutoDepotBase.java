@@ -32,14 +32,15 @@ public class AutoDepotBase extends LinearOpMode {
         if (gold == Constants.GoldObjectPosition.LEFT) {
             telemetry.addData("pos", "Left");
             telemetry.update();
-            autoLib.calcTurn(40, .2f);
-            autoLib.calcMove(100, .1f);
-            autoLib.calcTurn(110, .1f);
-            autoLib.calcMove(80, .1f);
-            autoLib.calcTurn(180, .1f);
+            autoLib.calcMove(5,.2f);
+            autoLib.calcTurn(35, .2f);
+            autoLib.calcMove(75, .6f);
+            autoLib.calcTurn(150, .6f);
+            autoLib.calcMove(-70, .6f);
             autoLib.depositMarker();
-            autoLib.calcTurn(-40, .2f);
-            autoLib.calcMove(195, .1f);
+            Thread.sleep(1500);
+            autoLib.calcTurn(-30, .6f);
+            autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
 
@@ -55,11 +56,9 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(70, .6f);
             autoLib.calcTurn(150, .6f);
             autoLib.depositMarker();
-            Thread.sleep(2500);
+            Thread.sleep(1500);
             autoLib.calcTurn(-55, .6f);
-            autoLib.calcMove(50, .6f);
-            autoLib.calcTurn(20, .6f);
-            autoLib.calcMove(105, .6f);
+            autoLib.calcMove(140, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
 
@@ -71,7 +70,7 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.calcMove(120, .6f);
             autoLib.calcTurn(215, .6f);
             autoLib.depositMarker();
-            Thread.sleep(2500);
+            Thread.sleep(1500);
             autoLib.calcTurn(-75, .6f);
             autoLib.calcMove(50, .6f);
             autoLib.calcTurn(27, .6f);
@@ -82,16 +81,18 @@ public class AutoDepotBase extends LinearOpMode {
         } else {
             telemetry.addData("pos", "Nothing");
             telemetry.update();
-            autoLib.calcTurn(40, .2f);
-            autoLib.calcMove(100, .1f);
-            autoLib.calcTurn(110, .1f);
-            autoLib.calcMove(80, .1f);
-            autoLib.calcTurn(180, .1f);
+            autoLib.calcMove(5,.2f);
+            autoLib.calcTurn(35, .2f);
+            autoLib.calcMove(75, .6f);
+            autoLib.calcTurn(150, .6f);
+            autoLib.calcMove(-70, .6f);
+            Thread.sleep(1500);
             autoLib.depositMarker();
-            autoLib.calcTurn(-40, .2f);
-            autoLib.calcMove(195, .1f);
+            autoLib.calcTurn(-30, .6f);
+            autoLib.calcMove(155, .6f);
             autoLib.setPositionintakeMinerals();
             autoLib.moveLinearSlideToDepot(900);
+
 
         }
         telemetry.update();
