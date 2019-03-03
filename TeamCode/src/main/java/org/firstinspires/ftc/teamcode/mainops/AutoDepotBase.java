@@ -50,7 +50,9 @@ public class AutoDepotBase extends LinearOpMode {
             telemetry.update();
             autoLib.calcMove(5, .2f);
             autoLib.calcTurn(-44, .2f);
+            autoLib.intakeMinerals();
             autoLib.calcMove(75, .6f);
+            autoLib.stopintake();
             autoLib.calcTurn(90, .6f);
             autoLib.calcMove(70, .6f);
             autoLib.calcTurn(150, .6f);
