@@ -150,10 +150,10 @@ public class TeleLib {
     public void processIntakeSlide() {
         if (opMode.gamepad2.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Extend
-            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -opMode.gamepad2.right_trigger);
+            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, -opMode.gamepad2.right_trigger * .75f);
         } else if (opMode.gamepad2.left_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
             // Retract
-            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger);
+            robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, opMode.gamepad2.left_trigger * .75f);
         } else {
             robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
         }
@@ -162,9 +162,9 @@ public class TeleLib {
     // Uses gamepad 2 bumpers & Y
     public void processIntake() {
         if (opMode.gamepad2.right_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, -.75f);
+            robot.setDcMotorPower(MOTOR_INTAKE, -.6f);
         } else if (opMode.gamepad2.left_bumper) {
-            robot.setDcMotorPower(MOTOR_INTAKE, .75f);
+            robot.setDcMotorPower(MOTOR_INTAKE, .6f);
         } else if (opMode.gamepad2.y) {
             robot.setDcMotorPower(MOTOR_INTAKE, 0);
         }
