@@ -42,7 +42,7 @@ public class AutoCraterBase extends LinearOpMode {
             Thread.sleep(1500);
             autoLib.calcMove(100, .8f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(1300);
+            autoLib.moveLinearSlideToDepot(1000);
 
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
@@ -59,7 +59,7 @@ public class AutoCraterBase extends LinearOpMode {
             Thread.sleep(1500);
             autoLib.calcMove(120, .8f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(1500);
+            autoLib.moveLinearSlideToDepot(1000);
         } else if (gold == Constants.GoldObjectPosition.CENTER) {
             telemetry.addData("pos", "Center");
             telemetry.update();
@@ -79,7 +79,7 @@ public class AutoCraterBase extends LinearOpMode {
             autoLib.calcTurn(6,.8f);
             autoLib.calcMove(129, .8f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(1300);
+            autoLib.moveLinearSlideToDepot(1000);
 
         } else {
             telemetry.addData("pos", "Nothing");
@@ -96,7 +96,7 @@ public class AutoCraterBase extends LinearOpMode {
             Thread.sleep(1500);
             autoLib.calcMove(117, .8f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(1600);
+            autoLib.moveLinearSlideToDepot(1000);
 
 
         }

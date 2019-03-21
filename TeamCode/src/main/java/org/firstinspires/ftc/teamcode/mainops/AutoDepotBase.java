@@ -42,9 +42,9 @@ public class AutoDepotBase extends LinearOpMode {
             autoLib.depositMarker();
             Thread.sleep(1500);
             autoLib.calcTurn(-30, .6f);
-            autoLib.calcMove(155, .6f);
+            autoLib.calcMove(150, .6f);
             autoLib.setPositionintakeMinerals();
-            autoLib.moveLinearSlideToDepot(1100);
+            autoLib.moveLinearSlideToDepot(1300);
         } else if (gold == Constants.GoldObjectPosition.RIGHT) {
             telemetry.addData("pos", "Right");
             telemetry.update();
