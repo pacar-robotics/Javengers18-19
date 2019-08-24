@@ -76,7 +76,7 @@ public class AutoLib {
 
         switch (direction) {
             case FORWARD:
-                prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);      //  TODO: Check negative signs
+                prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);      //TODO: Check negative signs
                 break;
             case BACKWARD:
                 prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
