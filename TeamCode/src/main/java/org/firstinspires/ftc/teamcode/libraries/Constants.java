@@ -16,47 +16,47 @@ public class Constants {
     static final float GAMEPAD_TRIGGER_TOLERANCE = .05f;
 
     //********** DcMotor Indexes **********//
-    static final int MOTOR_LEFT_WHEEL = 0;
-    static final int MOTOR_RIGHT_WHEEL = 1;
-    static final int MOTOR_LATCHER = 4;
-    static final int MOTOR_SCORING_SLIDE = 5;
-    static final int MOTOR_INTAKE_SLIDE = 6;
-    static final int MOTOR_INTAKE = 7;
+    static final int MOTOR_FRONT_LEFT_WHEEL = 0;
+    static final int MOTOR_FRONT_RIGHT_WHEEL = 1;
+    static final int MOTOR_BACK_LEFT_WHEEL = 2;
+    static final int MOTOR_BACK_RIGHT_WHEEL = 3;
+//    static final int MOTOR_LATCHER = 4;
+//    static final int MOTOR_SCORING_SLIDE = 5;
+//    static final int MOTOR_INTAKE_SLIDE = 6;
+//    static final int MOTOR_INTAKE = 7;
 
     //********** Servo Indexes **********//
-    static final int SERVO_LATCHER = 0;
-    static final int SERVO_INTAKE_ANGLE = 1;
-    static final int SERVO_SCORING = 2;
-    static final int SERVO_INTAKE_HOLDER = 3;
+//    static final int SERVO_LATCHER = 0;
+//    static final int SERVO_INTAKE_ANGLE = 1;
+//    static final int SERVO_SCORING = 2;
+//    static final int SERVO_INTAKE_HOLDER = 3;
 
     //********** Servo Positions **********//
-    static final float SERVO_LATCHER_POS_LATCHED = .64f;
-    static final float SERVO_LATCHER_POS_REST = .38f;
-    static final float SERVO_SCORING_POS_RECEIVE = .5f;
-    static final float SERVO_SCORING_POS_SCORE = .82f;
-    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .12f;
-    static final float SERVO_INTAKE_ANGLE_POS_CRATER = .47f;
-    static final float SERVO_INTAKE_HOLDER_POS_HOLD = .62f;
-    static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
-    static final float SERVO_SCORING_POS_MARKER_DEP = .87f;
-    static final float SERVO_SCORING_POS_RETRACT_MARKER = .65f;
+//    static final float SERVO_LATCHER_POS_LATCHED = .64f;
+//    static final float SERVO_LATCHER_POS_REST = .38f;
+//    static final float SERVO_SCORING_POS_RECEIVE = .5f;
+//    static final float SERVO_SCORING_POS_SCORE = .82f;
+//    static final float SERVO_INTAKE_ANGLE_POS_INTAKE = .12f;
+//    static final float SERVO_INTAKE_ANGLE_POS_CRATER = .47f;
+//    static final float SERVO_INTAKE_HOLDER_POS_HOLD = .62f;
+//    static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
+//    static final float SERVO_SCORING_POS_MARKER_DEP = .87f;
+//    static final float SERVO_SCORING_POS_RETRACT_MARKER = .65f;
 
     //********** Touch Sensor Indexes **********//
-    static final int TOUCH_LATCHER_TOP = 0;
-    static final int TOUCH_LATCHER_BOTTOM = 1;
+//    static final int TOUCH_LATCHER_TOP = 0;
+//    static final int TOUCH_LATCHER_BOTTOM = 1;
 
     //********** CalcMove Constants **********//
     static final float WHEEL_DIAMETER = 9f; // Centimeters
     static final float WHEEL_GEAR_RATIO = (2f / 2);
     static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1120f;
     static final float TRACK_DISTANCE = 15.25f;
-    static final int LEFT_WHEEL = 0;
-    static final int RIGHT_WHEEL = 1;
 
-    //public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
+    public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
 
     //********** TensorFlow **********//
-    // Vuforia Key compatible with external camera
+//     Vuforia Key compatible with external camera
     static final String VUFORIA_KEY = "AXKAgZb/////AAABmUS4ua80h0IOpsYtCk/GLTBlnQxMgwAqHFWy/jk/+c1LzWYsECeqyVFo8lr8efZWyITbeMxf4IhhNmROQ3O13t8pqcHIOhDPfp82HmA54VHiYCt3n3xpcz/xi0Vs1mh9/xe0L1coIN1cL8EnkLHVkziy8jhQV5piuKMYeqxhY0tg0OekmPBb41Bw+LE8a76/dNJjAW/uCjefuWo0pBYETldIdqnyjeRP6hmfJbo9LbSOT70zmH4fFbMKJiYnz543nF9/SpxjkNnrgjijP7f9FV98Mdhgr7f6uyqMV37oFIQIhkCh5ro737KfXQyvWfPDedbEDFy3Z2duM9JzYJA8ybFKozEtjUeB82XQgaPeDNwS";
     static final float TENSOR_READING_TIME = 3f;
 

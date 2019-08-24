@@ -16,29 +16,31 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_GOLD_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.LABEL_SILVER_MINERAL;
 import static org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus.TFOD_MODEL_ASSET;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LEFT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_LATCHER;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_SCORING_SLIDE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REVOLUTION_ENCODER_COUNT;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.RIGHT_WHEEL;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RETRACT_MARKER;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_INTAKE_ANGLE_POS_CRATER;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_LATCHER_POS_REST;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_MARKER_DEP;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RETRACT_MARKER;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
+//import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
-import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_GEAR_RATIO;
+
+import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.VUFORIA_KEY;
 
 /*
  * Title: AutoLib
@@ -61,29 +63,41 @@ public class AutoLib {
         robot = new Robot(opMode);
         this.opMode = opMode;
 
-        initTfod();
+       // initTfod();
     }
 
 
     //********** Base Motor Methods **********//
 
-    public void calcMove(float centimeters, float power) {
+    public void calcMove(float centimeters, float power, Constants.Direction direction) {
         // Calculates target encoder position
         final int targetPosition = (int) ((((centimeters / (Math.PI * WHEEL_DIAMETER)) *
                 NEVEREST_40_REVOLUTION_ENCODER_COUNT)) * WHEEL_GEAR_RATIO);
 
-        prepMotorsForCalcMove(targetPosition, targetPosition);
+        switch (direction) {
+            case FORWARD:
+                prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);      //  TODO: Check negative signs
+                break;
+            case BACKWARD:
+                prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
+                break;
+            case LEFT:
+                prepMotorsForCalcMove(-targetPosition, targetPosition, targetPosition, -targetPosition);
+                break;
+            case RIGHT:
+                prepMotorsForCalcMove(targetPosition, -targetPosition, -targetPosition, targetPosition);
+        }
 
         setBaseMotorPowers(power);
 
         while (areBaseMotorsBusy()) {
-            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
-            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
-            opMode.telemetry.update();
+//            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
+//            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
+//            opMode.telemetry.update();
             opMode.idle();
         }
 
-        //  setBaseMotorPowers(0);
+        //  setBaseMotorPowers(0);      TODO: Might need to uncomment
     }
 
     public void calcTurn(int degrees, float power) {
@@ -93,14 +107,14 @@ public class AutoLib {
                 (WHEEL_DIAMETER * 360));
 
 
-        prepMotorsForCalcMove(-targetPosition, targetPosition);
+        prepMotorsForCalcMove(-targetPosition, targetPosition, -targetPosition, targetPosition);    //TODO: Check negative signs
 
         setBaseMotorPowers(power);
 
         while (areBaseMotorsBusy()) {
-            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
-            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
-            opMode.telemetry.update();
+//            opMode.telemetry.addData("Left", robot.getDcMotorPosition(LEFT_WHEEL));
+//            opMode.telemetry.addData("Right", robot.getDcMotorPosition(RIGHT_WHEEL));
+//            opMode.telemetry.update();
             opMode.idle();
         }
 
@@ -108,119 +122,121 @@ public class AutoLib {
     }
 
     private void setBaseMotorPowers(float power) {
-        robot.setDcMotorPower(MOTOR_LEFT_WHEEL, power);
-//        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
-        robot.setDcMotorPower(MOTOR_RIGHT_WHEEL, power);
-//        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
     }
 
-    private void prepMotorsForCalcMove(int leftTargetPosition, int rightTargetPosition) {
-        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
-//        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
-        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
-//        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+    private void prepMotorsForCalcMove(int frontLeftTargetPosition, int frontRightTargetPosition,
+                                       int backLeftTargetPosition, int backRightTargetPosition) {
+        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, STOP_AND_RESET_ENCODER);
+        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, STOP_AND_RESET_ENCODER);
+
+        robot.setDcMotorMode(MOTOR_FRONT_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_FRONT_RIGHT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, RUN_TO_POSITION);
+        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, RUN_TO_POSITION);
+
+        robot.setDcMotorTargetPosition(MOTOR_FRONT_LEFT_WHEEL, frontLeftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
+        robot.setDcMotorTargetPosition(MOTOR_BACK_RIGHT_WHEEL, backRightTargetPosition);
+    }
+
+//    public void moveLinearSlideToDepot(int encoderCount) {
+//        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, STOP_AND_RESET_ENCODER);
+//        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, RUN_TO_POSITION);
+//        robot.setDcMotorTargetPosition(MOTOR_INTAKE_SLIDE, encoderCount);
 //
-        robot.setDcMotorMode(MOTOR_LEFT_WHEEL, RUN_TO_POSITION);
-        robot.setDcMotorMode(MOTOR_RIGHT_WHEEL, RUN_TO_POSITION);
-//        robot.setDcMotorMode(MOTOR_BACK_LEFT_WHEEL, RUN_TO_POSITION);
-//        robot.setDcMotorMode(MOTOR_BACK_RIGHT_WHEEL, RUN_TO_POSITION);
+//        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .1f);
 //
-        robot.setDcMotorTargetPosition(MOTOR_LEFT_WHEEL, leftTargetPosition);
-//        robot.setDcMotorTargetPosition(MOTOR_FRONT_RIGHT_WHEEL, frontRightTargetPosition);
-//        robot.setDcMotorTargetPosition(MOTOR_BACK_LEFT_WHEEL, backLeftTargetPosition);
-        robot.setDcMotorTargetPosition(MOTOR_RIGHT_WHEEL, rightTargetPosition);
-    }
-
-    public void moveLinearSlideToDepot(int encoderCount) {
-        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, STOP_AND_RESET_ENCODER);
-        robot.setDcMotorMode(MOTOR_INTAKE_SLIDE, RUN_TO_POSITION);
-        robot.setDcMotorTargetPosition(MOTOR_INTAKE_SLIDE, encoderCount);
-
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, .1f);
-
-        while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)) {
-            opMode.telemetry.addData("Intake count", robot.getDcMotorPosition(MOTOR_INTAKE_SLIDE));
-            opMode.telemetry.update();
-            opMode.idle();
-        }
-
-        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
-    }
+//        while (robot.isMotorBusy(MOTOR_INTAKE_SLIDE)) {
+//            opMode.telemetry.addData("Intake count", robot.getDcMotorPosition(MOTOR_INTAKE_SLIDE));
+//            opMode.telemetry.update();
+//            opMode.idle();
+//        }
+//
+//        robot.setDcMotorPower(MOTOR_INTAKE_SLIDE, 0);
+//    }
 
     private boolean areBaseMotorsBusy() {
-        return robot.isMotorBusy(MOTOR_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_RIGHT_WHEEL);
+        return robot.isMotorBusy(MOTOR_FRONT_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_FRONT_RIGHT_WHEEL) ||
+                robot.isMotorBusy(MOTOR_BACK_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_BACK_RIGHT_WHEEL);
     }
 
-    public void intakeMinerals() {
-        ElapsedTime time = new ElapsedTime();
+//    public void intakeMinerals() {
+//        ElapsedTime time = new ElapsedTime();
+//
+//        robot.setDcMotorPower(MOTOR_INTAKE, .5f);
+//        while (time.seconds() <= 3) {
+//            opMode.idle();
+//        }
+//    }
 
-        robot.setDcMotorPower(MOTOR_INTAKE, .5f);
-        while (time.seconds() <= 3) {
-            opMode.idle();
-        }
-    }
-
-    public void depositMarker() {
-        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_MARKER_DEP);
-    }
-
-    public void retractDeposit() {
-        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RETRACT_MARKER);
-
-    }
-
-    public void moveScoringArm() {
-        ElapsedTime time = new ElapsedTime();
-
-        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.6f);
-        while (time.seconds() <= .6) {
-            opMode.idle();
-        }
-        robot.setDcMotorPower(MOTOR_SCORING_SLIDE,0f);
-
-    }
-
-    public void stopintake() {
-        ElapsedTime time = new ElapsedTime();
-
-        robot.setDcMotorPower(MOTOR_INTAKE, 0);
-    }
+//    public void depositMarker() {
+//        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_MARKER_DEP);
+//    }
+//
+//    public void retractDeposit() {
+//        robot.setServoPosition(SERVO_SCORING, SERVO_SCORING_POS_RETRACT_MARKER);
+//
+//    }
+//
+//    public void moveScoringArm() {
+//        ElapsedTime time = new ElapsedTime();
+//
+//        robot.setDcMotorPower(MOTOR_SCORING_SLIDE, -.6f);
+//        while (time.seconds() <= .6) {
+//            opMode.idle();
+//        }
+//        robot.setDcMotorPower(MOTOR_SCORING_SLIDE,0f);
+//
+//    }
+//
+//    public void stopintake() {
+//        ElapsedTime time = new ElapsedTime();
+//
+//        robot.setDcMotorPower(MOTOR_INTAKE, 0);
+//    }
 
     //********** Latcher Methods **********//
 
-    public void landOnGround() throws InterruptedException {
-        robot.setDcMotorPower(MOTOR_LATCHER, -0.7f);
-        // The motor will stop when it detects that it's on the ground
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
-            //opMode.idle();
-//            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
+//    public void landOnGround() throws InterruptedException {
+//        robot.setDcMotorPower(MOTOR_LATCHER, -0.7f);
+//        // The motor will stop when it detects that it's on the ground
+//        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_TOP)) {
+//            //opMode.idle();
+////            opMode.telemetry.addData("Status",  robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
+////            opMode.telemetry.update();
+//
+//        }
+////        opMode.telemetry.addData("Status", "Pressed");
+////        opMode.telemetry.update();
+//
+//        robot.setDcMotorPower(MOTOR_LATCHER, 0);
+//
+//        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
+//    }
+//
+//    public void moveLatcherToBottom() {
+//        robot.setDcMotorPower(MOTOR_LATCHER, .6f);
+//        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
+//            opMode.idle();
+//            opMode.telemetry.addData("Status", robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
 //            opMode.telemetry.update();
-
-        }
-//        opMode.telemetry.addData("Status", "Pressed");
-//        opMode.telemetry.update();
-
-        robot.setDcMotorPower(MOTOR_LATCHER, 0);
-
-        robot.setServoPosition(SERVO_LATCHER, SERVO_LATCHER_POS_REST);
-    }
-
-    public void moveLatcherToBottom() {
-        robot.setDcMotorPower(MOTOR_LATCHER, .6f);
-        while (!robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM)) {
-            opMode.idle();
-            opMode.telemetry.addData("Status", robot.isTouchSensorPressed(TOUCH_LATCHER_BOTTOM));
-            opMode.telemetry.update();
-
-        }
-        robot.setDcMotorPower(MOTOR_LATCHER, 0);
-    }
-
-    //********** Servo Methods **********//
-
-    public void setPositionintakeMinerals() {
-        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_CRATER);
-    }
+//
+//        }
+//        robot.setDcMotorPower(MOTOR_LATCHER, 0);
+//    }
+//
+//    //********** Servo Methods **********//
+//
+//    public void setPositionintakeMinerals() {
+//        robot.setServoPosition(SERVO_INTAKE_ANGLE, SERVO_INTAKE_ANGLE_POS_CRATER);
+//    }
 
 
     //********** Tensor Flow Methods **********//
