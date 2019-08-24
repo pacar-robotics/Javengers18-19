@@ -22,7 +22,7 @@ public class MoveLatcherToBottom extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
-        autoLib.moveLatcherToBottom();
+//        autoLib.moveLatcherToBottom();
     }
 
     private void initialize() {
