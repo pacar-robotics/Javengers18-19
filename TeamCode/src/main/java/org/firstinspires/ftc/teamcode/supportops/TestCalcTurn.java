@@ -27,7 +27,7 @@ public class TestCalcTurn extends LinearOpMode {
         telemetry.addData("about to move","initialized");
         telemetry.update();
         Thread.sleep(1000);
-        autoLib.calcTurn(45,.3f);
+        autoLib.calcMove(10,.2f, Constants.Direction.FORWARD);
         Thread.sleep(1000);
         telemetry.addData("Just moved","finished moving");
         telemetry.update();
