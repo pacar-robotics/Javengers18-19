@@ -30,6 +30,7 @@ public class Constants {
 //    static final int SERVO_INTAKE_ANGLE = 1;
 //    static final int SERVO_SCORING = 2;
 //    static final int SERVO_INTAKE_HOLDER = 3;
+    static final int SERVO_ARM = 4;
 
     //********** Servo Positions **********//
 //    static final float SERVO_LATCHER_POS_LATCHED = .64f;
@@ -42,6 +43,8 @@ public class Constants {
 //    static final float SERVO_INTAKE_HOLDER_POS_DEPOSIT = .17f;
 //    static final float SERVO_SCORING_POS_MARKER_DEP = .87f;
 //    static final float SERVO_SCORING_POS_RETRACT_MARKER = .65f;
+    static final float SERVO_ARM_POS_GRAB = .35f;
+    static final float SERVO_ARM_POS_REST = .35f;
 
     //********** Touch Sensor Indexes **********//
 //    static final int TOUCH_LATCHER_TOP = 0;
@@ -51,7 +54,7 @@ public class Constants {
     static final float WHEEL_DIAMETER = 9f; // Centimeters
     static final float WHEEL_GEAR_RATIO = (2f / 2);
     static final float NEVEREST_40_REVOLUTION_ENCODER_COUNT = 1120f;
-    static final float TRACK_DISTANCE = 15.25f;
+    static final float TRACK_DISTANCE = 30f;
 
     public enum Direction {FORWARD, BACKWARD, LEFT, RIGHT}
 

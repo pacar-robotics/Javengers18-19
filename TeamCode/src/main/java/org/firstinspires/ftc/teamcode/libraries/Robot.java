@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
@@ -101,6 +100,7 @@ public class Robot {
         return dcMotors[index].isBusy();
     }
 
+
     // Servo methods
 //    void setServoPosition(int index, float position) {
 //        servos[index].setPosition(position);
@@ -111,7 +111,13 @@ public class Robot {
 //                // This makes sure the servo positions are between 0 and 1
 //                Range.clip(servos[index].getPosition() + delta, 0, 1));
 //    }
-//
+    public void setServoPosition(int servoArm, float servoArmPosGrab) {
+    }
+
+    public float getServoPosition(int servoArm) {
+        return 0;
+    }
+
 //    float getServoPosition(int index) {
 //        return (float) servos[index].getPosition();
 //    }

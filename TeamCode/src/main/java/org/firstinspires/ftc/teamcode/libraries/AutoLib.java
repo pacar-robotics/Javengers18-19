@@ -34,6 +34,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.NEVEREST_40_REV
 //import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_SCORING_POS_RETRACT_MARKER;
 //import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_BOTTOM;
 //import static org.firstinspires.ftc.teamcode.libraries.Constants.TOUCH_LATCHER_TOP;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM_POS_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM_POS_REST;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TENSOR_READING_TIME;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.TRACK_DISTANCE;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.WHEEL_DIAMETER;
@@ -76,7 +79,7 @@ public class AutoLib {
 
         switch (direction) {
             case FORWARD:
-                prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);      //  TODO: Check negative signs
+                prepMotorsForCalcMove(targetPosition, targetPosition, targetPosition, targetPosition);
                 break;
             case BACKWARD:
                 prepMotorsForCalcMove(-targetPosition, -targetPosition, -targetPosition, -targetPosition);
@@ -97,7 +100,7 @@ public class AutoLib {
             opMode.idle();
         }
 
-        //  setBaseMotorPowers(0);      TODO: Might need to uncomment
+          setBaseMotorPowers(0);      //TODO: Might need to uncomment
     }
 
     public void calcTurn(int degrees, float power) {
@@ -124,7 +127,7 @@ public class AutoLib {
     private void setBaseMotorPowers(float power) {
         robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
         robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, power);
-        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, power);
+        robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, power);
         robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, power);
     }
 
@@ -165,6 +168,10 @@ public class AutoLib {
     private boolean areBaseMotorsBusy() {
         return robot.isMotorBusy(MOTOR_FRONT_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_FRONT_RIGHT_WHEEL) ||
                 robot.isMotorBusy(MOTOR_BACK_LEFT_WHEEL) || robot.isMotorBusy(MOTOR_BACK_RIGHT_WHEEL);
+    }
+
+    public void moveArm() {
+        robot.setServoPosition(SERVO_ARM, SERVO_ARM_POS_GRAB);
     }
 
 //    public void intakeMinerals() {

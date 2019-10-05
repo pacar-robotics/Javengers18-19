@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.libraries.Constants;
  */
 
 @Autonomous(group = "Support")
-public class TestCalcTurn extends LinearOpMode {
+public class TestCalcMove extends LinearOpMode {
     private AutoLib autoLib;
 
     @SuppressWarnings("RedundantThrows")
@@ -27,8 +27,16 @@ public class TestCalcTurn extends LinearOpMode {
         telemetry.addData("about to move","initialized");
         telemetry.update();
         Thread.sleep(1000);
-        autoLib.calcMove(10,.2f, Constants.Direction.FORWARD);
+        autoLib.calcMove(30,.6f, Constants.Direction.FORWARD);
+        autoLib.calcMove(30,.6f, Constants.Direction.RIGHT);
+        autoLib.calcMove(30,.6f, Constants.Direction.BACKWARD);
+        autoLib.calcMove(30,.6f, Constants.Direction.LEFT);
+
+//        autoLib.calcMove(10,.2f,Constants.Direction.BACKWARD);
         Thread.sleep(1000);
+//        autoLib.calcMove(10,.2f, Constants.Direction.RIGHT);
+        Thread.sleep(1000);
+//        autoLib.calcMove(10,.2f, Constants.Direction.LEFT);
         telemetry.addData("Just moved","finished moving");
         telemetry.update();
     }

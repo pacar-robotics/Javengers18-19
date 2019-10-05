@@ -8,6 +8,9 @@ import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_LEFT
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_BACK_RIGHT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_LEFT_WHEEL;
 import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_FRONT_RIGHT_WHEEL;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM_POS_GRAB;
+import static org.firstinspires.ftc.teamcode.libraries.Constants.SERVO_ARM_POS_REST;
 
 //import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE;
 //import static org.firstinspires.ftc.teamcode.libraries.Constants.MOTOR_INTAKE_SLIDE;
@@ -44,6 +47,7 @@ public class TeleLib {
     private ElapsedTime latcherServoInputDelay;
     private ElapsedTime scoringServoInputDelay;
     private ElapsedTime intakeAngleServoInputDelay;
+    private ElapsedTime servoArmInputDelay;
 
     public TeleLib(LinearOpMode opMode) {
         robot = new Robot(opMode);
@@ -58,6 +62,7 @@ public class TeleLib {
         latcherServoInputDelay = new ElapsedTime();
         scoringServoInputDelay = new ElapsedTime();
         intakeAngleServoInputDelay = new ElapsedTime();
+
     }
 
     public void processDrive() {
@@ -68,9 +73,9 @@ public class TeleLib {
         final double v4 = r * Math.cos(robotAngle) - rightX;
 
         robot.setDcMotorPower(MOTOR_FRONT_LEFT_WHEEL, (float) (r * Math.cos(robotAngle) - rightX));
-        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) + rightX));    //changed
-        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));      //changed
-        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));     //changed
+        robot.setDcMotorPower(MOTOR_FRONT_RIGHT_WHEEL, (float) (r * Math.sin(robotAngle) + rightX));
+        robot.setDcMotorPower(MOTOR_BACK_LEFT_WHEEL, (float) (r * Math.sin(robotAngle) - rightX));
+        robot.setDcMotorPower(MOTOR_BACK_RIGHT_WHEEL, (float) (r * Math.cos(robotAngle) + rightX));
     }
 
     public void processLatcher() {
@@ -103,6 +108,16 @@ public class TeleLib {
 //        }
 //    }
 
+    public void GrabServoArm() {
+        if (opMode.gamepad2.x && servoArmInputDelay.seconds() > .25)
+            if (robot.getServoPosition(SERVO_ARM) == SERVO_ARM_POS_REST) {
+                robot.setServoPosition(SERVO_ARM, SERVO_ARM_POS_GRAB);
+            } else {
+                robot.setServoPosition(SERVO_ARM, SERVO_ARM_POS_REST);
+            }
+        latcherServoInputDelay.reset();
+    }
+}
         // Uses gamepad 1 triggers for movement
 //    public void processScoringSlide() {
 //        if (opMode.gamepad1.right_trigger > GAMEPAD_TRIGGER_TOLERANCE) {
@@ -184,4 +199,3 @@ public class TeleLib {
 //            robot.setServoPosition(SERVO_INTAKE_HOLDER, SERVO_INTAKE_HOLDER_POS_DEPOSIT);
 //        }
 //    }
-    }
