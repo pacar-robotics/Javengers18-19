@@ -119,6 +119,9 @@ public class Robot {
         return 0;
     }
 
+    public void setDeltaServoPosition(int servoArm, float f) {
+    }
+
 //    float getServoPosition(int index) {
 //        return (float) servos[index].getPosition();
 //    }

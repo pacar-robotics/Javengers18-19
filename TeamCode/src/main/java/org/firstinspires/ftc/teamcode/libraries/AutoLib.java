@@ -100,7 +100,7 @@ public class AutoLib {
             opMode.idle();
         }
 
-          setBaseMotorPowers(0);      //TODO: Might need to uncomment
+          setBaseMotorPowers(0);
     }
 
     public void calcTurn(int degrees, float power) {
@@ -110,7 +110,7 @@ public class AutoLib {
                 (WHEEL_DIAMETER * 360));
 
 
-        prepMotorsForCalcMove(-targetPosition, targetPosition, -targetPosition, targetPosition);    //TODO: Check negative signs
+        prepMotorsForCalcMove(-targetPosition, targetPosition, -targetPosition, targetPosition);
 
         setBaseMotorPowers(power);
 
